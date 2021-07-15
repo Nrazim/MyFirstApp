@@ -2,7 +2,6 @@
   "pages": [
     "pages/home/index/index",
     "pages/logs/logs",
-    "pages/home/init/init",
     "pages/home/practice/practice",
     "pages/home/sleep/sleep",
     "pages/home/eat/eat",

@@ -1,8 +1,8 @@
 <!--pages/home/practice/practice.wxml-->
 <view class="container">
-  <image style="" src="../../images/practice.gif"></image>
-  <view class="image">
-    <image class="im" wx:for="{{imglist1}}" wx:key="{{index}}"
-     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>
-  </view>
+  <image src="{{slimeaction}}"></image>
+</view>
+<view class="image">
+  <image class="im" wx:for="{{imglist1}}" wx:key="{{index}}"
+    src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>
 </view>

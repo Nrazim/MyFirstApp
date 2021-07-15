@@ -1,7 +1,7 @@
 <!--index.wxml-->
 
 <view class="container">
-  <image src="../../images/dynamic.gif"></image>
+  <image src="{{slimeaction}}"></image>
 </view>
 <view class="image">
   <image class="im" wx:for="{{imglist1}}" wx:key="{{index}}"

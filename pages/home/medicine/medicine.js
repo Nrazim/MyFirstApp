@@ -1,4 +1,6 @@
 // pages/home/medicine/medicine.js
+const app=getApp()
+
 Page({
 
   /**
@@ -6,26 +8,34 @@ Page({
    */
   data: {
     imglist1:[
-      { url: '../../images/buttons/eat.png', id:"eat/eat"},
       { url: '../../images/buttons/medicine.png', id:"index/index"},
-      { url: '../../images/buttons/reminder.png', id:"../reminder/takemedicine/takemedicine"},
-      { url: '../../images/buttons/practice.png', id:"practice/practice"},
-      { url: '../../images/buttons/sleep.png', id:"sleep/sleep"},
-    ]
+    ],
+    slimeaction:"../../images/medicine.gif",
   },
   click: function (e) {
-    console.log(e.currentTarget.dataset.id)
-    const jumpto = e.currentTarget.dataset.id
-    if(jumpto=="../reminder/takemedicine/takemedicine"){
-      wx.navigateTo({
-        url: '../' + jumpto,
-      })
+    if(app.globalData.TakeMedicineBefore == false){
+      app.homeclick(e);
     }
-    else{wx.redirectTo({
-        url: '../' + jumpto,
-      })
+    else{/* 饭前吃药跳转进入 */
+      app.globalData.TakeMedicineBefore = false
+      console.log(e.currentTarget.dataset.id)
+      const jumpto = e.currentTarget.dataset.id
+      if(jumpto=="../reminder/takemedicine/takemedicine"){
+        wx.navigateTo({
+          url: '../' + jumpto,
+        })
+      }
+      else if(jumpto=="index/index"){/* 需要将回到首页改为回到吃饭 */
+        wx.navigateBack({})
+      }
+      else{
+        wx.redirectTo({
+          url: '../' + jumpto,
+        })
+      }
     }
   },
+
   /**
    * 生命周期函数--监听页面加载
    */

@@ -1,8 +1,11 @@
 <!--pages/home/eat/eat.wxml-->
 <view class="container">
-  <image src="../../images/dynamic.gif"></image>
+  <image src="{{slimeaction}}"></image>
 </view>
 <view class="image">
   <image class="im" wx:for="{{imglist1}}" wx:key="{{index}}"
     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>
 </view>
+<mp-dialog title="恰饭" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}"></mp-dialog>
+<mp-dialog title="该吃药了" show="{{medicineBeforeDialogShow}}" bindbuttontap="tapMedicineBeforeDialog" buttons="{{medicineButton}}"></mp-dialog>
+<mp-dialog title="该吃药了" show="{{medicineAfterDialogShow}}" bindbuttontap="tapMedicineAfterDialog" buttons="{{medicineButton}}"></mp-dialog>

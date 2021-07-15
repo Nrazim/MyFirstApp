@@ -1,4 +1,6 @@
 // pages/reminder/takemedicine/takemedicine.js
+const app=getApp()
+
 Page({
 
   /**
@@ -16,7 +18,7 @@ Page({
   },
   checkboxChange1: function (e) {
     console.log('checkbox1发生change事件，携带value值为：', e.detail.value);
-
+    console.log('globalData.MedicineBefore的value值原为：', app.globalData.MedicineBefore)
     var checkboxItems = this.data.checkboxItems, values = e.detail.value;
     for (var i = 0, lenI = 3; i < lenI; ++i) {
         checkboxItems[i].checked = false;
@@ -30,12 +32,13 @@ Page({
     }
     this.setData({
       checkboxItems: checkboxItems,
-      [`formData.checkbox1`]: e.detail.value
+      [`formData.checkbox1`]: e.detail.value,
     });
+    app.globalData.MedicineBefore = values
   },
   checkboxChange2: function (e) {
     console.log('checkbox2发生change事件，携带value值为：', e.detail.value);
-
+    console.log('globalData.MedicineAfter的value值原为：', app.globalData.MedicineAfter)
     var checkboxItems = this.data.checkboxItems, values = e.detail.value;
     for (var i = 3, lenI = 6; i < lenI; ++i) {
         checkboxItems[i].checked = false;
@@ -51,12 +54,38 @@ Page({
       checkboxItems: checkboxItems,
       [`formData.checkbox2`]: e.detail.value
     });
+    app.globalData.MedicineAfter = values
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var values = app.globalData.MedicineBefore;
+    var checkboxItems = this.data.checkboxItems;
+    for (var i = 0, lenI = 3; i < lenI; ++i) {
+      checkboxItems[i].checked = false;
 
+      for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+          if(checkboxItems[i].value == values[j]){
+              checkboxItems[i].checked = true;
+              break;
+          }
+      }
+    }
+    values = app.globalData.MedicineAfter;
+    for (var i = 3, lenI = 6; i < lenI; ++i) {
+      checkboxItems[i].checked = false;
+
+      for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+          if(checkboxItems[i].value == values[j]){
+              checkboxItems[i].checked = true;
+              break;
+          }
+      }
+    }
+    this.setData({
+      checkboxItems: checkboxItems,
+    });
   },
 
   /**

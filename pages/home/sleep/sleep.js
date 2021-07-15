@@ -1,4 +1,5 @@
 // pages/home/sleep/sleep.js
+const app=getApp()
 Page({
 
   /**
@@ -6,25 +7,13 @@ Page({
    */
   data: {
     imglist1:[
-      { url: '../../images/buttons/eat.png', id:"eat/eat"},
-      { url: '../../images/buttons/medicine.png', id:"medicine/medicine"},
-      { url: '../../images/buttons/reminder.png', id:"../reminder/takemedicine/takemedicine"},
-      { url: '../../images/buttons/practice.png', id:"practice/practice"},
       { url: '../../images/buttons/sleep.png', id:"index/index"},
-    ]
+      { url: '../../images/buttons/reminder.png', id:"../reminder/takemedicine/takemedicine"},
+    ],
+    slimeaction:"../../images/sleep.gif",
   },
   click: function (e) {
-    console.log(e.currentTarget.dataset.id)
-    const jumpto = e.currentTarget.dataset.id
-    if(jumpto=="../reminder/takemedicine/takemedicine"){
-      wx.navigateTo({
-        url: '../' + jumpto,
-      })
-    }
-    else{wx.redirectTo({
-        url: '../' + jumpto,
-      })
-    }
+    app.homeclick(e)
   },
 
   /**

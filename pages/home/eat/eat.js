@@ -1,4 +1,6 @@
 // pages/home/eat/eat.js
+const app=getApp()
+
 Page({
 
   /**
@@ -7,30 +9,108 @@ Page({
   data: {
     imglist1:[
       { url: '../../images/buttons/eat.png', id:"index/index"},
-      { url: '../../images/buttons/medicine.png', id:"medicine/medicine"},
-      { url: '../../images/buttons/reminder.png', id:"../reminder/takemedicine/takemedicine"},
-      { url: '../../images/buttons/practice.png', id:"practice/practice"},
-      { url: '../../images/buttons/sleep.png', id:"sleep/sleep"},
+    ],
+    slimeaction:"../../images/eat.gif",
+    dialogShow: false,
+    medicineBeforeDialogShow: false,
+    medicineAfterDialogShow: false,
+    takeMedicineAfter: false,
+    buttons: [
+      {text: '手滑了'}, {text: '早饭'},
+      {text: '中饭'}, {text: '晚饭'}
+    ],
+    medicineButton: [
+      {text: '吃'}
     ]
   },
+
   click: function (e) {
     console.log(e.currentTarget.dataset.id)
     const jumpto = e.currentTarget.dataset.id
-    if(jumpto=="../reminder/takemedicine/takemedicine"){
+    if(this.data.takeMedicineAfter==true){
+      this.setData({
+        takeMedicineAfter: false,
+      })
+      this.timeToMedicineAfter();
+    }
+    else{
+      wx.redirectTo({
+        url: '../' + jumpto,
+      })
+    }
+  },
+  /* 页面打开时弹出吃饭时点选择 */
+  openConfirm: function () {
+    this.setData({
+      dialogShow: true
+    })
+  },
+
+  timeToMedicineBefore: function(){
+    console.log("medicine before");
+    this.setData({
+      medicineBeforeDialogShow: true,
+    })
+  },
+  timeToMedicineAfter: function(){
+    console.log("medicine after");
+    this.setData({
+      medicineAfterDialogShow: true,
+    })
+  },
+
+  tapDialogButton(e) {
+    app.globalData.TakeMedicineBefore = false;
+    console.log(e.detail)
+    if(e.detail.index==0){
       wx.navigateTo({
-        url: '../' + jumpto,
+        url: '../index/index',
       })
     }
-    else{wx.redirectTo({
-        url: '../' + jumpto,
-      })
+    var values = app.globalData.MedicineBefore
+    for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+      if(e.detail.index-1 == values[j]){//index的0是取消，123分别为早中晚饭，而MedicineBefore的012分别为早中晚饭
+        app.globalData.TakeMedicineBefore = true;//饭前吃药，以便吃完药可以回到吃饭
+        this.timeToMedicineBefore();
+        break;
+      }
     }
+    var values = app.globalData.MedicineAfter
+    for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+      if(e.detail.index+2 == values[j]){//index的0是取消，123分别为早中晚饭，而MedicineAfter的012分别为早中晚饭
+        this.setData({//饭后吃药的变量设定
+          takeMedicineAfter: true,
+        });
+        break;
+      }
+    }
+    this.setData({
+        dialogShow: false,
+    })
+  },
+  /* 饭前吃药框 */
+  tapMedicineBeforeDialog: function(){
+    this.setData({
+      medicineBeforeDialogShow: false,
+    })
+    wx.navigateTo({
+      url: '../medicine/medicine',
+    })
+  },
+  /* 饭后吃药框 */
+  tapMedicineAfterDialog: function(){
+    this.setData({
+      medicineAfterDialogShow: false,
+    })
+    wx.redirectTo({
+      url: '../medicine/medicine',
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.openConfirm();
   },
 
   /**

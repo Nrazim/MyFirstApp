@@ -14,19 +14,21 @@ App({
     })
   },
   homeclick: function (e) {
-  console.log(e.currentTarget.dataset.id)
-  const jumpto = e.currentTarget.dataset.id
-  if(jumpto=="../reminder/takemedicine/takemedicine"){
-    wx.navigateTo({
-      url: '../' + jumpto,
-    })
-  }
-  else{wx.redirectTo({
-      url: '../' + jumpto,
-    })
-  }
-},
+    console.log(e.currentTarget.dataset.id)
+    const jumpto = e.currentTarget.dataset.id
+    if(jumpto=="../reminder/takemedicine/takemedicine"){
+      wx.navigateTo({
+        url: '../' + jumpto,
+      })
+    }
+    else{wx.redirectTo({
+        url: '../' + jumpto,
+      })
+    }
+  },
   globalData: {
-    userInfo: null,
+    MedicineBefore: [],
+    MedicineAfter: [],
+    TakeMedicineBefore: false,
   }
 })
