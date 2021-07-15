@@ -1,0 +1,8 @@
+<!--pages/home/medicine/medicine.wxml-->
+<view class="container">
+  <image style="" src="../../images/medicine.gif"></image>
+  <view class="image">
+    <image class="im" wx:for="{{imglist1}}" wx:key="{{index}}"
+     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>
+  </view>
+</view>

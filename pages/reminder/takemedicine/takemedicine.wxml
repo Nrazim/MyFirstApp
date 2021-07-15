@@ -1,0 +1,13 @@
+<!--pages/reminder/takemedicine/takemedicine.wxml-->
+<view>
+  <mp-cells title="饭前提醒">
+    <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange1">
+        <mp-checkbox wx:for="{{checkboxItems}}" wx:key="value" wx:if="{{index<3}}" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+    </mp-checkbox-group>
+  </mp-cells>
+  <mp-cells title="饭后提醒">
+    <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange2">
+        <mp-checkbox wx:for="{{checkboxItems}}" wx:key="value" wx:if="{{index>2}}" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+    </mp-checkbox-group>
+  </mp-cells>
+</view>
