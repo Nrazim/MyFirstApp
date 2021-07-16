@@ -4,5 +4,6 @@
     "mp-checkbox": "weui-miniprogram/checkbox/checkbox",
     "mp-cells": "weui-miniprogram/cells/cells",
     "mp-form": "weui-miniprogram/form/form"
-  }
+  },
+  "navigationBarTitleText": "吃药提醒设置"
 }

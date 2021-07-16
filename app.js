@@ -59,6 +59,7 @@ App({
     TakeMedicineBefore: false,
     userInfo: null,
     SignedIn: false,
+    rgb: 'rgb(7,193,96)',
     level:1,
     exp:20,
   }

@@ -13,7 +13,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "史莱姆养成",
     "navigationBarTextStyle": "black"
   },
   "useExtendedLib": {

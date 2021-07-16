@@ -1,0 +1,11 @@
+/* pages/home/setting/setting.wxss */
+.color-block {
+  width:75rpx;height:75rpx;margin:0 auto;
+  text-align: center;
+  line-height: 200rpx;
+  color: white;
+}
+.input-wrap {
+  display: flex;
+  flex-direction: row;
+}

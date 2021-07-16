@@ -1,0 +1,9 @@
+<!--pages/home/setting/setting.wxml-->
+<view class="container">
+  <view class="input-wrap">
+    <view>颜色选择： </view>
+    <view style="background:{{rgb}};" bindtap="toPick" class="color-block"></view>
+  </view>
+</view>
+
+<color-picker bindchangeColor="pickColor" initColor="{{rgb}}" show="{{pick}}" />

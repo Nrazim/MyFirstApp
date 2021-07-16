@@ -1,209 +1,177 @@
 Component({
   properties: {
-    //单位rpx实际像素
-    rpxRatio: {
-      type: Number,
-      value: 1
+    initColor: {
+      type: String,
+      value:'rgb(255,0,0)'
     },
-    colorData: {
-      type: Object,
-      value: {}
-    }
+    maskClosable: {
+      type: Boolean,
+      value: true
+    },
+    mask: {
+      type: Boolean,
+      value: true
+    },
+    show: {
+      type: Boolean,
+      value: false
+    },
   },
   data: {
-    //基础色相(色盘右上顶点的颜色)
-    hueData: {
-      colorStopRed: 255,
-      colorStopGreen: 0,
-      colorStopBlue: 0
-    },
-    //选择点的颜色
-    pickerData: {
-      x: 0,
-      y: 480,
-      red: 0,
-      green: 0,
-      blue: 0,
-      hex: '#000000'
-    },
-    //色相控制条位置
-    barY: 0,
-    top: 0, //组件的位置
-    left: 0,
-    scrollTop: 0, //滚动位置
-    scrollLeft: 0,
-    timer: 0,
+
   },
   lifetimes: {
     attached() {
+      let { initColor} = this.data;
       this.setData({
-        hueData: this.data.colorData.hueData,
-        pickerData: this.data.colorData.pickerData,
-        barY: this.data.colorData.barY
+        hueColor: this.hsv2rgb((this.rgb2hsv(initColor)).h,100,100)
       })
     },
     ready() {
-      const _this = this
-      const query = wx.createSelectorQuery().in(this)
-      query.select('#wrapper').boundingClientRect()
-      query.selectViewport().scrollOffset()
-      query.exec(res => {
-        _this.setData({
-          top: res[0].top,
-          left: res[0].left,
-          scrollTop: res[1].scrollTop,
-          scrollLeft: res[1].scrollLeft
-        })
+      
+      const $ = this.createSelectorQuery()
+      const target = $.select('.target')
+      target.boundingClientRect()
+      $.exec((res) => {
+        const rect = res[0]
+        if (rect) {
+          this.SV = {
+            W: rect.width - 28, //block-size=28
+            H: rect.height - 28,
+            Step: (rect.width - 28) / 100
+          }
+          let { h, s, v } = this.rgb2hsv(this.data.initColor)
+          // 初始化定位
+          this.setData({
+            hsv:{
+              h,s,v
+            },
+            x: Math.round(s * this.SV.Step),
+            y: Math.round((100-v )* this.SV.Step)
+          })
+        }
       })
     }
   },
   methods: {
-    //选中颜色
-    _chooseColor(e) {
-      clearTimeout(this.data.timer)
-      let x = (e.changedTouches[0].pageX - this.data.left - this.data.scrollLeft) / this.data.rpxRatio
-      let y = (e.changedTouches[0].pageY - this.data.top - this.data.scrollTop) / this.data.rpxRatio
-      x = x > 480 ? 480 : x
-      y = y > 480 ? 480 : y
-      x = x < 0 ? 0 : x
-      y = y < 0 ? 0 : y
-      const { pickerData } = this.data
-      pickerData.x = x
-      pickerData.y = y
-      this.setData({
-        pickerData,
-        timer: setTimeout(() => {
-          this._changeColor(x, y)
-        }, 50)
+    onEnd() {
+      this.triggerEvent('changeColor', {
+        color: this.data.colorRes
       })
     },
-    //拖动色相bar
-    //这个地方选择出来的颜色就是色盘最右上角的颜色
-    _changeBar(e) {
-      let y = (e.changedTouches[0].pageY - this.data.top - this.data.scrollTop) / this.data.rpxRatio
-      y = y > 490 ? 490 : y
-      y = y < 0 ? 0 : y
+    changeHue: function (e) {
+      let hue = e.detail.value;
       this.setData({
-        barY: y
+        "hsv.h":hue,
+        hueColor: this.hsv2rgb(hue, 100, 100),
+        colorRes: this.hsv2rgb(hue, this.data.hsv.s, this.data.hsv.v)
       })
-      this._changeHue(y)
     },
-    //改变颜色
-    _changeColor(x, y) {
-      //获取色相（色盘最右上角的颜色）
-      const sRed = this.data.hueData.colorStopRed
-      const sGreen = this.data.hueData.colorStopGreen
-      const sBlue = this.data.hueData.colorStopBlue
-      //选择的颜色
-      //实际上这里是先算出假设y等于0时(不考虑Y轴)的颜色，后面需要再减去y*比例的颜色值
-      let [pRed, pGreen, pBlue] = [this.data.pickerData.red, this.data.pickerData.green, this.data.pickerData.blue]
-      //首先计算X轴
-      if (sRed === 255) {
-        //移动1单位需要减少多少颜色值
-        const greenRatioX = (255 - sGreen) / 480
-        const blueRatioX = (255 - sBlue) / 480
-        const greenValueX = 255 - x * greenRatioX
-        const blueValueX = 255 - x * blueRatioX
-        pRed = 255
-        pGreen = Math.round(greenValueX > sGreen ? greenValueX : sGreen)
-        pBlue = Math.round(blueValueX > sBlue ? blueValueX : sBlue)
+    changeSV: function (e) {
+      let {
+        x,
+        y
+      } = e.detail;
+      x = Math.round(x / this.SV.Step);
+      y = 100 - Math.round(y / this.SV.Step);
+      this.setData({
+        "hsv.s":x,
+        "hsv.v": y,
+        colorRes: this.hsv2rgb(this.data.hsv.h, x, y)
+      })
+    },
+    close: function close(e) {
+      if (this.data.maskClosable) {
+        this.setData({
+          show: false
+        });
+        this.triggerEvent('close');
       }
-      if (sGreen === 255) {
-        const redRatioX = (255 - sRed) / 480
-        const blueRatioX = (255 - sBlue) / 480
-        const redValueX = 255 - x * redRatioX
-        const blueValueX = 255 - x * blueRatioX
-        pRed = Math.round(redValueX > sRed ? redValueX : sRed)
-        pGreen = 255
-        pBlue = Math.round(blueValueX > sBlue ? blueValueX : sBlue)
-      }
-      if (sBlue === 255) {
-        const redRatioX = (255 - sRed) / 480
-        const greenRatioX = (255 - sGreen) / 480
-        const redValueX = 255 - x * redRatioX
-        const greenValueX = 255 - x * greenRatioX
-        pRed = Math.round(redValueX > sRed ? redValueX : sRed)
-        pGreen = Math.round(greenValueX > sGreen ? greenValueX : sGreen)
-        pBlue = 255
+    },
+    preventdefault:function() {
+      
+    },
+    hsv2rgb: function (h, s, v) {
+      let hsv_h = (h / 360).toFixed(2);
+      let hsv_s = (s / 100).toFixed(2);
+      let hsv_v = (v / 100).toFixed(2);
+
+      var i = Math.floor(hsv_h * 6);
+      var f = hsv_h * 6 - i;
+      var p = hsv_v * (1 - hsv_s);
+      var q = hsv_v * (1 - f * hsv_s);
+      var t = hsv_v * (1 - (1 - f) * hsv_s);
+
+      var rgb_r = 0,
+        rgb_g = 0,
+        rgb_b = 0;
+      switch (i % 6) {
+        case 0:
+          rgb_r = hsv_v;
+          rgb_g = t;
+          rgb_b = p;
+          break;
+        case 1:
+          rgb_r = q;
+          rgb_g = hsv_v;
+          rgb_b = p;
+          break;
+        case 2:
+          rgb_r = p;
+          rgb_g = hsv_v;
+          rgb_b = t;
+          break;
+        case 3:
+          rgb_r = p;
+          rgb_g = q;
+          rgb_b = hsv_v;
+          break;
+        case 4:
+          rgb_r = t;
+          rgb_g = p;
+          rgb_b = hsv_v;
+          break;
+        case 5:
+          rgb_r = hsv_v, rgb_g = p, rgb_b = q;
+          break;
       }
 
-      //考虑Y轴，减去y*比例的颜色值，得到最终颜色
-      const redRatioY = pRed / 480
-      const greenRatioY = pGreen / 480
-      const blueRatioY = pBlue / 480
+      return 'rgb(' + (Math.floor(rgb_r * 255) + "," + Math.floor(rgb_g * 255) + "," + Math.floor(rgb_b * 255)) + ')';
+    },
+    rgb2hsv: function (color) {
+      let rgb = color.split(',');
+      let R = parseInt(rgb[0].split('(')[1]);
+      let G = parseInt(rgb[1]);
+      let B = parseInt(rgb[2].split(')')[0]);
 
-      const redValueY = y * redRatioY
-      const greenValueY = y * greenRatioY
-      const blueValueY = y * blueRatioY
-      const hex = this._rgbToHex(pRed - redValueY, pGreen - greenValueY, pBlue - blueValueY)
-      const { pickerData } = this.data
-      pickerData.red = Math.round(pRed - redValueY)
-      pickerData.green = Math.round(pGreen - greenValueY)
-      pickerData.blue = Math.round(pBlue - blueValueY)
-      pickerData.hex = hex
-      this.setData({
-        pickerData
-      })
-      this.triggerEvent('changecolor', {
-        colorData: this.data
-      })
+      let hsv_red = R / 255, hsv_green = G / 255, hsv_blue = B / 255;
+      let hsv_max = Math.max(hsv_red, hsv_green, hsv_blue),
+        hsv_min = Math.min(hsv_red, hsv_green, hsv_blue);
+      let hsv_h, hsv_s, hsv_v = hsv_max;
+
+      let hsv_d = hsv_max - hsv_min;
+      hsv_s = hsv_max == 0 ? 0 : hsv_d / hsv_max;
+
+      if (hsv_max == hsv_min) hsv_h = 0;
+      else {
+        switch (hsv_max) {
+          case hsv_red:
+            hsv_h = (hsv_green - hsv_blue) / hsv_d + (hsv_green < hsv_blue ? 6 : 0);
+            break;
+          case hsv_green:
+            hsv_h = (hsv_blue - hsv_red) / hsv_d + 2;
+            break;
+          case hsv_blue:
+            hsv_h = (hsv_red - hsv_green) / hsv_d + 4;
+            break;
+        }
+        hsv_h /= 6;
+      }
+      return {
+        h: (hsv_h * 360).toFixed(),
+        s: (hsv_s * 100).toFixed(),
+        v: (hsv_v * 100).toFixed()
+      }
     },
-    //改变色相
-    _changeHue(y) {
-      //根据色相bar的长度(490)计算出每拖动0.32距离就改变一次色相（R或G或B的值增减1）
-      //色相的变化一共分为六个阶段,每次拖动81.67距离就完成一个阶段
-      const { hueData } = this.data
-      if (y < 81.67) {
-        const value = y / .32 > 255 ? 255 : y / .32
-        hueData.colorStopRed = 255
-        hueData.colorStopGreen = Math.round(value)
-        hueData.colorStopBlue = 0
-      }
-      if (y >= 81.67 && y < 163.34) {
-        const value = (y - 81.67) / .32 > 255 ? 255 : (y - 81.67) / .32
-        hueData.colorStopRed = 255 - Math.round(value)
-        hueData.colorStopGreen = 255
-        hueData.colorStopBlue = 0
-      }
-      if (y >= 163.34 && y < 245.01) {
-        const value = (y - 163.34) / .32 > 255 ? 255 : (y - 163.34) / .32
-        hueData.colorStopRed = 0
-        hueData.colorStopGreen = 255
-        hueData.colorStopBlue = Math.round(value)
-      }
-      if (y >= 245.01 && y < 326.68) {
-        const value = (y - 245.01) / .32 > 255 ? 255 : (y - 245.01) / .32
-        hueData.colorStopRed = 0
-        hueData.colorStopGreen = 255 - Math.round(value)
-        hueData.colorStopBlue = 255
-      }
-      if (y >= 326.68 && y < 408.35) {
-        const value = (y - 326.68) / .32 > 255 ? 255 : (y - 326.68) / .32
-        hueData.colorStopRed = Math.round(value)
-        hueData.colorStopGreen = 0
-        hueData.colorStopBlue = 255
-      }
-      if (y >= 408.35) {
-        const value = (y - 408.35) / .32 > 255 ? 255 : (y - 408.35) / .32
-        hueData.colorStopRed = 255
-        hueData.colorStopGreen = 0
-        hueData.colorStopBlue = 255 - Math.round(value)
-      }
-      this.setData({
-        hueData
-      })
-      //改变完色相需要再次改变选择的颜色
-      this._changeColor(this.data.pickerData.x, this.data.pickerData.y)
-    },
-    _rgbToHex(r, g, b) {
-      let hex = ((r << 16) | (g << 8) | b).toString(16)
-      if (hex.length < 6) {
-        hex = `${'0'.repeat(6-hex.length)}${hex}`
-      }
-      if (hex == '0') {
-        hex = '000000'
-      }
-      return `#${hex}`
-    }
   }
 })
