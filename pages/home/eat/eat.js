@@ -18,7 +18,7 @@ Page({
       {text: '中饭'}, {text: '晚饭'}
     ],
     medicineButton: [
-      {text: '吃'}
+      {text: 'eat'}
     ]
   },
 
