@@ -19,7 +19,7 @@ Page({
   },
 
   register() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../register/register',
     })
   },
@@ -30,7 +30,6 @@ Page({
       password,
     } = this.data;
     AV.User.logIn(username, password).then(function (loginedUser) {
-      app.globalData.SignedIn = true
       wx.redirectTo({
         url: '../../home/index/index',
       });

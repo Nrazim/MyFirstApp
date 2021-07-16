@@ -9,23 +9,35 @@
   width: 200rpx;
 }
 
-.remind-info{
-  text-align: right;
+.picker {
+  background-color: rgb(226, 226, 225);
+  margin-bottom: 30rpx;
+  border-radius: 10rpx;
+  border-color: #000000;
+  width: 310rpx;
+  height: 60rpx;
+  display: flex;
+  color:black;
 }
-
 .three
 {
   margin-bottom: 30rpx;
-  right: 60rpx;
   border-style:solid;
-  border-radius:10rpx;
+  border-radius: 10rpx;
   border-width:1px;
-  width: 300rpx
+  width: 300rpx;
 }
 
 .login {
   margin-top: 30rpx;
+  width: 300rpx;
 }
+.goto-register{
+  margin-top: 30rpx;
+  font-size: 80%;
+  width: 300rpx;
+}
+
 .title{
   font-size:120%;
   line-height:20px;

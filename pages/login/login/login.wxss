@@ -12,7 +12,8 @@
 .three
 {
   margin-bottom: 30rpx;
-	border-style:solid;
+  border-style:solid;
+  border-radius: 10rpx;
   border-width:1px;
   width: 300rpx;
 }
