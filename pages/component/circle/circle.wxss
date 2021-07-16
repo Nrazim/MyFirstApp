@@ -1,0 +1,12 @@
+.circle_box,.circle_draw{ position: relative; }
+.circle_bg{position: absolute;}
+.circle_box{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.circle_txt{
+  position: absolute;
+  font-size: 35rpx;
+}
