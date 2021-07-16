@@ -6,7 +6,9 @@
     "pages/home/sleep/sleep",
     "pages/home/eat/eat",
     "pages/home/medicine/medicine",
-    "pages/reminder/takemedicine/takemedicine"
+    "pages/reminder/takemedicine/takemedicine",
+    "pages/login/login/login",
+    "pages/login/register/register"
   ],
   "window": {
     "backgroundTextStyle": "light",

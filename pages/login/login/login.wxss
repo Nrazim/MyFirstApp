@@ -1,0 +1,35 @@
+/* pages/login/login.wxss */
+.input-wrap {
+  display: flex;
+  flex-direction: row;
+}
+
+.info-input {
+  border-bottom: 2rpx solid #000000;
+  width: 200rpx;
+}
+
+.three
+{
+  margin-bottom: 30rpx;
+	border-style:solid;
+  border-width:1px;
+  width: 300rpx;
+}
+
+.login {
+  margin-top: 30rpx;
+  width: 300rpx;
+}
+.goto-register{
+  margin-top: 30rpx;
+  font-size: 80%;
+  width: 300rpx;
+}
+
+.title{
+  font-size:120%;
+  line-height:20px;
+  margin-top:100rpx;
+  text-align: center;
+}

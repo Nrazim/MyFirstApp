@@ -9,6 +9,7 @@ Page({
   data: {
     imglist1:[
       { url: '../../images/buttons/medicine.png', id:"index/index"},
+      { url: '../../images/buttons/reminder.png', id:"../reminder/takemedicine/takemedicine"},
     ],
     slimeaction:"../../images/medicine.gif",
   },
@@ -17,7 +18,6 @@ Page({
       app.homeclick(e);
     }
     else{/* 饭前吃药跳转进入 */
-      app.globalData.TakeMedicineBefore = false
       console.log(e.currentTarget.dataset.id)
       const jumpto = e.currentTarget.dataset.id
       if(jumpto=="../reminder/takemedicine/takemedicine"){

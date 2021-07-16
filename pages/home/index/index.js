@@ -10,7 +10,8 @@ Page({
       { url: '../../images/buttons/practice.png', id:"practice/practice"},
       { url: '../../images/buttons/sleep.png', id:"sleep/sleep"},
     ],
-    slimeaction:"https://www.z4a.net/images/2021/07/15/quiet.gif",
+    exp: app.globalData.exp,
+    slimeaction:"../../images/dynamic.gif",
   },
   click: function (e) {
     app.homeclick(e)
@@ -22,7 +23,11 @@ Page({
     })
   },
   onLoad() {
-    
+    if(app.globalData.SignedIn==false){
+      wx.redirectTo({
+        url: '../../login/login/login',
+      })
+    }
   },
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗

@@ -7,8 +7,11 @@ Page({
    */
   data: {
     imglist1:[
-      { url: '../../images/buttons/sleep.png', id:"index/index"},
+      { url: '../../images/buttons/eat.png', id:"eat/eat"},
+      { url: '../../images/buttons/medicine.png', id:"medicine/medicine"},
       { url: '../../images/buttons/reminder.png', id:"../reminder/takemedicine/takemedicine"},
+      { url: '../../images/buttons/practice.png', id:"practice/practice"},
+      { url: '../../images/buttons/sleep.png', id:"index/index"},
     ],
     slimeaction:"../../images/sleep.gif",
   },
