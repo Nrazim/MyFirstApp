@@ -43,7 +43,7 @@ App({
   homeclick: function (e) {
     console.log(e.currentTarget.dataset.id)
     const jumpto = e.currentTarget.dataset.id
-    if(jumpto=="../reminder/takemedicine/takemedicine"){
+    if(jumpto=="../reminder/takemedicine/takemedicine"||jumpto=="setting/setting"){
       wx.navigateTo({
         url: '../' + jumpto,
       })

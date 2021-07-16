@@ -19,7 +19,7 @@ Page({
   },
 
   register() {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../register/register',
     })
   },

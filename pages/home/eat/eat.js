@@ -10,7 +10,7 @@ Page({
     imglist1:[
       { url: '../../images/buttons/eat.png', id:"index/index"},
     ],
-    slimeaction:"../../images/eat.gif",
+    slimeaction:"https://www.z4a.net/images/2021/07/16/eat.gif",
     dialogShow: false,
     medicineDialogShow: false,
     buttons: [

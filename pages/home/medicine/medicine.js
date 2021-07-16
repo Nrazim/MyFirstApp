@@ -9,9 +9,8 @@ Page({
   data: {
     imglist1:[
       { url: '../../images/buttons/medicine.png', id:"index/index"},
-      { url: '../../images/buttons/reminder.png', id:"../reminder/takemedicine/takemedicine"},
     ],
-    slimeaction:"../../images/medicine.gif",
+    slimeaction:"https://www.z4a.net/images/2021/07/16/medicine.gif",
   },
   click: function (e) {
     if(app.globalData.TakeMedicineBefore == false){

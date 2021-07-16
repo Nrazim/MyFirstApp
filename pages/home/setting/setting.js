@@ -19,12 +19,15 @@ Page({
     this.setData({
       rgb: e.detail.color
     })
+    app.globalData.rgb = e.detail.color
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      rgb: app.globalData.rgb
+    })
   },
 
   /**

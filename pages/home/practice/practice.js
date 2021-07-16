@@ -7,13 +7,9 @@ Page({
    */
   data: {
     imglist1:[
-      { url: '../../images/buttons/eat.png', id:"eat/eat"},
-      { url: '../../images/buttons/medicine.png', id:"medicine/medicine"},
-      { url: '../../images/buttons/reminder.png', id:"../reminder/takemedicine/takemedicine"},
       { url: '../../images/buttons/practice.png', id:"index/index"},
-      { url: '../../images/buttons/sleep.png', id:"sleep/sleep"},
     ],
-    slimeaction:"../../images/practice.gif",
+    slimeaction:"https://www.z4a.net/images/2021/07/16/practice.gif",
   },
   click: function (e) {
     app.homeclick(e)
