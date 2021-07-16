@@ -2,12 +2,17 @@
 <view class="title">用户注册</view>
 <view class="container">
   <view class="input-wrap">
-    <view>账号: </view>
+    <view>　新账号:　</view>
     <input value="{{username}}" bindinput="inputUsername" class="three"/>
   </view>
   <view class="input-wrap">
-    <view>密码: </view>
-    <input value="{{password}}" bindinput="inputPassword" class="three"/>
+    <view>　　密码:　</view>
+    <input value="{{password}}" bindinput="inputPassword" class="three" type="password"/>
+  </view>
+  <view class="input-wrap">
+    <view>确认密码:　</view>
+    <input value="{{password2}}" bindinput="inputPassword2" class="three" type="password"/>
   </view>
   <button bindtap="register" class="login">注册</button>
 </view>
+
