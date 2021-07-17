@@ -1,5 +1,6 @@
 // pages/reminder/takemedicine/takemedicine.js
 const app=getApp()
+const AV = require('../../../libs/av-core-min');
 
 Page({
 
@@ -18,7 +19,6 @@ Page({
   },
   checkboxChange1: function (e) {
     console.log('checkbox1发生change事件，携带value值为：', e.detail.value);
-    console.log('globalData.MedicineBefore的value值原为：', app.globalData.MedicineBefore)
     var checkboxItems = this.data.checkboxItems, values = e.detail.value;
     for (var i = 0, lenI = 3; i < lenI; ++i) {
         checkboxItems[i].checked = false;
@@ -30,15 +30,22 @@ Page({
             }
         }
     }
+    try{
+      const currentUser = AV.User.current()
+      console.log('用户medicineBefore的值原为', currentUser.get('medicineBefore'));
+      currentUser.set('medicineBefore', values);
+      currentUser.save();
+      console.log('用户medicineBefore的值现在为', currentUser.get('medicineBefore'));
+    } catch(error){
+      console.error(error);
+    }
     this.setData({
       checkboxItems: checkboxItems,
       [`formData.checkbox1`]: e.detail.value,
     });
-    app.globalData.MedicineBefore = values
   },
   checkboxChange2: function (e) {
     console.log('checkbox2发生change事件，携带value值为：', e.detail.value);
-    console.log('globalData.MedicineAfter的value值原为：', app.globalData.MedicineAfter)
     var checkboxItems = this.data.checkboxItems, values = e.detail.value;
     for (var i = 3, lenI = 6; i < lenI; ++i) {
         checkboxItems[i].checked = false;
@@ -54,14 +61,23 @@ Page({
       checkboxItems: checkboxItems,
       [`formData.checkbox2`]: e.detail.value
     });
-    app.globalData.MedicineAfter = values
+    try{
+      const currentUser = AV.User.current()
+      console.log('用户medicineAfter的值原为', currentUser.get('medicineAfter'));
+      currentUser.set('medicineAfter', values);
+      currentUser.save();
+      console.log('用户medicineAfter的值现在为', currentUser.get('medicineAfter'));
+    } catch(error){
+      console.error(error);
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var values = app.globalData.MedicineBefore;
-    var checkboxItems = this.data.checkboxItems;
+    const currentUser = AV.User.current()
+    var values = currentUser.get('medicineBefore')?currentUser.get('medicineBefore'):[]
+    var checkboxItems = this.data.checkboxItems
     for (var i = 0, lenI = 3; i < lenI; ++i) {
       checkboxItems[i].checked = false;
 
@@ -72,7 +88,7 @@ Page({
           }
       }
     }
-    values = app.globalData.MedicineAfter;
+    values = currentUser.get('medicineAfter')?currentUser.get('medicineAfter'):[]
     for (var i = 3, lenI = 6; i < lenI; ++i) {
       checkboxItems[i].checked = false;
 

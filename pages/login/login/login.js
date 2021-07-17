@@ -1,5 +1,5 @@
 const app = getApp()
-const AV = require('../../../libs/av-core-min.js'); 
+const AV = require('../../../libs/av-core-min'); 
 
 Page({
   data: {

@@ -19,6 +19,7 @@ Page({
     else{/* 饭前吃药跳转进入 */
       console.log(e.currentTarget.dataset.id)
       const jumpto = e.currentTarget.dataset.id
+      app.globalData.TakeMedicineBefore = false
       if(jumpto=="../reminder/takemedicine/takemedicine"){
         wx.navigateTo({
           url: '../' + jumpto,

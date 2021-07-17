@@ -54,8 +54,6 @@ App({
     }
   },
   globalData: {
-    MedicineBefore: [],
-    MedicineAfter: [],
     TakeMedicineBefore: false,
     userInfo: null,
     SignedIn: false,
