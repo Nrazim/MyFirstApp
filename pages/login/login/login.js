@@ -31,9 +31,16 @@ Page({
     } = this.data;
     AV.User.logIn(username, password).then(function (loginedUser) {
       app.globalData.SignedIn = true
-      wx.redirectTo({
-        url: '../../home/index/index',
-      });
+      if (loginedUser.attributes.first){
+        wx.redirectTo({
+          url: '../basic_setting/basic_setting',
+        });
+      }
+      else{
+        wx.redirectTo({
+          url: '../../home/index/index',
+        });
+      }
       wx.showToast({
         title: '登录成功',
         icon: 'success',
