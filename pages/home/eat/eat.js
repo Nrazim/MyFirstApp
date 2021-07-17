@@ -60,7 +60,7 @@ Page({
     app.globalData.TakeMedicineBefore = false;
     console.log(e.detail)
     if(e.detail.index==0){
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../index/index',
       })
     }
