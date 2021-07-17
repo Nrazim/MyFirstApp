@@ -1,4 +1,6 @@
 // pages/login/basic_setting.js
+const app = getApp()
+const AV = require('../../../libs/av-core-min.js'); 
 Page({
 
   /**
@@ -12,6 +14,9 @@ Page({
       i_height: [70,0],
       a_weight: [],
       i_weight: [20,0],
+      gender:0,
+      height:'',
+      weight:'',
   },
   bindGenderChange: function(e){
     console.log("user's gender is "+e.detail.value)
@@ -29,18 +34,56 @@ Page({
     this.setData({
       i_height: e.detail.value
     })
-    console.log(String(e.detail.value[0]+100)+'.'+String(e.detail.value[1]))
+    this.setData({
+      height: String(e.detail.value[0]+100)+'.'+String(e.detail.value[1])
+    })
+    console.log(this.data.height)
   },
   bindWeightChange(e) {
     this.setData({
       i_weight: e.detail.value
     })
-    console.log(String(e.detail.value[0]+30)+'.'+String(e.detail.value[1]))
+    this.setData({
+      weight: String(e.detail.value[0]+30)+'.'+String(e.detail.value[1])
+    })
+    console.log(this.data.weight)
   },
   confirm(){
-    wx.redirectTo({
-      url: '../login/login',
-    });
+    if(this.data.index==0){
+      wx.showToast({
+        title: '请选择性别',
+        icon: 'none',
+      });
+    }
+    else{
+      try{
+        var currentUser=AV.User.current()
+        console.log(currentUser.get('birthday'));
+        currentUser.set("birthday",this.data.date);
+        currentUser.set("height",this.data.height);
+        currentUser.set("weight",this.data.weight);
+        currentUser.set("first",0);
+        if(this.data.index==1){
+          currentUser.set("gender",'男');
+        }
+        else{
+          currentUser.set("gender",'女');
+        }
+        currentUser.save();
+      }catch(error){
+        showToast({
+          title:error.message,
+          icon:'none',
+        })
+      }
+      wx.redirectTo({
+        url: '../../home/index/index',
+      });
+      wx.showToast({
+        title: '更新成功',
+        icon: 'success',
+      });
+    }
   },
 
   /**

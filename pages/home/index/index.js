@@ -23,6 +23,9 @@ Page({
     })
   },
   onLoad() {
+    
+  },
+  onShow(){
     if(app.globalData.SignedIn==false){
       wx.redirectTo({
         url: '../../login/login/login',

@@ -38,9 +38,10 @@ Page({
     const user = new AV.User();
     if (username) user.set({username});
     if (password) user.set({password});
+    user.set("first",1);
     user.save().then(() => {
-      wx.navigateTo({
-        url: '../basic_setting/basic_setting',
+      wx.redirectTo({
+        url: '../login/login',
       });
       wx.showToast({
         title: '注册成功',
