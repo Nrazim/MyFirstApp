@@ -65,7 +65,7 @@ Page({
       })
     }
     const currentUser = AV.User.current()
-    var values = currentUser.get('medicineBefore')
+    var values = currentUser.get('medicineBefore')?currentUser.get('medicineBefore'):[]
     for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
         if(e.detail.index-1 == values[j]){//index从1到3，values从0到2是吃饭前
           app.globalData.TakeMedicineBefore = true;/* 饭前吃药，以便吃完药可以回到吃饭 */
@@ -73,7 +73,7 @@ Page({
           break;
         }
     }
-    values = currentUser.get('medicineAfter')
+    values = currentUser.get('medicineAfter')?currentUser.get('medicineBefore'):[]
     for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
       if(e.detail.index+2 == values[j]){//index从1到3，values从3到5是吃饭后
         this.setData({
