@@ -31,7 +31,7 @@ Page({
     } = this.data;
     AV.User.logIn(username, password).then(function (loginedUser) {
       app.globalData.SignedIn = true
-      if (loginedUser.attributes.first){
+      if (!loginedUser.attributes.gender){
         wx.redirectTo({
           url: '../basic_setting/basic_setting',
         });

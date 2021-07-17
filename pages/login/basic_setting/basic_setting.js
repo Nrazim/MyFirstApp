@@ -62,7 +62,6 @@ Page({
         currentUser.set("birthday",this.data.date);
         currentUser.set("height",this.data.height);
         currentUser.set("weight",this.data.weight);
-        currentUser.set("first",0);
         if(this.data.index==1){
           currentUser.set("gender",'男');
         }
