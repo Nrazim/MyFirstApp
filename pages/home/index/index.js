@@ -13,6 +13,12 @@ Page({
     exp: app.globalData.exp,
     slimeaction:"https://www.z4a.net/images/2021/07/16/dynamic.gif",
   },
+  
+  gotoPage_task:function(){
+    wx.navigateTo({
+      url:'/pages/home/task/task'
+    })
+  },
   click: function (e) {
     app.homeclick(e)
   },

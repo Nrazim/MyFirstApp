@@ -12,7 +12,8 @@ Page({
     slimeaction:"https://www.z4a.net/images/2021/07/16/practice.gif",
   },
   click: function (e) {
-    app.homeclick(e)
+    app.homeclick(e),
+    app.globalData.practicefinish = true
   },
 
   /**
@@ -33,7 +34,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.hideHomeButton();
   },
 
   /**
