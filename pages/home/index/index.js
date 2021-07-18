@@ -31,8 +31,8 @@ Page({
   onLoad() {
     
   },
-  clickButton(){
-    wx.redirectTo({
+  personalInfoButton(){
+    wx.navigateTo({
       url: '../../personal_infos/basic_infos/basic_infos',
     })
   },
