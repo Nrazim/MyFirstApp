@@ -1,0 +1,77 @@
+/* pages/message/message.wxss */
+.btn1{
+  width: 200rpx;
+  height: 200rpx;
+  margin-top: 20rpx;
+  background-color: white;
+  color: #999999;
+  border-radius: 0rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+}
+
+.btnImg {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.btn1::after {
+  border: 0; 
+}
+
+ .btn2 {
+       width: 200rpx;
+  height: 200rpx;
+  margin-top: 20rpx;
+  background-color: white;
+  color: #999999;
+  border-radius: 0rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+ }
+
+ .btn2::after {
+  border: 0; 
+}
+
+.btn3 {
+  width: 200rpx;
+height: 200rpx;
+margin-top: 20rpx;
+background-color: white;
+color: #999999;
+border-radius: 0rpx;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+font-size: 30rpx;
+}
+
+.btn3::after {
+border: 0; 
+}
+
+.btn4 {
+  width: 200rpx;
+height: 200rpx;
+margin-top: 20rpx;
+background-color: white;
+color: #999999;
+border-radius: 0rpx;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+font-size: 30rpx;
+}
+
+.btn4::after {
+border: 0; 
+}

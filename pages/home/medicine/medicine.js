@@ -34,6 +34,7 @@ Page({
         })
       }
     }
+    app.globalData.medicinefinish = true
   },
 
   /**

@@ -13,7 +13,8 @@ Page({
     slimeaction:"https://www.z4a.net/images/2021/07/17/_x264.gif",
   },
   click: function (e) {
-    app.homeclick(e)
+    app.homeclick(e),
+    app.globalData.sleepfinish = true
   },
 
   /**
