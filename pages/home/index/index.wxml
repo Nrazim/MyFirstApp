@@ -10,4 +10,4 @@
     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>
 </view>
 
-<button type="default" bindtap="personalinfoButton">hello</button>
+<button type="default" bindtap="personalInfoButton">hello</button>
