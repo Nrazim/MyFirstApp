@@ -1,10 +1,13 @@
 <!--index.wxml-->
 <circle draw='circwewle1' per = '{{exp}}' r = '70'/>
+<image class='btnImg' src='../../images/buttons/task.png' bindtap = 'gotoPage_task'></image>
 <view class="container">
   <image src="{{slimeaction}}"></image>
 </view>
+
 <view class="image">
   <image class="im" wx:for="{{imglist1}}" wx:key="{{index}}"
     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>
 </view>
-<image class='btnImg' src='../../images/buttons/task.png' bindtap = 'gotoPage_task'></image>
+
+<button type="default" bindtap="personalInfoButton">hello</button>

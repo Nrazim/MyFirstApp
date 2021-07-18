@@ -31,6 +31,11 @@ Page({
   onLoad() {
     
   },
+  personalInfoButton(){
+    wx.navigateTo({
+      url: '../../personal_infos/basic_infos/basic_infos',
+    })
+  },
   onShow(){
     if(app.globalData.SignedIn==false){
       wx.redirectTo({

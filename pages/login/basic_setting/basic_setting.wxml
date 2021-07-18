@@ -10,7 +10,7 @@
   </view>
   <view class="input-wrap">
     <text class="remind-info">您的生日:　</text>
-    <picker mode="date" value="{{date}}" start="1950-01-01" end="2021-09-01" bindchange="bindDateChange">
+    <picker mode="date" value="{{date}}" start="1850-01-01" end="2021-09-01" bindchange="bindDateChange">
 			<view class="picker">
 				{{date}}
 			</view>

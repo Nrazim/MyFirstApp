@@ -24,36 +24,36 @@ Page({
     })
   },
   
-  login() {
-    const {
+  login() {
+    const {
       username,
       password,
-    } = this.data;
-    AV.User.logIn(username, password).then(function (loginedUser) {
-      app.globalData.SignedIn = true
-      if (!loginedUser.attributes.gender){
+    } = this.data;
+    AV.User.logIn(username, password).then(function (loginedUser) {
+      app.globalData.SignedIn = true
+      if (!loginedUser.attributes.gender){
         wx.redirectTo({
-          url: '../basic_setting/basic_setting',
+          url: '../basic_setting/basic_setting',
         });
       }
       else{
         wx.redirectTo({
-          url: '../../home/index/index',
+          url: '../../home/index/index',
         });
       }
       wx.showToast({
-        title: '登录成功',
-        icon: 'success',
+        title: '登录成功',
+        icon: 'success',
       })
-    }, (error) => {
+    }, (error) => {
       wx.showToast({
-        title: '账号或密码错误',
-        icon: 'error'
+        title: '账号或密码错误',
+        icon: 'error'
       })
       alert(JSON.stringify(error));
     });
-  },
-
+  },
+  
   onShow: function(){
     wx.hideHomeButton();
   }

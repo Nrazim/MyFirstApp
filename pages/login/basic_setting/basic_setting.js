@@ -11,12 +11,12 @@ Page({
       index:0,
       a_gender: ['未选择', '男', '女'],
       a_height: [],
-      i_height: [70,0],
+      i_height: [120,0],
       a_weight: [],
       i_weight: [20,0],
       gender:0,
-      height:'',
-      weight:'',
+      height:'170.0',
+      weight:'50.0',
   },
   bindGenderChange: function(e){
     console.log("user's gender is "+e.detail.value)
@@ -93,7 +93,7 @@ Page({
     let heightStart = [],
       heightEnd = [],
       heightarray = [];
-    for (let i = 100; i < 220; i++) {
+    for (let i = 50; i < 220; i++) {
       heightStart.push(`${i}`)
     }
     for (let i = 0; i < 10; i++) {
@@ -104,7 +104,7 @@ Page({
     let weightStart = [],
     weightEnd = [],
     weightarray = [];
-    for (let i = 30; i < 120; i++) {
+    for (let i = 30; i < 200; i++) {
       weightStart.push(`${i}`)
     }
     for (let i = 0; i < 10; i++) {
