@@ -1,5 +1,5 @@
 const app = getApp()
-const AV = require('../../../libs/av-core-min.js'); 
+const AV = require('../../../libs/av-core-min'); 
 
 Page({
   data: {
@@ -31,7 +31,7 @@ Page({
     } = this.data;
     AV.User.logIn(username, password).then(function (loginedUser) {
       app.globalData.SignedIn = true
-      if (loginedUser.attributes.first){
+      if (!loginedUser.attributes.gender){
         wx.redirectTo({
           url: '../basic_setting/basic_setting',
         });
@@ -45,8 +45,16 @@ Page({
         title: '登录成功',
         icon: 'success',
       })
-    }, function (error) {
+    }, (error) => {
+      wx.showToast({
+        title: '账号或密码错误',
+        icon: 'error'
+      })
       alert(JSON.stringify(error));
     });
   },
+
+  onShow: function(){
+    wx.hideHomeButton();
+  }
 })

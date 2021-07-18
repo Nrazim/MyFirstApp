@@ -19,6 +19,7 @@ Page({
     else{/* 饭前吃药跳转进入 */
       console.log(e.currentTarget.dataset.id)
       const jumpto = e.currentTarget.dataset.id
+      app.globalData.TakeMedicineBefore = false
       if(jumpto=="../reminder/takemedicine/takemedicine"){
         wx.navigateTo({
           url: '../' + jumpto,
@@ -33,6 +34,7 @@ Page({
         })
       }
     }
+    app.globalData.medicinefinish = true
   },
 
   /**
@@ -53,7 +55,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.hideHomeButton();
   },
 
   /**

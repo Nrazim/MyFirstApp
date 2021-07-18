@@ -1,0 +1,45 @@
+<!--pages/message/message.wxml-->
+<button wx:if="{{!eatfinish}}" class='btn1' bindtap = 'gotoPage_eat'>
+    <image class='btnImg' src='../../images/buttons/eat.png'></image>
+    <view>按时吃饭任务</view>
+ </button>
+ <button wx:if='{{eatfinish}}' class='btn1'  disabled = 'true'>
+    <image class='btnImg' src='../../images/buttons/eatfinish.png'></image>
+    <view>按时吃饭任务</view>
+</button>
+<view wx:if='{{medicine}}'>
+    <button wx:if="{{!medicinefinish}}"class='btn2' bindtap = 'gotoPage_medicine'>
+    <image class='btnImg' src='../../images/buttons/medicine.png'></image>
+    <view>定时吃药任务</view>
+    </button>
+</view>
+
+<view wx:if='{{medicine}}'>
+    <button wx:if='{{medicinefinish}}' class='btn2'  disabled = 'true'>
+    <image class='btnImg' src='../../images/buttons/medicinefinish.png'></image>
+    <view>按时吃药任务</view>
+    </button>
+</view>
+
+<button wx:if='{{!sleepfinish}}' class='btn3' bindtap = 'gotoPage_sleep'>
+        <image class='btnImg' src='../../images/buttons/sleep.png'></image>
+        <view>按时睡觉任务</view>
+</button>
+
+    
+
+<button wx:if='{{sleepfinish}}' class='btn3'  disabled = 'true'>
+    <image class='btnImg' src='../../images/buttons/sleepfinish.png'></image>
+    <view>按时睡觉任务</view>
+</button>
+
+
+<button wx:if='{{!practicefinish}}' class='btn4' bindtap = 'gotoPage_practice'>
+    <image class='btnImg' src='../../images/buttons/practice.png'></image>
+    <view>每日锻炼任务</view>
+</button>
+
+<button wx:if='{{practicefinish}}' class='btn4'  disabled = 'true'>
+    <image class='btnImg' src='../../images/buttons/practicefinish.png'></image>
+    <view>每日锻炼任务</view>
+</button>

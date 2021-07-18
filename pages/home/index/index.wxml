@@ -7,3 +7,4 @@
   <image class="im" wx:for="{{imglist1}}" wx:key="{{index}}"
     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>
 </view>
+<image class='btnImg' src='../../images/buttons/task.png' bindtap = 'gotoPage_task'></image>

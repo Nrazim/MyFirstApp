@@ -8,7 +8,9 @@
     "pages/home/medicine/medicine",
     "pages/reminder/takemedicine/takemedicine",
     "pages/login/login/login",
-    "pages/login/register/register"
+    "pages/login/register/register",
+    "pages/home/task/task",
+    "pages/login/basic_setting/basic_setting"
   ],
   "window": {
     "backgroundTextStyle": "light",

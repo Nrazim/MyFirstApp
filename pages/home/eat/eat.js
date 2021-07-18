@@ -1,5 +1,6 @@
 // pages/home/eat/eat.js
 const app=getApp()
+const AV = require('../../../libs/av-core-min');
 
 Page({
 
@@ -12,7 +13,8 @@ Page({
     ],
     slimeaction:"https://www.z4a.net/images/2021/07/16/eat.gif",
     dialogShow: false,
-    medicineDialogShow: false,
+    medicineBeforeDialogShow: false,
+    takeMedicineAfter: false,
     buttons: [
       {text: '点错啦'}, {text: '早饭'},
       {text: '中饭'}, {text: '晚饭'}
@@ -23,7 +25,17 @@ Page({
   },
 
   click: function (e) {
-    app.homeclick(e)
+    console.log(e.currentTarget.dataset.id)
+    const jumpto = e.currentTarget.dataset.id
+    console.log(this.data.takeMedicineAfter)
+    if(this.data.takeMedicineAfter){
+      this.timeToMedicineAfter()
+    }
+    else{
+      wx.redirectTo({
+        url: '../' + jumpto,
+      })
+    }
   },
 
   openConfirm: function () {
@@ -31,11 +43,17 @@ Page({
       dialogShow: true
     })
   },
-
-  timeToMedicine: function(){
-    console.log("medicine");
+  timeToMedicineAfter: function(){
+    console.log("medicineAfter")
     this.setData({
-      medicineDialogShow: true,
+      takeMedicineAfter: false,
+      medicineAfterDialogShow: true,
+    })
+  },
+  timeToMedicineBefore: function(){
+    console.log("medicineBefore");
+    this.setData({
+      medicineBeforeDialogShow: true,
     })
   },
 
@@ -43,28 +61,48 @@ Page({
     app.globalData.TakeMedicineBefore = false;
     console.log(e.detail)
     if(e.detail.index==0){
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../index/index',
       })
     }
-    var values = app.globalData.MedicineBefore
+    const currentUser = AV.User.current()
+    var values = currentUser.get('medicineBefore')?currentUser.get('medicineBefore'):[]
     for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-        if(e.detail.index-1 == values[j]){
-          app.globalData.TakeMedicineBefore = true;/* 饭前吃药，以便吃完药可以回到吃饭 */
-          this.timeToMedicine();
+        if(e.detail.index-1 == values[j]){//index从1到3，values从0到2是吃饭前
+          app.globalData.TakeMedicineBefore = true/* 饭前吃药，以便吃完药可以回到吃饭 */
+          this.timeToMedicineBefore();
           break;
         }
+    }
+    values = currentUser.get('medicineAfter')?currentUser.get('medicineAfter'):[]
+    for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+      if(e.detail.index+2 == values[j]){//index从1到3，values从3到5是吃饭后
+        this.setData({
+          takeMedicineAfter: true,
+        })
+        console.log('TakeMedicineAfter')
+        break;
+      }
     }
     this.setData({
         dialogShow: false,
     })
+    app.globalData.eatfinish = true
   },
 
-  tapMedicineDialog: function(){
+  tapMedicineBeforeDialog: function(){
     this.setData({
-      medicineDialogShow: false,
+      medicineBeforeDialogShow: false,
     })
     wx.navigateTo({
+      url: '../medicine/medicine',
+    })
+  },
+  tapMedicineAfterDialog: function(){
+    this.setData({
+      medicineAfterDialogShow: false,
+    })
+    wx.redirectTo({
       url: '../medicine/medicine',
     })
   },
@@ -86,7 +124,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.hideHomeButton();
   },
 
   /**

@@ -54,14 +54,16 @@ App({
     }
   },
   globalData: {
-    MedicineBefore: [],
-    MedicineAfter: [],
     TakeMedicineBefore: false,
     userInfo: null,
     SignedIn: false,
     rgb: 'rgb(7,193,96)',
     level:1,
     exp:20,
-    currentuser: '',
+    practicefinish:false,
+    medicinefinish:false,
+    eatfinish:false,
+    sleepfinish:false,
+    medicine:true
   }
 })
