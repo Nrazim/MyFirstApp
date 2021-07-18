@@ -45,8 +45,16 @@ Page({
         title: '登录成功',
         icon: 'success',
       })
-    }, function (error) {
+    }, (error) => {
+      wx.showToast({
+        title: '账号或密码错误',
+        icon: 'error'
+      })
       alert(JSON.stringify(error));
     });
   },
+
+  onShow: function(){
+    wx.hideHomeButton();
+  }
 })

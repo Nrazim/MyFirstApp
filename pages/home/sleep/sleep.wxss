@@ -14,3 +14,7 @@
   align-items: center;
   border-radius:50%;
 }
+.gif{
+  height: 100%;
+  width: 100%;
+}

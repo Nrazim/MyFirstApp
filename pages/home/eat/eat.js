@@ -27,6 +27,7 @@ Page({
   click: function (e) {
     console.log(e.currentTarget.dataset.id)
     const jumpto = e.currentTarget.dataset.id
+    console.log(this.data.takeMedicineAfter)
     if(this.data.takeMedicineAfter){
       this.timeToMedicineAfter()
     }
@@ -43,7 +44,7 @@ Page({
     })
   },
   timeToMedicineAfter: function(){
-    console.log("medicineAfter");
+    console.log("medicineAfter")
     this.setData({
       takeMedicineAfter: false,
       medicineAfterDialogShow: true,
@@ -68,12 +69,12 @@ Page({
     var values = currentUser.get('medicineBefore')?currentUser.get('medicineBefore'):[]
     for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
         if(e.detail.index-1 == values[j]){//index从1到3，values从0到2是吃饭前
-          app.globalData.TakeMedicineBefore = true;/* 饭前吃药，以便吃完药可以回到吃饭 */
+          app.globalData.TakeMedicineBefore = true/* 饭前吃药，以便吃完药可以回到吃饭 */
           this.timeToMedicineBefore();
           break;
         }
     }
-    values = currentUser.get('medicineAfter')?currentUser.get('medicineBefore'):[]
+    values = currentUser.get('medicineAfter')?currentUser.get('medicineAfter'):[]
     for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
       if(e.detail.index+2 == values[j]){//index从1到3，values从3到5是吃饭后
         this.setData({
@@ -100,7 +101,7 @@ Page({
     this.setData({
       medicineAfterDialogShow: false,
     })
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../medicine/medicine',
     })
   },
@@ -122,7 +123,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.hideHomeButton();
   },
 
   /**

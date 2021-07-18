@@ -10,7 +10,7 @@ Page({
       { url: '../../images/buttons/sleep.png', id:"index/index"},
       { url: '../../images/buttons/reminder.png', id:"../reminder/takemedicine/takemedicine"},
     ],
-    slimeaction:"https://www.z4a.net/images/2021/07/16/sleep.gif",
+    slimeaction:"https://www.z4a.net/images/2021/07/17/_x264.gif",
   },
   click: function (e) {
     app.homeclick(e)
@@ -34,7 +34,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.hideHomeButton();
   },
 
   /**
