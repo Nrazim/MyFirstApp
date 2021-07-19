@@ -1,0 +1,4 @@
+<!--pages/statistics/mealData/mealData.wxml-->
+<view>
+  <canvas style="width:100%;height:300px" type="2d" id="canvas" bindtouchstart="touchHandler"></canvas>
+</view>

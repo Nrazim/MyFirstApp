@@ -1,5 +1,6 @@
 // pages/home/sleep/sleep.js
-const app=getApp()
+const app=getApp();
+const AV = require('../../../libs/av-core-min.js');
 Page({
 
   /**
@@ -14,6 +15,9 @@ Page({
   },
   click: function (e) {
     app.homeclick(e),
+    app.globalData.exp = app.globalData.exp+20,
+    AV.User.current().set("exp",app.globalData.exp);
+    AV.User.current().save();
     app.globalData.sleepfinish = true
   },
 
