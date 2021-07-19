@@ -1,5 +1,6 @@
 // pages/home/medicine/medicine.js
-const app=getApp()
+const app=getApp();
+const AV = require('../../../libs/av-core-min.js');
 
 Page({
 
@@ -10,7 +11,7 @@ Page({
     imglist1:[
       { url: '../../images/buttons/medicine.png', id:"index/index"},
     ],
-    slimeaction:"https://www.z4a.net/images/2021/07/16/medicine.gif",
+    slimeaction:"https://www.z4a.net/images/2021/07/19/medicine1.gif",
   },
   click: function (e) {
     if(app.globalData.TakeMedicineBefore == false){
@@ -34,6 +35,9 @@ Page({
         })
       }
     }
+    app.globalData.exp = app.globalData.exp+20,
+    AV.User.current().set("exp",app.globalData.exp);
+    AV.User.current().save();
     app.globalData.medicinefinish = true
   },
 

@@ -16,9 +16,33 @@
   border-radius:50%;
   margin-top:15rpx;
 }
-.btnImg {
+.btnTask {
   width: 145rpx;
   height: 145rpx;
   top:120rpx;
   position:fixed;
+}
+.btnStatistics {
+  width: 145rpx;
+  height: 145rpx;
+  top:230rpx;
+  position:fixed;
+}
+.imagetop{
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  right: 15rpx;
+  top: 0rpx;
+  align-items: right;
+  position: fixed;
+}
+.maingif{/*主图gif*/
+  width: 748rpx;
+  height: 1156rpx;
+  display: inline-block;
+  box-sizing: border-box;
+  left: 0rpx;
+  top: 0rpx;
+  position: fixed;
 }

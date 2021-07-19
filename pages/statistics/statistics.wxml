@@ -1,0 +1,4 @@
+<!--pages/statistics/statistics.wxml-->
+<view class="container">
+  <button size='mini' type="primary" bindtap="mealStatistics">用餐数据</button>
+</view>

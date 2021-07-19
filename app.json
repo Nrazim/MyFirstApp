@@ -14,7 +14,9 @@
     "pages/personal_infos/basic_infos/basic_infos",
     "pages/personal_infos/height_infos/height_infos",
     "pages/personal_infos/weight_infos/weight_infos",
-    "pages/personal_infos/bmi_infos/bmi_infos"
+    "pages/personal_infos/bmi_infos/bmi_infos",
+    "pages/statistics/statistics",
+    "pages/statistics/mealData/mealData"
   ],
   "window": {
     "backgroundTextStyle": "light",

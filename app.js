@@ -43,7 +43,8 @@ App({
   homeclick: function (e) {
     console.log(e.currentTarget.dataset.id)
     const jumpto = e.currentTarget.dataset.id
-    if(jumpto=="../reminder/takemedicine/takemedicine"||jumpto=="setting/setting"){
+    if(jumpto=="../reminder/takemedicine/takemedicine"||jumpto=="setting/setting"||
+    jumpto=="../personal_infos/basic_infos/basic_infos"){
       wx.navigateTo({
         url: '../' + jumpto,
       })
@@ -59,11 +60,12 @@ App({
     SignedIn: false,
     rgb: 'rgb(7,193,96)',
     level:1,
-    exp:20,
+    exp:0,
     practicefinish:false,
     medicinefinish:false,
     eatfinish:false,
     sleepfinish:false,
-    medicine:true
+    medicine:true,
+    levelexplist:[0,100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600]
   }
 })
