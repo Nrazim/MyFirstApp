@@ -1,1 +1,6 @@
 /* pages/personal_infos/weight_infos/weight_infos.wxss */
+.title{
+  padding-left: 3%;
+  font-size: 90%;
+  color: gray;
+}

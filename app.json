@@ -1,7 +1,7 @@
 {
-  "pages": [
+  "pages": [    "pages/home/index/index",
     "pages/personal_infos/basic_infos/basic_infos",
-    "pages/home/index/index",
+
     "pages/logs/logs",
     "pages/home/practice/practice",
     "pages/home/sleep/sleep",

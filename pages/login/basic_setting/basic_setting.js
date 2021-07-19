@@ -35,7 +35,7 @@ Page({
       i_height: e.detail.value
     })
     this.setData({
-      height: String(e.detail.value[0]+100)+'.'+String(e.detail.value[1])
+      height: String(e.detail.value[0]+50)+'.'+String(e.detail.value[1])
     })
     console.log(this.data.height)
   },
@@ -70,7 +70,7 @@ Page({
         }
         currentUser.save();
       }catch(error){
-        showToast({
+        wx.showToast({
           title:error.message,
           icon:'none',
         })

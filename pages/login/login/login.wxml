@@ -1,14 +1,21 @@
 <!--pages/login/login.wxml-->
 <view class="title">用户登录</view>
+
 <view class="container">
+    <image class='imag1' src='../../images/login/login1.png'></image>
+  <image class='imag2' src='../../images/login/login2.png' ></image>
   <view class="input-wrap">
-    <view>账号:　</view>
-    <input value="{{username}}" bindinput="inputUsername" class="three"/>
+    <input style="width: 466rpx; height: 75rpx; display: block; box-sizing: border-box; left: 30; top: 200rpx"
+      placeholder="请输入账号"
+      value="{{username}}" bindinput="inputUsername" class="three" />
   </view>
   <view class="input-wrap">
-    <view>密码:　</view>
-    <input value="{{password}}" bindinput="inputPassword" class="three" type="password"/>
+    <input style="width: 466rpx; height: 75rpx; display: block; box-sizing: border-box; left: 30rpx; top: 280rpx"
+    placeholder="请输入密码"
+      value="{{password}}" bindinput="inputPassword" class="three" type="password" />
   </view>
   <button bindtap="login" class="login">登录</button>
-  <button bindtap="register" class="goto-register" style="background-color:unset">没有账号？点击注册</button>
-</view>
+  <button bindtap="register" class="goto-register">没有账号？点击注册</button>
+  </view>
+  
+ 
