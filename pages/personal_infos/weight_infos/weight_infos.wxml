@@ -8,13 +8,16 @@
             <view class="weui-label">　记录体重：</view>
         </view>
         <view class="weui-cell__bd">
-          <picker mode="multiSelector" bindchange="bindHeightChange" bindcolumnchange="bindHeightColumnChange" value="{{i_height}}" range="{{a_height}}">
-              <view class="weui-select weui-select_in-select-after">
-                　{{a_height[0][i_height[0]]}}.{{a_height[1][i_height[1]]}}kg
-              </view>
+          <picker mode="multiSelector" bindchange="bindWeightChange" value="{{i_weight}}" range="{{a_weight}}" class="value">
+            <view class="weui-select weui-select_in-select-after">
+            　{{a_weight[0][i_weight[0]]}}.{{a_weight[1][i_weight[1]]}}kg
+            </view>
           </picker>
         </view>
       </view>
     </mp-cells>
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="confirm">确定</button>
+    </view>
   </view>
 </view>
