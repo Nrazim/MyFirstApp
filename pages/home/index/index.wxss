@@ -16,10 +16,16 @@
   border-radius:50%;
   margin-top:15rpx;
 }
-.btnImg {
+.btnTask {
   width: 145rpx;
   height: 145rpx;
   top:120rpx;
+  position:fixed;
+}
+.btnStatistics {
+  width: 145rpx;
+  height: 145rpx;
+  top:230rpx;
   position:fixed;
 }
 .imagetop{

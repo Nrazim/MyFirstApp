@@ -24,6 +24,11 @@ Page({
       url:'/pages/home/task/task'
     })
   },
+  gotoPage_statistics:function(){
+    wx.navigateTo({
+      url:'/pages/statistics/statistics'
+    })
+  },
 
   click: function (e) {
     app.homeclick(e)
