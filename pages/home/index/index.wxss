@@ -22,3 +22,12 @@
   top:120rpx;
   position:fixed;
 }
+.imagetop{
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  right: 15rpx;
+  top: 0rpx;
+  align-items: right;
+  position: fixed;
+}

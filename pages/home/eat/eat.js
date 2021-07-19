@@ -32,7 +32,9 @@ Page({
     console.log(this.data.takeMedicineAfter)
     //设置吃饭结束时间计算持续时间并上传
     const query = new AV.Query('EatTime')
+    const currentUser = AV.User.current()
     query.equalTo('eattimeStart',this.data.timeStart)
+    query.equalTo('parent',currentUser)
     query.first().then((eatTime) => {
       var timeEnd = util.formatTime(new Date())
       console.log('搜索到：',eatTime)
@@ -134,6 +136,9 @@ Page({
   onLoad: function (options) {
     const currentUser = AV.User.current()
     const eatTime = new AV.Object('EatTime')
+    this.setData({
+      timeStart: util.formatTime(new Date())
+    })
     eatTime.set('parent',currentUser)
     console.log('开始时间：',this.data.timeStart)
     eatTime.set('eattimeStart',this.data.timeStart)

@@ -6,10 +6,14 @@ Page({
   data: {
     imglist1:[
       { url: '../../images/buttons/eat.png', id:"eat/eat"},
-      { url: '../../images/buttons/setting.png', id:"setting/setting"},
-      { url: '../../images/buttons/reminder.png', id:"../reminder/takemedicine/takemedicine"},
+      { url: '../../images/buttons/medicine.png', id:"medicine/medicine"},
+      { url: '../../images/buttons/infos.png', id:"../personal_infos/basic_infos/basic_infos"},
       { url: '../../images/buttons/practice.png', id:"practice/practice"},
       { url: '../../images/buttons/sleep.png', id:"sleep/sleep"},
+    ],
+    imglist2:[
+      { url: '../../images/buttons/setting.png', id:"setting/setting"},
+      { url: '../../images/buttons/reminder.png', id:"../reminder/takemedicine/takemedicine"},
     ],
     exp: app.globalData.exp,
     slimeaction:"https://www.z4a.net/images/2021/07/16/dynamic.gif",
@@ -20,10 +24,7 @@ Page({
       url:'/pages/home/task/task'
     })
   },
-  txtchange:function(){
-    const currentUser = AV.User.current();
-    app.globalData.level=currentUser.get('level');
-  },
+
   click: function (e) {
     app.homeclick(e)
   },
@@ -31,19 +32,12 @@ Page({
   onLoad() {
 
   },
-  personalInfoButton(){
-    wx.navigateTo({
-      url: '../../personal_infos/basic_infos/basic_infos',
-    })
-  },
   onShow(){
     if(app.globalData.SignedIn==false){
       wx.redirectTo({
         url: '../../login/login/login',
       })
     }
-    
-
     this.setData({
       exp: app.globalData.exp/app.globalData.levelexplist[app.globalData.level]*100,
     })
