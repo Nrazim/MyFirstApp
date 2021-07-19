@@ -24,7 +24,8 @@ Page({
     })
   },
   
-  login() {
+
+  login() {
     const {
       username,
       password,
@@ -56,5 +57,6 @@ Page({
   
   onShow: function(){
     wx.hideHomeButton();
+    
   }
 })

@@ -1,4 +1,5 @@
 // index.js
+const AV = require('../../../libs/av-core-min');
 // 获取应用实例
 const app=getApp()
 Page({
@@ -19,17 +20,16 @@ Page({
       url:'/pages/home/task/task'
     })
   },
+  txtchange:function(){
+    const currentUser = AV.User.current();
+    app.globalData.level=currentUser.get('level');
+  },
   click: function (e) {
     app.homeclick(e)
   },
   // 事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
   onLoad() {
-    
+
   },
   personalInfoButton(){
     wx.navigateTo({
@@ -42,6 +42,11 @@ Page({
         url: '../../login/login/login',
       })
     }
+    
+
+    this.setData({
+      exp: app.globalData.exp/app.globalData.levelexplist[app.globalData.level]*100,
+    })
   },
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗

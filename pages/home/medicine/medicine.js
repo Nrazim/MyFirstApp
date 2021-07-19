@@ -1,5 +1,6 @@
 // pages/home/medicine/medicine.js
-const app=getApp()
+const app=getApp();
+const AV = require('../../../libs/av-core-min.js');
 
 Page({
 
@@ -34,6 +35,9 @@ Page({
         })
       }
     }
+    app.globalData.exp = app.globalData.exp+20,
+    AV.User.current().set("exp",app.globalData.exp);
+    AV.User.current().save();
     app.globalData.medicinefinish = true
   },
 

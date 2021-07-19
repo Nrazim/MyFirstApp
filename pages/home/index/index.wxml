@@ -1,4 +1,5 @@
 <!--index.wxml-->
+
 <circle draw='circwewle1' per = '{{exp}}' r = '70'/>
 <image class='btnImg' src='../../images/buttons/task.png' bindtap = 'gotoPage_task'></image>
 <view class="container">
