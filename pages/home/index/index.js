@@ -16,7 +16,7 @@ Page({
   },
   
   gotoPage_task:function(){
-    wx.redirectTo({
+    wx.navigateTo({
       url:'/pages/home/task/task'
     })
   },
