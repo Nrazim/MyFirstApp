@@ -5,8 +5,9 @@ Page({
       uname:'',
       ubirth:'',
       ugender:'',
-      uweight:0,
-      uheight:0
+      uweight:'',
+      uheight:'',
+      uBMI:0,
     },
     onLoad: function(){
         
@@ -27,5 +28,9 @@ Page({
           icon:'none',
         })
       }
+      var bmi=parseFloat(user.attributes.weight)/(parseFloat(user.attributes.height)/100)**2
+      this.setData({
+        uBMI:bmi.toFixed(1),
+      })
     },
 });

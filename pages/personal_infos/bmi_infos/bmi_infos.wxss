@@ -1,0 +1,14 @@
+/* pages/personal_infos/bmi_infos/bmi_infos.wxss */
+.title{
+  padding-left: 3%;
+  font-size: 90%;
+  color: gray;
+}
+.text{
+  text-align: justify;
+}
+.text::after{
+  width: 100%;
+  display: inline-block;
+  content: '';
+}

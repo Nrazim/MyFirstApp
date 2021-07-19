@@ -1,0 +1,6 @@
+/* pages/personal_infos/height_infos/height_infos.wxss */
+.title{
+  padding-left: 3%;
+  font-size: 90%;
+  color: gray;
+}

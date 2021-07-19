@@ -1,37 +1,53 @@
-<view class="title">完善基础信息</view>
-<view class="container">
-  <view class="input-wrap">
-    <text class="remind-info">您的性别:　</text>
-    <picker mode="selector" value="{{index}}" bindchange="bindGenderChange" range="{{a_gender}}">
-			<view class="picker">
-				{{a_gender[index]}}
+<view class="weui-cells__title">完善基础信息</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_select">
+    <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">　您的性别：</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="selector" value="{{index}}" bindchange="bindGenderChange" range="{{a_gender}}">
+        <view class="weui-select weui-select_in-select-after">　{{a_gender[index]}}</view>
+	    </picker>
+    </view>
+  </view>
+
+  <view class="weui-cell weui-cell_select">
+    <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">　您的生日：</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="date" value="{{date}}" start="1850-01-01" end="2021-09-01" bindchange="bindDateChange">
+			  <view class="weui-select weui-select_in-select-after">　{{date}}</view>
+	    </picker>
+    </view>
+  </view>
+
+  <view class="weui-cell weui-cell_select">
+    <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">　您的身高：</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="multiSelector" bindchange="bindHeightChange" bindcolumnchange="bindHeightColumnChange" value="{{i_height}}" range="{{a_height}}">
+        <view class="weui-select weui-select_in-select-after">
+          　{{a_height[0][i_height[0]]}}.{{a_height[1][i_height[1]]}}cm
 			</view>
 	  </picker>
+    </view>
   </view>
-  <view class="input-wrap">
-    <text class="remind-info">您的生日:　</text>
-    <picker mode="date" value="{{date}}" start="1850-01-01" end="2021-09-01" bindchange="bindDateChange">
-			<view class="picker">
-				{{date}}
+
+  <view class="weui-cell weui-cell_select">
+    <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">　您的体重：</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="multiSelector" bindchange="bindWeightChange" bindcolumnchange="bindWeightChange" value="{{i_weight}}" range="{{a_weight}}">
+        <view class="weui-select weui-select_in-select-after">
+          　{{a_weight[0][i_weight[0]]}}.{{a_weight[1][i_weight[1]]}}kg
 			</view>
-	  </picker>
+	   </picker>
+    </view>
   </view>
-  
-  <view class="input-wrap">
-    <text class="remind-info">您的身高:　</text>
-    <picker mode="multiSelector" bindchange="bindHeightChange" bindcolumnchange="bindHeightColumnChange" value="{{i_height}}" range="{{a_height}}">
-			<view class="picker">
-				{{a_height[0][i_height[0]]}}.{{a_height[1][i_height[1]]}}cm
-			</view>
-	  </picker>
+  <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="confirm">确定</button>
   </view>
-  <view class="input-wrap">
-    <text class="remind-info">您的体重:　</text>
-    <picker mode="multiSelector" bindchange="bindWeightChange" bindcolumnchange="bindWeightChange" value="{{i_weight}}" range="{{a_weight}}">
-			<view class="picker">
-				{{a_weight[0][i_weight[0]]}}.{{a_weight[1][i_weight[1]]}}kg
-			</view>
-	  </picker>
-  </view>
-  <button bindtap="confirm" class="login">确认</button>
 </view>
