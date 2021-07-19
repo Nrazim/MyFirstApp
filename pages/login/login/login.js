@@ -25,6 +25,9 @@ Page({
   },
   
   login() {
+    var currentUser=AV.User.current()
+    
+
     const {
       username,
       password,
@@ -52,9 +55,12 @@ Page({
       })
       alert(JSON.stringify(error));
     });
-  },
 
+
+  },
+  
   onShow: function(){
     wx.hideHomeButton();
+    
   }
 })

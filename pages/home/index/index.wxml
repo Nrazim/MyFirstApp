@@ -1,5 +1,6 @@
 <!--index.wxml-->
-<circle draw='circwewle1' per = '{{exp}}' r = '70'/>
+<circle bingtap ="txtchange" draw='circwewle1' per = '{{exp}}' r = '70'/>
+
 <view class="container">
   <image src="{{slimeaction}}"></image>
 </view>

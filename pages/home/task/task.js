@@ -2,25 +2,25 @@
 var app = getApp()
 Page({
   gotoPage_eat:function(){
-    wx.navigateTo({
+    wx.redirectTo({
       url:'/pages/home/eat/eat'
     })
     app.globalData.eatfinish = true
   },
   gotoPage_medicine:function(){
-    wx.navigateTo({
+    wx.redirectTo({
       url:'/pages/home/medicine/medicine'
     })
     app.globalData.medicinefinish = true
   },
   gotoPage_sleep:function(){
-    wx.navigateTo({
+    wx.redirectTo({
       url:'/pages/home/sleep/sleep'
     })
     app.globalData.sleepfinish = true
   },
   gotoPage_practice:function(){
-    wx.navigateTo({
+    wx.redirectTo({
       url:'/pages/home/practice/practice'
     })
     app.globalData.practicefinish = true

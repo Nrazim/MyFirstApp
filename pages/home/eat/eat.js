@@ -87,6 +87,9 @@ Page({
     this.setData({
         dialogShow: false,
     })
+    app.globalData.exp = app.globalData.exp+20,
+    AV.User.current().set("exp",app.globalData.exp);
+    AV.User.current().save();
     app.globalData.eatfinish = true
   },
 
