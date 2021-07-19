@@ -9,6 +9,16 @@
   width: 200rpx;
 }
 
+.container1 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100rpx 0;
+  box-sizing: border-box;
+} 
+
 .remind-info{
   text-align: right;
 }

@@ -1,7 +1,7 @@
 <!--pages/login/login.wxml-->
 <view class="title">用户登录</view>
 
-<view class="container">
+<view class="container1">
     <image class='imag1' src='../../images/login/login1.png'></image>
   <image class='imag2' src='../../images/login/login2.png' ></image>
   <view class="input-wrap">
