@@ -1,0 +1,6 @@
+/* pages/personal_infos/basic_infos/basic_infos.wxss */
+.title{
+  padding-left: 3%;
+  font-size: 90%;
+  color: gray;
+}

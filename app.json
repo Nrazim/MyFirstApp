@@ -10,7 +10,8 @@
     "pages/login/login/login",
     "pages/login/register/register",
     "pages/home/task/task",
-    "pages/login/basic_setting/basic_setting"
+    "pages/login/basic_setting/basic_setting",
+    "pages/personal_infos/basic_infos/basic_infos"
   ],
   "window": {
     "backgroundTextStyle": "light",

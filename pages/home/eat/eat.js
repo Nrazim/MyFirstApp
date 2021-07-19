@@ -1,6 +1,7 @@
 // pages/home/eat/eat.js
 const app=getApp()
 const AV = require('../../../libs/av-core-min');
+var util = require('../../../utils/util.js');
 
 Page({
 
@@ -15,6 +16,7 @@ Page({
     dialogShow: false,
     medicineBeforeDialogShow: false,
     takeMedicineAfter: false,
+    timeStart: util.formatTime(new Date()),
     buttons: [
       {text: '点错啦'}, {text: '早饭'},
       {text: '中饭'}, {text: '晚饭'}
@@ -28,6 +30,23 @@ Page({
     console.log(e.currentTarget.dataset.id)
     const jumpto = e.currentTarget.dataset.id
     console.log(this.data.takeMedicineAfter)
+    //设置吃饭结束时间计算持续时间并上传
+    const query = new AV.Query('EatTime')
+    query.equalTo('eattimeStart',this.data.timeStart)
+    query.first().then((eatTime) => {
+      var timeEnd = util.formatTime(new Date())
+      console.log('搜索到：',eatTime)
+      console.log('结束时间：',timeEnd)
+      console.log('此次开始时间：',this.data.timeStart)
+      eatTime.set('eattimeEnd',timeEnd)
+      var stime = Date.parse(new Date(this.data.timeStart))
+      var etime = Date.parse(new Date(timeEnd))
+      console.log(eatTime)
+      var eatDuration = etime - stime
+      eatTime.set('eatDuration',eatDuration)
+      eatTime.save()
+    });
+    //判断有没有药要饭后吃
     if(this.data.takeMedicineAfter){
       this.timeToMedicineAfter()
     }
@@ -113,7 +132,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.openConfirm();
+    const currentUser = AV.User.current()
+    const eatTime = new AV.Object('EatTime')
+    eatTime.set('parent',currentUser)
+    console.log('开始时间：',this.data.timeStart)
+    eatTime.set('eattimeStart',this.data.timeStart)
+    console.log('创建的eatTime',eatTime)
+    eatTime.save()
+    this.openConfirm()
   },
 
   /**

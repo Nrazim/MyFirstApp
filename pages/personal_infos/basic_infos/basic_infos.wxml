@@ -1,0 +1,20 @@
+<view class="page">
+    <view class="title">
+        <view class="page__title">基本信息</view>
+    </view>
+    <view class="page__bd">
+        <mp-cells>
+            <mp-cell value="用户名：" footer="{{uname}}">
+            </mp-cell>
+            <mp-cell value="性别：" footer="{{ugender}}">
+            </mp-cell>
+            <mp-cell value="生日：" footer="{{ubirth}}">
+            </mp-cell>
+            <mp-cell link hover url="" value="身高：" footer="{{uheight}}cm">
+            </mp-cell>
+            <mp-cell link hover url="" value="体重：" footer="{{uweight}}kg">
+            </mp-cell>
+        </mp-cells>
+
+    </view>
+</view>
