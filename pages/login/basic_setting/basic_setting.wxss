@@ -1,4 +1,7 @@
 /* pages/login/login.wxss */
+page{
+  background-color: lightgray;
+}
 .input-wrap {
   display: flex;
   flex-direction: row;

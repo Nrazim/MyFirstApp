@@ -1,0 +1,9 @@
+<!--pages/personal_infos/height_infos/height_infos.wxml-->
+<view class="page">
+    <view class="page__bd">
+      <mp-cells ext-class="my-cells" title="每月可以记录一次身高变化哦~">
+            <mp-cell value="当前身高：" footer="{{uheight}}">
+            </mp-cell>
+        </mp-cells>
+    </view>
+</view>

@@ -11,7 +11,10 @@
     "pages/login/register/register",
     "pages/home/task/task",
     "pages/login/basic_setting/basic_setting",
-    "pages/personal_infos/basic_infos/basic_infos"
+    "pages/personal_infos/basic_infos/basic_infos",
+    "pages/personal_infos/height_infos/height_infos",
+    "pages/personal_infos/weight_infos/weight_infos",
+    "pages/personal_infos/bmi_infos/bmi_infos"
   ],
   "window": {
     "backgroundTextStyle": "light",
