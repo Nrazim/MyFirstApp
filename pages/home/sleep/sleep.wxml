@@ -1,6 +1,6 @@
 <!--pages/home/sleep/sleep.wxml-->
 
-<image style="width: 748rpx; height: 1156rpx; display: inline-block; box-sizing: border-box; left: 0rpx; top: 0rpx" src="{{slimeaction}}" ></image>
+<image class="maingif" src="{{slimeaction}}" ></image>
 <view class="image">
   <image class="im" wx:for="{{imglist1}}" wx:key="{{index}}"
     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>

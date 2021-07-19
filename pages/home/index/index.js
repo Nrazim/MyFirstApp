@@ -16,7 +16,7 @@ Page({
       { url: '../../images/buttons/reminder.png', id:"../reminder/takemedicine/takemedicine"},
     ],
     exp: app.globalData.exp,
-    slimeaction:"https://www.z4a.net/images/2021/07/16/dynamic.gif",
+    slimeaction:"https://www.z4a.net/images/2021/07/19/relax1.gif",
   },
   
   gotoPage_task:function(){

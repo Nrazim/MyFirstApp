@@ -21,13 +21,13 @@ Page({
     const currentUser = AV.User.current()
     const query = new AV.Query('EatTime')
     query.equalTo('parent',currentUser)
-    query.ascending('eattimeStart')
-    query.limit(10)
+    query.descending('eattimeStart')
+    query.limit(12)
     query.find().then((eatTimes) => {
       console.log(eatTimes)
       eatTimes.forEach((eatTime) => {
-        this.data.startTimes.push(eatTime.get('eattimeStart'));
-        this.data.eatDurations.push(eatTime.get('eatDuration'));
+        this.data.startTimes.unshift(eatTime.get('eattimeStart'));
+        this.data.eatDurations.unshift(eatTime.get('eatDuration'));
       });
       console.log(this.data.startTimes,this.data.eatDurations)
       this.chart = {};

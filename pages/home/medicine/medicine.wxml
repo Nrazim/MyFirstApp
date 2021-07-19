@@ -1,7 +1,5 @@
 <!--pages/home/medicine/medicine.wxml-->
-<view class="container">
-  <image src="{{slimeaction}}"></image>
-</view>
+<image class="maingif" src="{{slimeaction}}"></image>
 <view class="image">
   <image class="im" wx:for="{{imglist1}}" wx:key="{{index}}"
     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>

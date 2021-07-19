@@ -37,3 +37,12 @@
   align-items: right;
   position: fixed;
 }
+.maingif{/*主图gif*/
+  width: 748rpx;
+  height: 1156rpx;
+  display: inline-block;
+  box-sizing: border-box;
+  left: 0rpx;
+  top: 0rpx;
+  position: fixed;
+}

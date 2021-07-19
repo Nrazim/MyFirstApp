@@ -11,7 +11,7 @@ Page({
     imglist1:[
       { url: '../../images/buttons/medicine.png', id:"index/index"},
     ],
-    slimeaction:"https://www.z4a.net/images/2021/07/16/medicine.gif",
+    slimeaction:"https://www.z4a.net/images/2021/07/19/medicine1.gif",
   },
   click: function (e) {
     if(app.globalData.TakeMedicineBefore == false){
