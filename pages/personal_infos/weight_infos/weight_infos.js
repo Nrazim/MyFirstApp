@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    uweight:'',
   },
 
   /**
@@ -27,7 +27,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    try{
+      var user=AV.User.current();
+      var myDate = new Date();
+      console.log(myDate.getYear());
+      console.log(myDate.getMonth());
+      this.setData({
+        uweight:user.attributes.weight
+      })
+    }catch(error){
+      showToast({
+        title:'加载个人信息失败',
+        icon:'none',
+      })
+    }
   },
 
   /**

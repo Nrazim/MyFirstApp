@@ -27,7 +27,7 @@
         <view class="weui-label">　您的身高：</view>
     </view>
     <view class="weui-cell__bd">
-      <picker mode="multiSelector" bindchange="bindHeightChange" bindcolumnchange="bindHeightColumnChange" value="{{i_height}}" range="{{a_height}}">
+      <picker mode="multiSelector" bindchange="bindHeightChange"value="{{i_height}}" range="{{a_height}}">
         <view class="weui-select weui-select_in-select-after">
           　{{a_height[0][i_height[0]]}}.{{a_height[1][i_height[1]]}}cm
 			</view>
@@ -40,7 +40,7 @@
         <view class="weui-label">　您的体重：</view>
     </view>
     <view class="weui-cell__bd">
-      <picker mode="multiSelector" bindchange="bindWeightChange" bindcolumnchange="bindWeightChange" value="{{i_weight}}" range="{{a_weight}}">
+      <picker mode="multiSelector" bindchange="bindWeightChange"value="{{i_weight}}" range="{{a_weight}}">
         <view class="weui-select weui-select_in-select-after">
           　{{a_weight[0][i_weight[0]]}}.{{a_weight[1][i_weight[1]]}}kg
 			</view>

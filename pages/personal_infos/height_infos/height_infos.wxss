@@ -4,3 +4,6 @@
   font-size: 90%;
   color: gray;
 }
+.value{
+  padding-left: 35%;
+}

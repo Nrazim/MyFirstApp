@@ -1,4 +1,4 @@
 /* pages/personal_infos/basic_infos/basic_infos.wxss */
 page{
-  background-color:lightgray;
+  background-color:white;
 }

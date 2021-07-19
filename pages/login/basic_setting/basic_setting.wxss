@@ -1,7 +1,5 @@
 /* pages/login/login.wxss */
-page{
-  background-color: lightgray;
-}
+
 .input-wrap {
   display: flex;
   flex-direction: row;
@@ -16,11 +14,11 @@ page{
   background-color: rgb(226, 226, 225);
   margin-bottom: 30rpx;
   border-radius: 10rpx;
-  border-color: #000000;
+  border-color: #0a0a0a;
   width: 310rpx;
   height: 60rpx;
   display: flex;
-  color:black;
+  color:rgb(2, 2, 2);
 }
 .three
 {

@@ -1,2 +1,20 @@
 <!--pages/personal_infos/weight_infos/weight_infos.wxml-->
-<text>pages/personal_infos/weight_infos/weight_infos.wxml</text>
+<view class="page">
+  <view class="page__bd">
+    <mp-cells ext-class="my-cells" title="每天都可以记录一次体重哦~">
+      <mp-cell value="当前体重：" footer="{{uweight}}kg"></mp-cell>
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">　记录体重：</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="multiSelector" bindchange="bindHeightChange" bindcolumnchange="bindHeightColumnChange" value="{{i_height}}" range="{{a_height}}">
+              <view class="weui-select weui-select_in-select-after">
+                　{{a_height[0][i_height[0]]}}.{{a_height[1][i_height[1]]}}kg
+              </view>
+          </picker>
+        </view>
+      </view>
+    </mp-cells>
+  </view>
+</view>

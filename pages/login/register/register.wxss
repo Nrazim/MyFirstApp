@@ -9,6 +9,16 @@
   width: 200rpx;
 }
 
+.container1 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100rpx 0;
+  box-sizing: border-box;
+} 
+
 .remind-info{
   text-align: right;
 }
@@ -16,19 +26,62 @@
 .three
 {
   margin-bottom: 30rpx;
-  right: 60rpx;
   border-style:solid;
-  border-radius:10rpx;
+  border-radius: 30rpx;
   border-width:1px;
-  width: 300rpx
+  width: 300rpx;
+  color: rgba(82, 84, 87, 100);
+  font-size: 14px;
+  text-align: center;
+  font-family: PingFang SC;
+  border: 1px solid rgba(152, 157, 164, 100);
 }
 
 .login {
-  margin-top: 30rpx;
+  margin-left: 22rpx;
+  margin-top: 50rpx;
+  width: 600rpx;
+  height: 40px;
+  border-radius: 19px;
+  background-color: rgba(242, 216, 39, 100);
+  color: rgba(16, 16, 16, 100);
+  font-size: 14px;
+  text-align: center;
+  font-family: PingFang SC;
+  border: 1px solid rgba(242, 216, 39, 100);
 }
 .title{
-  font-size:120%;
+  font-size:100%;
   line-height:20px;
-  margin-top:100rpx;
+  margin-top:200rpx;
   text-align: center;
+  font-weight: 300;
+  color: rgba(16, 16, 16, 100);
+}
+.imag1{
+  width: 58rpx;
+  height: 60rpx;
+  display:inline-block;
+  box-sizing: border-box;
+  left: 160rpx;
+  margin-top: 106rpx;
+  position: fixed
+}
+.imag2{
+  width: 58rpx;
+  height: 60rpx;
+  display: inline-block;
+  box-sizing: border-box;
+  left: 160rpx;
+  margin-top: 210rpx;
+  position: fixed
+}
+.imag3{
+  width: 58rpx;
+  height: 60rpx;
+  display: inline-block;
+  box-sizing: border-box;
+  left: 160rpx;
+  margin-top: 314rpx;
+  position: fixed
 }

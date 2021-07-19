@@ -10,7 +10,6 @@ Page({
       uBMI:0,
     },
     onLoad: function(){
-        
     },
     onShow: function(){
       try{

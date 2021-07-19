@@ -1,9 +1,33 @@
 <!--pages/personal_infos/height_infos/height_infos.wxml-->
 <view class="page">
-    <view class="page__bd">
-      <mp-cells ext-class="my-cells" title="每月可以记录一次身高变化哦~">
-            <mp-cell value="当前身高：" footer="{{uheight}}">
-            </mp-cell>
-        </mp-cells>
+  <view class="page__bd">
+    <mp-cells ext-class="my-cells" title="每月可以记录一次身高变化哦~">
+      <mp-cell value="当前身高：" footer="{{uheight}}cm"></mp-cell>
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">　记录身高：</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="multiSelector" bindchange="bindHeightChange"value="{{i_height}}" range="{{a_height}}" class="value">
+              <view class="weui-select weui-select_in-select-after">
+                　{{a_height[0][i_height[0]]}}.{{a_height[1][i_height[1]]}}cm
+              </view>
+          </picker>
+        </view>
+      </view>
+    </mp-cells>
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="confirm">确定</button>
     </view>
+  </view>
+  <scroll-view class="scroll-box" scroll-x scroll-with-animation
+  scroll-into-view="{{toView}}"
+  bindtouchstart="touchStart"
+  bindtouchend="touchEnd">
+    <view wx:for="{{list}}" wx:key="{{item}}" class="card-box" id="card_{{index}}">
+      <view class="card">
+        <text>{{item}}</text>
+      </view>
+    </view>
+</scroll-view>
 </view>
