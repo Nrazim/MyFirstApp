@@ -54,6 +54,31 @@ App({
       })
     }
   },
+
+  exp:function(present){
+    if(present=="eat"){
+      this.globalData.exp = this.globalData.exp+20,
+      AV.User.current().set("exp",this.globalData.exp);
+      console.log(this.globalData.exp);
+      AV.User.current().save();
+    }
+    else if(present="sleep"){
+      this.globalData.exp = this.globalData.exp+20,
+      AV.User.current().set("exp",this.globalData.exp);
+      AV.User.current().save();
+    }
+    else if(present=="present"){
+      this.globalData.exp = this.globalData.exp+20,
+      AV.User.current().set("exp",this.globalData.exp);
+      AV.User.current().save();
+    }
+    else if(present=="medicine"){
+      this.globalData.exp = this.globalData.exp+20,
+      AV.User.current().set("exp",this.globalData.exp);
+      AV.User.current().save();
+    }
+  },
+  
   globalData: {
     TakeMedicineBefore: false,
     userInfo: null,
