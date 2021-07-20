@@ -27,7 +27,7 @@ Page({
       console.log(eatTimes)
       eatTimes.forEach((eatTime) => {
         this.data.startTimes.unshift(eatTime.get('eattimeStart'));
-        this.data.eatDurations.unshift(eatTime.get('eatDuration'));
+        this.data.eatDurations.unshift(eatTime.get('eatDuration')/1000);
       });
       console.log(this.data.startTimes,this.data.eatDurations)
       this.chart = {};
@@ -70,7 +70,7 @@ Page({
                       display: true,
                       scaleLabel: {
                           display: true,
-                          labelString: '用餐时长（毫秒）'
+                          labelString: '用餐时长（秒）'
                       }
                   }]
               }
