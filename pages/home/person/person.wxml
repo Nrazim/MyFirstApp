@@ -1,0 +1,18 @@
+<!--pages/home/person/person.wxml-->
+<!--背景-->
+<view class="container_bottom">
+  <image src='../../images/person/person_background.png'></image>
+  <view class='up'>
+  </view>
+</view>
+<!--距离下一次升级的经验-->
+<view class="container_person">
+  <circle txtshow = "{{exp}}%" draw='circwewle1' per = '{{exp}}' r = '120'/>
+</view>
+<!--当前等级-->
+<view class="level">{{level}}</view>
+
+<!--用户头像-->
+<image class="figure" src='https://i.loli.net/2021/07/20/VKxnzi2bBfIUk8D.gif'></image>
+
+<view class="day">{{1}}</view>

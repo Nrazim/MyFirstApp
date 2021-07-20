@@ -2,13 +2,14 @@
 const app=getApp()
 
 Component({
-  data:{
-    txt: app.globalData.level,
-  },
   options: {
     multipleSlots: true // 在组件定义时的选项中启用多slot支持
   },
   properties: {
+    txtshow:{
+      type: String,
+      value:""
+    },
     draw: {//画板元素名称id
       type: String,
       value: 'draw',
@@ -110,9 +111,7 @@ Component({
       
       _this.setData({
         step: (2 * Number(_this.data.per)) / 100,
-        txt: app.globalData.level,
       });
-
 
       //获取屏幕宽度(并把真正的半径px转成rpx)
       let rpx = (_this.data.screenWidth / 750) * r;
@@ -137,23 +136,7 @@ Component({
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
     attached: function () { 
 
-      const AV = require('../../libs/av-core-min');
-      const currentUser = AV.User.current();
-      app.globalData.exp = currentUser.get('exp')
-      app.globalData.level=currentUser.get('level')
-    if(app.globalData.exp>=app.globalData.levelexplist[app.globalData.level]){
-      app.globalData.exp=app.globalData.exp-app.globalData.levelexplist[app.globalData.level];
-      app.globalData.level=app.globalData.level+1;
-    }
-    currentUser.set("exp",app.globalData.exp);
-    currentUser.set("level",app.globalData.level);
-    AV.User.current().save();
-
-    app.globalData.level=currentUser.get('level');
-      this.setData({
-        txt: app.globalData.level
-      })
-      console.log(app.globalData.level);
+      
       const _this = this;
       //获取屏幕宽度
       wx.getSystemInfo({

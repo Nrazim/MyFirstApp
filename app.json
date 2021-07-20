@@ -5,6 +5,7 @@
     "pages/home/practice/practice",
     "pages/home/sleep/sleep",
     "pages/home/eat/eat",
+    "pages/home/person/person",
     "pages/home/medicine/medicine",
     "pages/reminder/takemedicine/takemedicine",
     "pages/login/login/login",
