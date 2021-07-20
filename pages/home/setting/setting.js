@@ -23,8 +23,9 @@ Page({
     app.globalData.rgb = e.detail.color
   },
   handleLogout () {
-    AV.User.logOut();
-    app.globalData.SignedIn = false;
+    AV.User.logOut()
+    app.globalData.SignedIn = false
+    wx.navigateBack({})
     wx.redirectTo({
       url: '../../login/login/login',
     })
