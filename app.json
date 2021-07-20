@@ -1,5 +1,5 @@
 {
-  "pages": [    
+  "pages": [
     "pages/home/index/index",
     "pages/logs/logs",
     "pages/home/practice/practice",
@@ -9,8 +9,8 @@
     "pages/reminder/takemedicine/takemedicine",
     "pages/login/login/login",
     "pages/login/register/register",
-    "pages/home/task/task",
     "pages/login/basic_setting/basic_setting",
+    "pages/home/task/task",
     "pages/personal_infos/basic_infos/basic_infos",
     "pages/personal_infos/height_infos/height_infos",
     "pages/personal_infos/weight_infos/weight_infos",
@@ -21,7 +21,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "史莱姆养成",
+    "navigationBarTitleText": "史莱喵养成计划",
     "navigationBarTextStyle": "black"
   },
   "useExtendedLib": {

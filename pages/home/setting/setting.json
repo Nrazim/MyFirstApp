@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "color-picker":"/components/color-picker/color-picker"
+    "color-picker":"/components/color-picker/color-picker",
+    "mp-dialog": "weui-miniprogram/dialog/dialog"
   }
 }
