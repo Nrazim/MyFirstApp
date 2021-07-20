@@ -15,9 +15,7 @@ Page({
   },
   click: function (e) {
     app.homeclick(e),
-    app.globalData.exp = app.globalData.exp+20,
-    AV.User.current().set("exp",app.globalData.exp);
-    AV.User.current().save();
+    app.exp("sleep"),
     app.globalData.sleepfinish = true
   },
 
