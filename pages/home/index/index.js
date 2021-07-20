@@ -13,7 +13,7 @@ Page({
     ],
     imglist2:[
       { url: '../../images/buttons/setting.png', id:"setting/setting"},
-      { url: '../../images/buttons/reminder.png', id:"../reminder/takemedicine/takemedicine"},
+      { url: '../../images/buttons/reminder.png', id:"../reminder/reminder"},
     ],
     exp: app.globalData.exp,
     slimeaction:"https://www.z4a.net/images/2021/07/19/relax1.gif",
@@ -29,7 +29,11 @@ Page({
       url:'/pages/statistics/statistics'
     })
   },
-
+  gotoPage_person:function(){
+    wx.navigateTo({
+      url:'/pages/home/person/person'
+    })
+  },
   click: function (e) {
     app.homeclick(e)
   },
@@ -43,8 +47,20 @@ Page({
         url: '../../login/login/login',
       })
     }
+    const currentUser = AV.User.current();
+      app.globalData.exp = currentUser.get('exp')
+      app.globalData.level=currentUser.get('level')
+    if(app.globalData.exp>=app.globalData.levelexplist[app.globalData.level]){
+      app.globalData.exp=app.globalData.exp-app.globalData.levelexplist[app.globalData.level];
+      app.globalData.level=app.globalData.level+1;
+    }
+    currentUser.set("exp",app.globalData.exp);
+    currentUser.set("level",app.globalData.level);
+    AV.User.current().save();
+
     this.setData({
-      exp: app.globalData.exp/app.globalData.levelexplist[app.globalData.level]*100,
+      level:app.globalData.level,
+      exp: Math.round(app.globalData.exp/app.globalData.levelexplist[app.globalData.level]*100),
     })
   },
   getUserProfile(e) {

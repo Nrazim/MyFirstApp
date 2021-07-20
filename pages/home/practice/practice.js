@@ -10,7 +10,7 @@ Page({
     imglist1:[
       { url: '../../images/buttons/practice.png', id:"index/index"},
     ],
-    slimeaction:"https://www.z4a.net/images/2021/07/16/practice.gif",
+    slimeaction:"https://www.z4a.net/images/2021/07/20/run1.gif",
   },
   click: function (e) {
     var currentUser = AV.User.current();

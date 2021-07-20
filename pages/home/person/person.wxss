@@ -1,0 +1,47 @@
+.container_person{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 480rpx 0;
+  box-sizing: border-box;
+} 
+.container_bottom{
+  width: 1;
+  height: 1;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+image{
+  position: absolute;
+  width: 100%;
+  height: 1200rpx;
+}
+.up{
+  position: absolute;
+  z-index: 1;
+}
+
+.level{
+  top: 120rpx;
+  right:160rpx;
+  position:fixed;
+  font-size:300%;
+}
+
+.figure{
+  top: 0rpx;
+  left:0rpx;
+  width:370rpx;
+  height:370rpx;
+  position:fixed; 
+}
+
+.day{
+  bottom: 247rpx;
+  right:300rpx;
+  position:fixed;
+  font-size:150%;
+}

@@ -1,26 +1,11 @@
-// pages/home/sleep/sleep.js
-const app=getApp();
-const AV = require('../../../libs/av-core-min.js');
+// pages/reminder/healthplan/healthplan.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imglist1:[
-      { url: '../../images/buttons/sleep.png', id:"index/index"},
-    ],
-    slimeaction:"https://www.z4a.net/images/2021/07/17/_x264.gif",
-  },
-  click: function (e) {
-    var currentUser = AV.User.current();
-    app.homeclick(e);
-    app.exp("sleep");
-    app.globalData.sleepfinish = true;
-    var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，睡觉对应第3个
-    complete[3] = true;
-    currentUser.set("accomplished",complete);
-    currentUser.save();
+
   },
 
   /**
@@ -41,7 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.hideHomeButton();
+
   },
 
   /**
