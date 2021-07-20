@@ -16,8 +16,8 @@
   border-radius:50%;
 }
 .maingif{/*主图gif*/
-  width: 748rpx;
-  height: 1156rpx;
+  width: 750rpx;
+  height: 1333rpx;
   display: inline-block;
   box-sizing: border-box;
   left: 0rpx;

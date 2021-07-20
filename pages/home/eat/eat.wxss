@@ -16,3 +16,12 @@
   border-radius:50%;
   margin-top:15rpx;
 }
+.maingif{/*主图gif*/
+  width: 750rpx;
+  height: 1333rpx;
+  display: inline-block;
+  box-sizing: border-box;
+  left: 0rpx;
+  top: 0rpx;
+  position: fixed;
+}
