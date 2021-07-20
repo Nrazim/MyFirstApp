@@ -80,7 +80,6 @@ Page({
 
   tapDialogButton(e) {
     app.globalData.TakeMedicineBefore = false;
-    var currentUser = AV.User.current();
     console.log(e.detail)
     if(e.detail.index==0){
       wx.redirectTo({
