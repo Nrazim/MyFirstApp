@@ -1,26 +1,32 @@
 <!--pages/login/login.wxml-->
 <view class="title">用户注册</view>
-<image class='imag1' src='../../images/login/login1.png'></image>
-<image class='imag2' src='../../images/login/login3.png'></image>
-<image class='imag3' src='../../images/login/login2.png'></image>
+<image wx:if="{{registerchoice=='0'}}"class='imag1' src='../../images/login/login1.png'></image>
+<image wx:if="{{registerchoice!='0'}}"class='imag1' src='../../images/login/login1.2.png'></image>
+<image wx:if="{{registerchoice=='1'}}" class='imag2' src='../../images/login/login3.2.png'></image>
+<image wx:if="{{registerchoice!='1'}}" class='imag2' src='../../images/login/login3.png'></image>
+<image wx:if="{{registerchoice=='2'}}"class='imag3' src='../../images/login/login2.2.png'></image>
+<image wx:if="{{registerchoice!='2'}}"class='imag3' src='../../images/login/login2.png'></image>
 <view class="container1">
   <view class="input-wrap">
    
     <input style="width: 466rpx; height: 75rpx; display: block; box-sizing: border-box; left: 30; top: 200rpx"
     placeholder="请输入新账号"
-    value="{{username}}" bindinput="inputUsername" class="three"/>
+    value="{{username}}" bindinput="inputUsername"
+    bindfocus="selectchoice_account" class="three"/>
   </view>
   <view class="input-wrap">
    
     <input style="width: 466rpx; height: 75rpx; display: block; box-sizing: border-box; left: 30; top: 200rpx"
     placeholder="请输入密码"
-    value="{{password}}" bindinput="inputPassword" class="three" type="password"/>
+    value="{{password}}" bindinput="inputPassword" 
+    bindfocus="selectchoice_password" class="three" type="password"/>
   </view>
   <view class="input-wrap">
    
     <input style="width: 466rpx; height: 75rpx; display: block; box-sizing: border-box; left: 30; top: 200rpx"
     placeholder="确认密码"
-    value="{{password2}}" bindinput="inputPassword2" class="three" type="password"/>
+    value="{{password2}}" bindinput="inputPassword2" 
+    bindfocus="selectchoice_password2" class="three" type="password"/>
   </view>
   <button bindtap="register" class="login">注册</button>
 </view>

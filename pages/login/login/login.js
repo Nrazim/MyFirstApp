@@ -5,6 +5,7 @@ Page({
   data: {
     username: '',
     password: '',
+    selectchoice:'',
   },
   
   inputUsername(e) {
@@ -17,6 +18,19 @@ Page({
       password: e.detail.value,
     })
   },
+
+  selectchoice_account(){
+    this.setData({
+      selectchoice:'0'
+    })
+  },
+
+  selectchoice_password(){
+    this.setData({
+      selectchoice:'1'
+    })
+  },
+ 
 
   register() {
     wx.navigateTo({
