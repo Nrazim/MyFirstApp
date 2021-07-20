@@ -49,6 +49,8 @@ Page({
     console.log(this.data.weight)
   },
   confirm(){
+    var myDate = new Date();
+    console.log(myDate.getDate)
     if(this.data.index==0){
       wx.showToast({
         title: '请选择性别',
@@ -57,7 +59,7 @@ Page({
     }
     else{
       try{
-        var currentUser=AV.User.current()
+        var currentUser=AV.User.current();
         console.log(currentUser.get('birthday'));
         currentUser.set("birthday",this.data.date);
         currentUser.set("height",this.data.height);
