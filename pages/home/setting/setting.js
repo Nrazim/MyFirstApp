@@ -24,6 +24,7 @@ Page({
   },
   handleLogout () {
     AV.User.logOut();
+    app.globalData.SignedIn = false;
     wx.redirectTo({
       url: '../../login/login/login',
     })
