@@ -38,7 +38,6 @@ Page({
     const user = new AV.User();
     if (username) user.set({username});
     if (password) user.set({password});
-    user.set("first",1);
     user.save().then(() => {
       wx.redirectTo({
         url: '../login/login',

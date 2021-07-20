@@ -1,5 +1,6 @@
 // pages/home/setting/setting.js
-const app=getApp()
+const app = getApp()
+const AV = require('../../../libs/av-core-min.js'); 
 
 Page({
 
@@ -20,6 +21,12 @@ Page({
       rgb: e.detail.color
     })
     app.globalData.rgb = e.detail.color
+  },
+  handleLogout () {
+    AV.User.logOut();
+    wx.redirectTo({
+      url: '../../login/login/login',
+    })
   },
   /**
    * 生命周期函数--监听页面加载
