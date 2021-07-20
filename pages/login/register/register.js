@@ -6,6 +6,7 @@ Page({
     username: '',
     password: '',
     password2: '',
+    registerchoice:'',
   },
   
   inputUsername(e) {
@@ -23,7 +24,21 @@ Page({
       password2: e.detail.value,
     })
   },
-
+  selectchoice_account(){
+    this.setData({
+      registerchoice:'0'
+    })
+  },
+  selectchoice_password(){
+    this.setData({
+      registerchoice:'1'
+    })
+  },
+  selectchoice_password2(){
+    this.setData({
+      registerchoice:'2'
+    })
+  },
   register() {
     if (this.data.password != this.data.password2) {
       wx.showToast({
