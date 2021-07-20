@@ -13,9 +13,14 @@ Page({
     slimeaction:"https://www.z4a.net/images/2021/07/20/run1.gif",
   },
   click: function (e) {
-    app.homeclick(e),
+    var currentUser = AV.User.current();
+    app.homeclick(e);
     app.exp("practice");
     app.globalData.practicefinish = true
+    var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，锻炼对应第0个
+    complete[0] = true;
+    currentUser.set("accomplished",complete);
+    currentUser.save();
   },
 
   /**

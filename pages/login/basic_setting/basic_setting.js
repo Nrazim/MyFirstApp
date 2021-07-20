@@ -17,15 +17,14 @@ Page({
       gender:0,
       height:'170.0',
       weight:'50.0',
+      height_record:[],
   },
   bindGenderChange: function(e){
-    console.log("user's gender is "+e.detail.value)
     this.setData({
       index: e.detail.value
     })
   },
   bindDateChange: function(e){
-    console.log("user's birthday is "+e.detail.value)
     this.setData({
       date: e.detail.value
     })
@@ -37,7 +36,6 @@ Page({
     this.setData({
       height: String(e.detail.value[0]+50)+'.'+String(e.detail.value[1])
     })
-    console.log(this.data.height)
   },
   bindWeightChange(e) {
     this.setData({
@@ -46,11 +44,20 @@ Page({
     this.setData({
       weight: String(e.detail.value[0]+30)+'.'+String(e.detail.value[1])
     })
-    console.log(this.data.weight)
   },
   confirm(){
+    wx.showToast({
+      title: '正在加载',
+      icon: 'loading',
+      duration :2000
+    })
     var myDate = new Date();
-    console.log(myDate.getDate)
+    var fullDate=[];
+    fullDate.push(myDate.getFullYear());
+    fullDate.push(myDate.getMonth());
+    fullDate.push(myDate.getDate());
+    fullDate.push(myDate.getDay());
+    console.log(fullDate);
     if(this.data.index==0){
       wx.showToast({
         title: '请选择性别',
@@ -60,11 +67,13 @@ Page({
     else{
       try{
         var currentUser=AV.User.current();
-        console.log(currentUser.get('birthday'));
         currentUser.set("birthday",this.data.date);
         currentUser.set("height",this.data.height);
         currentUser.set("weight",this.data.weight);
+        currentUser.set("lastLogin",'');
+        currentUser.set("accomplished",[false,false,false,false]); //设置数组存储任务完成情况：锻炼、吃药、吃饭、睡觉
         currentUser.set("exp",0);
+        currentUser.set("lastLogin",myDate.toLocaleDateString());
         currentUser.set("level",1);
         if(this.data.index==1){
           currentUser.set("gender",'男');

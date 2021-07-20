@@ -11,4 +11,8 @@
 }
 .logout{
   margin-top:20%;
+  background-color: rgb(241, 241, 241);
+  color:red;
+  font-weight: 400;
+  font-size: 100%;
 }

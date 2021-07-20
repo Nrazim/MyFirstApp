@@ -9,7 +9,11 @@ Page({
    */
   data: {
     rgb: app.globalData.rgb,
-    pick: false
+    pick: false,
+    buttons: [
+      {text: '取消'}, {text: '确认'}
+    ],
+    dialogShow: false,
   },
   toPick: function () {
     this.setData({
@@ -22,12 +26,22 @@ Page({
     })
     app.globalData.rgb = e.detail.color
   },
-  handleLogout () {
-    AV.User.logOut()
-    app.globalData.SignedIn = false
-    wx.navigateBack({})
-    wx.redirectTo({
-      url: '../../login/login/login',
+  openConfirm: function(){
+    this.setData({
+        dialogShow: true
+    })
+  },
+  handleLogout (e) {
+    if(e.detail.index==1){
+      AV.User.logOut();
+      app.globalData.SignedIn = false;
+      wx.navigateBack({});
+      wx.redirectTo({
+        url: '../../login/login/login',
+      })
+    }
+    this.setData({
+      dialogShow: false,
     })
   },
   /**

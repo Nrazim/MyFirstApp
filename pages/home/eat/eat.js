@@ -111,15 +111,19 @@ Page({
         this.setData({
           takeMedicineAfter: true,
         })
-        console.log('TakeMedicineAfter')
+        console.log('TakeMedicineAfter');
         break;
       }
     }
     this.setData({
         dialogShow: false,
     })
-    app.exp("eat"),
-    app.globalData.eatfinish = true
+    app.exp("eat");
+    app.globalData.eatfinish = true;
+    var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，吃饭对应第2个
+    complete[2] = true;
+    currentUser.set("accomplished",complete);
+    currentUser.save();
   },
 
   tapMedicineBeforeDialog: function(){
