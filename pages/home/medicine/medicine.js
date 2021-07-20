@@ -18,7 +18,6 @@ Page({
       app.homeclick(e);
     }
     else{/* 饭前吃药跳转进入 */
-      var currentUser = AV.User.current();
       console.log(e.currentTarget.dataset.id)
       const jumpto = e.currentTarget.dataset.id
       app.globalData.TakeMedicineBefore = false
@@ -36,12 +35,13 @@ Page({
         })
       }
     }
-    app.exp("medicine"),
+    app.exp("medicine")
     app.globalData.medicinefinish = true
-    var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，吃药对应第1个
-    complete[1] = true;
-    currentUser.set("accomplished",complete);
-    currentUser.save();
+    var currentUser = AV.User.current()
+    var complete = currentUser.attributes.accomplished //从leancloud取数组赋值后存储，吃药对应第1个
+    complete[1] = true
+    currentUser.set("accomplished",complete)
+    currentUser.save()
   },
 
   /**
