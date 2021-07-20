@@ -16,7 +16,6 @@ Page({
     app.homeclick(e),
     app.exp("practice");
     app.globalData.practicefinish = true
-    
   },
 
   /**

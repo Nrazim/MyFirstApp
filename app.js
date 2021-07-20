@@ -44,7 +44,7 @@ App({
     console.log(e.currentTarget.dataset.id)
     const jumpto = e.currentTarget.dataset.id
     if(jumpto=="../reminder/takemedicine/takemedicine"||jumpto=="setting/setting"||
-    jumpto=="../personal_infos/basic_infos/basic_infos"){
+    jumpto=="../personal_infos/basic_infos/basic_infos"||jumpto=="../reminder/reminder"){
       wx.navigateTo({
         url: '../' + jumpto,
       })

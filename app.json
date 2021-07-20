@@ -1,5 +1,5 @@
 {
-  "pages": [    
+  "pages": [
     "pages/home/index/index",
     "pages/logs/logs",
     "pages/home/practice/practice",
@@ -17,7 +17,9 @@
     "pages/personal_infos/weight_infos/weight_infos",
     "pages/personal_infos/bmi_infos/bmi_infos",
     "pages/statistics/statistics",
-    "pages/statistics/mealData/mealData"
+    "pages/statistics/mealData/mealData",
+    "pages/reminder/healthplan/healthplan",
+    "pages/reminder/reminder"
   ],
   "window": {
     "backgroundTextStyle": "light",

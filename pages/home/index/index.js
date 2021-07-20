@@ -13,7 +13,7 @@ Page({
     ],
     imglist2:[
       { url: '../../images/buttons/setting.png', id:"setting/setting"},
-      { url: '../../images/buttons/reminder.png', id:"../reminder/takemedicine/takemedicine"},
+      { url: '../../images/buttons/reminder.png', id:"../reminder/reminder"},
     ],
     exp: app.globalData.exp,
     slimeaction:"https://www.z4a.net/images/2021/07/19/relax1.gif",
@@ -42,9 +42,6 @@ Page({
 
   },
   onShow(){
-    this.setData({
-      level:app.globalData.level
-    })
     if(app.globalData.SignedIn==false){
       wx.redirectTo({
         url: '../../login/login/login',
@@ -62,6 +59,7 @@ Page({
     AV.User.current().save();
 
     this.setData({
+      level:app.globalData.level,
       exp: Math.round(app.globalData.exp/app.globalData.levelexplist[app.globalData.level]*100),
     })
   },
