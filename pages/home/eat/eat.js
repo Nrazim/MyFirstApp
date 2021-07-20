@@ -85,8 +85,18 @@ Page({
       wx.redirectTo({
         url: '../index/index',
       })
+      return
     }
     const currentUser = AV.User.current()
+    const eatTime = new AV.Object('EatTime')
+    this.setData({
+      timeStart: util.formatTime(new Date())
+    })
+    eatTime.set('parent',currentUser)
+    console.log('开始时间：',this.data.timeStart)
+    eatTime.set('eattimeStart',this.data.timeStart)
+    console.log('创建的eatTime',eatTime)
+    eatTime.save()
     var values = currentUser.get('medicineBefore')?currentUser.get('medicineBefore'):[]
     for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
         if(e.detail.index-1 == values[j]){//index从1到3，values从0到2是吃饭前
@@ -132,16 +142,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const currentUser = AV.User.current()
-    const eatTime = new AV.Object('EatTime')
-    this.setData({
-      timeStart: util.formatTime(new Date())
-    })
-    eatTime.set('parent',currentUser)
-    console.log('开始时间：',this.data.timeStart)
-    eatTime.set('eattimeStart',this.data.timeStart)
-    console.log('创建的eatTime',eatTime)
-    eatTime.save()
     this.openConfirm()
   },
 
