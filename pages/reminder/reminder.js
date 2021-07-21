@@ -10,8 +10,7 @@ Page({
 
   medicinereminder:function(){
     wx.navigateTo({
-      //url: 'takemedicine/takemedicine',
-      url:'../home/eat/selectFood/selectFood'
+      url: 'takemedicine/takemedicine','
     })
   },
   healthplan:function(){
