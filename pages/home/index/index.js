@@ -47,9 +47,16 @@ Page({
         url: '../../login/login/login',
       })
     }
+    var myDate = new Date();
+    var completeDate = [];
+    completeDate.push(myDate.getFullYear());
+    completeDate.push(myDate.getMonth());
+    completeDate.push(myDate.getDate());
     const currentUser = AV.User.current();
-      app.globalData.exp = currentUser.get('exp')
-      app.globalData.level=currentUser.get('level')
+    var lastDate = currentUser.get('completeDate');
+    console.log(lastDate);
+    app.globalData.exp = currentUser.get('exp')
+    app.globalData.level=currentUser.get('level')
     if(app.globalData.exp>=app.globalData.levelexplist[app.globalData.level]){
       app.globalData.exp=app.globalData.exp-app.globalData.levelexplist[app.globalData.level];
       app.globalData.level=app.globalData.level+1;

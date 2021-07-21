@@ -52,12 +52,12 @@ Page({
       duration :2000
     })
     var myDate = new Date();
-    var fullDate=[];
-    fullDate.push(myDate.getFullYear());
-    fullDate.push(myDate.getMonth());
-    fullDate.push(myDate.getDate());
-    fullDate.push(myDate.getDay());
-    console.log(fullDate);
+    var completeDate = [];
+    var year = `${myDate.getFullYear}`;
+    var h_monthly=[];
+    completeDate.push(0);
+    completeDate.push(0);
+    completeDate.push(0);
     if(this.data.index==0){
       wx.showToast({
         title: '请选择性别',
@@ -70,11 +70,12 @@ Page({
         currentUser.set("birthday",this.data.date);
         currentUser.set("height",this.data.height);
         currentUser.set("weight",this.data.weight);
-        currentUser.set("lastLogin",'');
         currentUser.set("accomplished",[false,false,false,false]); //设置数组存储任务完成情况：锻炼、吃药、吃饭、睡觉
-        currentUser.set("exp",0);
         currentUser.set("lastLogin",myDate.toLocaleDateString());
+        currentUser.set("exp",0);
         currentUser.set("level",1);
+        currentUser.set("completeDate",completeDate);
+        currentUser.set("height_record_monthly",[]);
         if(this.data.index==1){
           currentUser.set("gender",'男');
         }

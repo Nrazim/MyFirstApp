@@ -35,13 +35,13 @@ Page({
         })
       }
     }
+    var currentUser = AV.User.current();
     app.exp("medicine"),
     app.globalData.medicinefinish = true
-    var currentUser = AV.User.current()
-    var complete = currentUser.attributes.accomplished //从leancloud取数组赋值后存储，吃药对应第1个
-    complete[1] = true
-    currentUser.set("accomplished",complete)
-    currentUser.save()
+    var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，吃药对应第1个
+    complete[1] = true;
+    currentUser.set("accomplished",complete);
+    currentUser.save();
   },
 
   /**

@@ -48,11 +48,13 @@ Page({
     AV.User.logIn(username, password).then(function (loginedUser) {
       app.globalData.SignedIn = true;
       if (!loginedUser.attributes.gender){
+        app.globalData.lastLogin = fullDate
         wx.redirectTo({
           url: '../basic_setting/basic_setting',
         });
       }
       else{
+        app.globalData.lastLogin = loginedUser.attributes.lastLogin
         if(loginedUser.attributes.lastLogin!=fullDate){
           loginedUser.set("lastLogin",fullDate);
           loginedUser.set("accomplished",[false,false,false,false]);
