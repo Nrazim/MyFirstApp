@@ -1,4 +1,4 @@
-// pages/reminder/reminder.js
+// pages/home/eat/selectFood/drink/drink.js
 Page({
 
   /**
@@ -8,17 +8,6 @@ Page({
 
   },
 
-  medicinereminder:function(){
-    wx.navigateTo({
-      //url: 'takemedicine/takemedicine',
-      url:'../home/eat/selectFood/selectFood'
-    })
-  },
-  healthplan:function(){
-    wx.navigateTo({
-      url: 'healthplan/healthplan',
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */

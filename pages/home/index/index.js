@@ -39,7 +39,11 @@ Page({
   },
   // 事件处理函数
   onLoad() {
-
+    if(app.globalData.SignedIn==false){
+      wx.redirectTo({
+        url: '../../login/login/login',
+      })
+    }
   },
   onShow(){
     if(app.globalData.SignedIn==false){

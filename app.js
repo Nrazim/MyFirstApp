@@ -84,7 +84,7 @@ App({
     TakeMedicineBefore: false,
     userInfo: null,
     SignedIn: false,
-    rgb: 'rgb(7,193,96)',
+    rgb: 'rgb(255,244,2)',
     level:1,
     exp:0,
     practicefinish:false,
