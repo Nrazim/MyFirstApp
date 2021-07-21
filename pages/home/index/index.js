@@ -50,17 +50,42 @@ Page({
     var myDate = new Date();
     var completeDate = [];
     completeDate.push(myDate.getFullYear());
-    completeDate.push(myDate.getMonth());
+    completeDate.push(myDate.getMonth()+1);
     completeDate.push(myDate.getDate());
+
     const currentUser = AV.User.current();
     var lastDate = currentUser.get('completeDate');
-    console.log(lastDate);
     app.globalData.exp = currentUser.get('exp')
     app.globalData.level=currentUser.get('level')
     if(app.globalData.exp>=app.globalData.levelexplist[app.globalData.level]){
       app.globalData.exp=app.globalData.exp-app.globalData.levelexplist[app.globalData.level];
       app.globalData.level=app.globalData.level+1;
     }
+    if(app.globalData.eatfinish&&app.globalData.practicefinish&&app.globalData.sleepfinish&&!app.globalData.medicine){
+      if(lastDate[0]==completeDate[0]&&lastDate[1]==completeDate[1]-1&&lastDate[2]==completeDate[2]){
+      app.globalData.dayonscheduel=currentUser.get(dayonscheduel);
+      app.globalData.dayonscheduel=app.globalData.dayonscheduel+1;
+      }
+      else{
+        app.globalData.dayonscheduel=1;
+      }
+      currentUser.set("completeDate",completeDate);
+      currentUser.set("dayonscheduel",app.globalData.dayonscheduel)
+    }
+
+    if(app.globalData.eatfinish&&app.globalData.practicefinish&&app.globalData.sleepfinish&&app.globalData.medicine&&app.globalData.medicinefinish){
+      if(lastDate[0]==completeDate[0]&&lastDate[1]==completeDate[1]-1&&lastDate[2]==completeDate[2]){
+      app.globalData.dayonscheduel=currentUser.get(dayonscheduel);
+      app.globalData.dayonscheduel=app.globalData.dayonscheduel+1;
+      console.log(app.globalData.dayonscheduel);
+      }
+      else{
+        app.globalData.dayonscheduel=1
+      }
+      currentUser.set("completeDate",completeDate);
+      currentUser.set("dayonscheduel",app.globalData.dayonscheduel)
+    }
+
     currentUser.set("exp",app.globalData.exp);
     currentUser.set("level",app.globalData.level);
     AV.User.current().save();

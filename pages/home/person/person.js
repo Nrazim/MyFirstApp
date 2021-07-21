@@ -1,5 +1,6 @@
 // pages/home/person/person.js
-const app=getApp()
+const app=getApp();
+const AV = require('../../../libs/av-core-min');
 Page({
 
   /**
@@ -29,9 +30,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    const currentUser = AV.User.current();
+    app.globalData.dayonscheduel=currentUser.get('dayonscheduel');
     this.setData({
       exp:Math.round(app.globalData.exp/app.globalData.levelexplist[app.globalData.level]*100),
-      level:app.globalData.level
+      level:app.globalData.level,
+      dayonscheduel:app.globalData.dayonscheduel,
     })
   },
   /**

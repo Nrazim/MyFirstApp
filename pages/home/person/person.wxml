@@ -15,4 +15,4 @@
 <!--用户头像-->
 <image class="figure" src='https://i.loli.net/2021/07/20/VKxnzi2bBfIUk8D.gif'></image>
 
-<view class="day">{{1}}</view>
+<view class="day">{{dayonscheduel}}</view>
