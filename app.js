@@ -80,6 +80,7 @@ App({
   },
   
   globalData: {
+    lastLogin: '',
     TakeMedicineBefore: false,
     userInfo: null,
     SignedIn: false,
