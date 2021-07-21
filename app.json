@@ -21,11 +21,7 @@
     "pages/reminder/healthplan/healthplan",
     "pages/reminder/reminder",
     "pages/home/eat/selectFood/selectFood",
-    "pages/home/eat/selectFood/stapleFood/stapleFood",
-    "pages/home/eat/selectFood/meatAndEggs/meatAndEggs",
-    "pages/home/eat/selectFood/fruitAndVegetables/fruitAndVegetables",
-    "pages/home/eat/selectFood/drink/drink",
-    "pages/home/eat/selectFood/dessert/dessert"
+    "pages/home/eat/selectFood/selector/seclector"
   ],
   "window": {
     "backgroundTextStyle": "light",
