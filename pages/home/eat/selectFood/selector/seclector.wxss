@@ -1,1 +1,31 @@
 /* pages/home/eat/selectFood/selector/seclector.wxss */
+.input-wrap {
+  display: flex;
+  flex-direction: row;
+}
+.three
+{
+  margin-bottom: 30rpx;
+  border-style:solid;
+  border-radius: 30rpx;
+  border-width:1px;
+  width: 300rpx;
+  color: rgba(82, 84, 87, 100);
+  font-size: 14px;
+  text-align: center;
+  font-family: PingFang SC;
+  border: 1px solid rgba(152, 157, 164, 100);
+
+}
+.view_calorie_head {
+  margin-bottom: 30rpx;
+  margin-left: 50rpx;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+.view_wenzi {
+display: flex; 
+flex-direction: column; 
+align-items: center;
+}
