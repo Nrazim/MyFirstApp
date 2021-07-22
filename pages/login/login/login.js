@@ -58,6 +58,7 @@ Page({
         if(loginedUser.attributes.lastLogin!=fullDate){
           loginedUser.set("lastLogin",fullDate);
           loginedUser.set("accomplished",[false,false,false,false]);
+          loginedUser.set("meals",[false,false,false]);
           loginedUser.save();
         }
         var complete = loginedUser.attributes.accomplished;

@@ -87,6 +87,7 @@ Page({
       })
       return
     }
+
     const currentUser = AV.User.current()
     const eatTime = new AV.Object('EatTime')
     this.setData({
@@ -97,6 +98,18 @@ Page({
     eatTime.set('eattimeStart',this.data.timeStart)
     console.log('创建的eatTime',eatTime)
     eatTime.save()
+
+    //记录每餐吃饭情况（早饭：0；中饭：1；晚饭：2）
+    var meals =currentUser.get('meals')
+    var mealSelection = [0,1,2]
+    for(var j = 0; j<=3 ;j++){
+      if(e.detail.index-1== mealSelection[j]){
+        meals[j]=true
+      }
+      currentUser.set("meals",meals);
+      currentUser.save();
+    }
+
     var values = currentUser.get('medicineBefore')?currentUser.get('medicineBefore'):[]
     for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
         if(e.detail.index-1 == values[j]){//index从1到3，values从0到2是吃饭前
@@ -118,12 +131,16 @@ Page({
     this.setData({
         dialogShow: false,
     })
+
+    if(meals[0]==true&&meals[1]==true&&meals[2]==true){
     app.exp("eat");
     app.globalData.eatfinish = true;
+    console.log(app.globalData.eatfinish);
     var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，吃饭对应第2个
     complete[2] = true;
     currentUser.set("accomplished",complete);
     currentUser.save();
+    }
   },
 
   tapMedicineBeforeDialog: function(){
