@@ -1,13 +1,31 @@
 <!--pages/home/eat/selectFood/selector/seclector.wxml-->
 <view class="page">
     <view class="page__bd">
+        <view class="view_calorie_head">
+            <view class="view_wenzi">
+                <text style="color: #888888">摄入热量（千卡）</text>
+                <text style="color: #888888">{{calorie}}</text>
+            </view>
+            <button bindtap="calorieBack" style="color: #555555">记录完成</button>
+        </view>
         <mp-searchbar bindselectresult="selectResult" search="{{search}}"></mp-searchbar>
         <mp-half-screen-dialog 
         bindbuttontap="foodButtonTap"
         show="{{showFood}}"
-        title="{{foodName}}" 
-        subTitle="{{kcalPer100g}}"
-        desc="{{annotation}}"
-        ></mp-half-screen-dialog>
+        title="{{foodName}}"
+        subTitle="{{kcalPer100gText}}"
+        buttons="{{foodButtons}}"
+        >
+            <view slot="desc" style="display: flex; flex-direction: column; align-items: center;">
+                <text style="line-height: 3;">食用量</text>
+                <view  class="input-wrap">
+                <input style="width: 466rpx; height: 75rpx; display: block; box-sizing: border-box; left: 30; top: 200rpx"
+                    placeholder="请输入食用量" type="digit"
+                    value="{{amt}}" bindinput="inputAmt" 
+                    class="three" />
+                </view>
+                <text style="color: #888888">{{annotation}}</text>
+            </view>
+        </mp-half-screen-dialog>
     </view>
 </view>

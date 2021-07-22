@@ -1,6 +1,6 @@
 // pages/home/eat/selectFood/selector/seclector.js
 const AV = require('../../../../../libs/av-core-min.js');
-
+const app = getApp()
 Page({
 
   /**
@@ -8,10 +8,20 @@ Page({
    */
   data: {
     type:"无",
+    inputShowed: false,
+    showFood: false,
     foodName: "",
     annotation: "",
-    kcalPer100g: "",
+    kcalPer100gText: "",
+    kcalPer100g:0,
     amt: 0,
+    calorie: app.globalData.calorie,
+    foodButtons: [{
+      type: 'default',
+      className: '',
+      text: '确认',
+      value: 0
+    },]
   },
   search: function (value) {
     return new Promise((resolve, reject) => {
@@ -35,13 +45,32 @@ Page({
     })
   },
   selectResult: function (e) {
-      console.log('选择结果', e.detail.item)
-      this.setData({
-        foodName: e.detail.item.name,
-        annotation: e.detail.item.annotation,
-        kcalPer100g: e.detail.item.KcalPer100g + '千卡/100克',
-        amt: e.detail.item.defaultGram,
-      })
+    console.log('选择结果', e.detail.item)
+    this.setData({
+      foodName: e.detail.item.name,
+      annotation: e.detail.item.annotation,
+      kcalPer100g: e.detail.item.KcalPer100g,
+      kcalPer100gText: e.detail.item.KcalPer100g + '千卡/100克',
+      showFood: true,
+      amt: e.detail.item.defaultGram,
+    })
+  },
+  inputAmt(e) {
+    this.setData({
+      amt: e.detail.value,
+    })
+  },
+  foodButtonTap: function(e){
+    var result = app.globalData.calorie + this.data.amt*this.data.kcalPer100g/100
+    console.log(result,app.globalData.calorie,this.data.amt,this.data.kcalPer100g)
+    this.setData({ 
+      showFood: false,
+      calorie: result,
+    })
+  },
+  calorieBack: function(){
+    app.globalData.calorie = this.data.calorie
+    wx.navigateBack({})
   },
     /**
    * 生命周期函数--监听页面加载
@@ -49,6 +78,7 @@ Page({
   onLoad(options) {
     this.setData({
       type: options.type,
+      calorie: app.globalData.calorie,
       search: this.search.bind(this)
     })
   },

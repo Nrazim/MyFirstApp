@@ -6,3 +6,15 @@
   width:20px;
   height: 20px;
 }
+.view_calorie_block {
+  margin-bottom: 30rpx;
+  margin-left: 50rpx;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+.view_wenzi {
+display: flex; 
+flex-direction: column; 
+align-items: center;
+}
