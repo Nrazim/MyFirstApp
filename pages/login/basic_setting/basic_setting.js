@@ -102,6 +102,7 @@ Page({
         currentUser.set("level",1);
         currentUser.set("dayonscheduel",0);
         currentUser.set("completeDate",completeDate);
+        currentUser.set("h_monthly",h_monthly);
         currentUser.set("height_record_monthly",[]);
         currentUser.set("meals",[false,false,false]);
         if(this.data.index==1){
