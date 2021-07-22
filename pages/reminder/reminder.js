@@ -8,16 +8,6 @@ Page({
 
   },
 
-  medicinereminder:function(){
-    wx.navigateTo({
-      url: 'takemedicine/takemedicine',
-    })
-  },
-  healthplan:function(){
-    wx.navigateTo({
-      url: 'healthplan/healthplan',
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
