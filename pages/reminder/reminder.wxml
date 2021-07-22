@@ -1,5 +1,5 @@
 <!--pages/reminder/reminder.wxml-->
-<view class="container">
-  <button bindtap="medicinereminder">吃药提醒</button>
-  <button bindtap="healthplan" style="position: relative; top: 100rpx">健康计划</button>
-</view>
+<mp-cells title="提醒列表">
+  <mp-cell link hover url="takemedicine/takemedicine" value="吃药提醒" footer="前往"></mp-cell>
+  <mp-cell link hover url="healthplan/healthplan" value="我的健康规划" footer="前往"></mp-cell>
+</mp-cells>
