@@ -66,7 +66,7 @@ Page({
         app.globalData.medicinefinish = complete[1];
         app.globalData.eatfinish = complete[2];
         app.globalData.sleepfinish = complete[3];
-        if(loginedUser.attributes.isSleeping==true){
+        if(loginedUser.attributes.isSleeping){
           wx.redirectTo({
             url: '../../home/sleep/sleep',
           });

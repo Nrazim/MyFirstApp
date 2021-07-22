@@ -1,6 +1,8 @@
 // pages/home/sleep/sleep.js
 const app=getApp();
 const AV = require('../../../libs/av-core-min.js');
+var util = require('../../../utils/util.js');
+
 Page({
 
   /**
@@ -11,12 +13,28 @@ Page({
       { url: '../../images/buttons/sleep.png', id:"index/index"},
     ],
     slimeaction:"https://www.z4a.net/images/2021/07/17/_x264.gif",
+    timeStart: util.formatTime(new Date()),
   },
   click: function (e) {
     var currentUser = AV.User.current();
     app.homeclick(e);
     app.exp("sleep");
-    currentUser.set("isSleeping",false);
+    //设置睡觉结束时间计算持续时间并上传
+    const sleepTime = new AV.Object('SleepTime')
+    sleepTime.set('parent',currentUser)
+    console.log('开始时间：',this.data.timeStart)
+    sleepTime.set('sleepStart',this.data.timeStart)
+    var timeEnd = util.formatTime(new Date())
+    console.log('结束时间：',timeEnd)
+    sleepTime.set('sleepEnd',timeEnd)
+    var stime = Date.parse(this.data.timeStart)
+    var etime = Date.parse(timeEnd)
+    console.log('创建的sleepTime',sleepTime)
+    var sleepDuration = (etime - stime)/1000
+    console.log('持续时间',sleepDuration)
+    sleepTime.set('sleepDuration',sleepDuration)
+    sleepTime.save()
+    currentUser.set("isSleeping",'');
     app.globalData.sleepfinish = true;
     var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，睡觉对应第3个
     complete[3] = true;
@@ -30,13 +48,17 @@ Page({
   onLoad: function (options) {
     const currentUser = AV.User.current();
     if(!currentUser.attributes.isSleeping){
-      var myDate = new Date()
-      var myTime = `${myDate.getHours()}${myDate.getMinutes()}`
-      console.log(myTime)
-      currentUser.set("isSleeping",true)
-      //currentUser.set("sleepStart",)
+      this.setData({
+        timeStart:util.formatTime(new Date())
+      })
+      currentUser.set("isSleeping",this.data.timeStart)
+      currentUser.save();
     }
-    currentUser.save();
+    else{
+      this.setData({
+        timeStart:currentUser.attributes.isSleeping
+      })
+    }
   },
 
   /**
