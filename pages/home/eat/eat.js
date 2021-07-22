@@ -31,23 +31,20 @@ Page({
     const jumpto = e.currentTarget.dataset.id
     console.log(this.data.takeMedicineAfter)
     //设置吃饭结束时间计算持续时间并上传
-    const query = new AV.Query('EatTime')
+    const eatTime = new AV.Object('EatTime')
     const currentUser = AV.User.current()
-    query.equalTo('eattimeStart',this.data.timeStart)
-    query.equalTo('parent',currentUser)
-    query.first().then((eatTime) => {
-      var timeEnd = util.formatTime(new Date())
-      console.log('搜索到：',eatTime)
-      console.log('结束时间：',timeEnd)
-      console.log('此次开始时间：',this.data.timeStart)
-      eatTime.set('eattimeEnd',timeEnd)
-      var stime = Date.parse(new Date(this.data.timeStart))
-      var etime = Date.parse(new Date(timeEnd))
-      console.log(eatTime)
-      var eatDuration = etime - stime
-      eatTime.set('eatDuration',eatDuration)
-      eatTime.save()
-    });
+    eatTime.set('parent',currentUser)
+    console.log('开始时间：',this.data.timeStart)
+    eatTime.set('eattimeStart',this.data.timeStart)
+    var timeEnd = util.formatTime(new Date())
+    console.log('结束时间：',timeEnd)
+    eatTime.set('eattimeEnd',timeEnd)
+    var stime = Date.parse(new Date(this.data.timeStart))
+    var etime = Date.parse(new Date(timeEnd))
+    console.log('创建的eatTime',eatTime)
+    var eatDuration = etime - stime
+    eatTime.set('eatDuration',eatDuration)
+    eatTime.save()
     //判断有没有药要饭后吃
     if(this.data.takeMedicineAfter){
       this.timeToMedicineAfter()
@@ -88,15 +85,10 @@ Page({
       return
     }
     const currentUser = AV.User.current()
-    const eatTime = new AV.Object('EatTime')
     this.setData({
       timeStart: util.formatTime(new Date())
     })
-    eatTime.set('parent',currentUser)
-    console.log('开始时间：',this.data.timeStart)
-    eatTime.set('eattimeStart',this.data.timeStart)
-    console.log('创建的eatTime',eatTime)
-    eatTime.save()
+    
     var values = currentUser.get('medicineBefore')?currentUser.get('medicineBefore'):[]
     for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
         if(e.detail.index-1 == values[j]){//index从1到3，values从0到2是吃饭前

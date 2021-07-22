@@ -8,8 +8,10 @@ Page({
    */
   data: {
     type:"无",
-    inputShowed: false,
-    inputVal: "",
+    foodName: "",
+    annotation: "",
+    kcalPer100g: "",
+    amt: 0,
   },
   search: function (value) {
     return new Promise((resolve, reject) => {
@@ -20,8 +22,9 @@ Page({
       query.find().then((searchedItems) => {
         searchedItems.forEach((food) => {
           var foodItem = new Object()
-          foodItem.text = food.get('foodName')
+          foodItem.name = food.get('foodName')
           foodItem.KcalPer100g = food.get('KcalPer100g')
+          foodItem.text = foodItem.name + '　　　' + foodItem.KcalPer100g + '千卡/100克'
           foodItem.annotation = food.get('annotation')
           foodItem.defaultGram = food.get('defaultGram')
           searchList.push(foodItem)
@@ -33,6 +36,12 @@ Page({
   },
   selectResult: function (e) {
       console.log('选择结果', e.detail.item)
+      this.setData({
+        foodName: e.detail.item.name,
+        annotation: e.detail.item.annotation,
+        kcalPer100g: e.detail.item.KcalPer100g + '千卡/100克',
+        amt: e.detail.item.defaultGram,
+      })
   },
     /**
    * 生命周期函数--监听页面加载
