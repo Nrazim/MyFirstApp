@@ -100,6 +100,7 @@ Page({
         currentUser.set("lastLogin",myDate.toLocaleDateString());
         currentUser.set("exp",0);
         currentUser.set("level",1);
+        currentUser.set("dayonscheduel",0);
         currentUser.set("completeDate",completeDate);
         currentUser.set("h_monthly",h_monthly);
         if(this.data.index==1){

@@ -1,5 +1,5 @@
 <!--pages/reminder/reminder.wxml-->
 <view class="container">
-  <button type="primary" bindtap="medicinereminder">吃药提醒</button>
-  <button type="primary" bindtap="healthplan" style="position: relative; top: 100rpx">健康计划</button>
+  <button bindtap="medicinereminder">吃药提醒</button>
+  <button bindtap="healthplan" style="position: relative; top: 100rpx">健康计划</button>
 </view>

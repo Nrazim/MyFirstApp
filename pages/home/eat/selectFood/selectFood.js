@@ -1,21 +1,23 @@
-// pages/reminder/reminder.js
+// pages/home/eat/selectFood/selectFood.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    mealIndex:0,
+    meals: ['早饭', '午饭', '晚饭'],
+    foodSelectList:[
+      {url: 'selector/seclector?type=主食', value:"主食", icon:"../../../images/icons/eatselect/stapleFood.png"},
+      {url: 'selector/seclector?type=肉蛋', value:"肉蛋", icon:"../../../images/icons/eatselect/meat.png"},
+      {url: 'selector/seclector?type=果蔬', value:"果蔬", icon:"../../../images/icons/eatselect/vegetable.png"},
+      {url: 'selector/seclector?type=饮品', value:"饮品", icon:"../../../images/icons/eatselect/drink.png"},
+      {url: 'selector/seclector?type=甜品', value:"甜品", icon:"../../../images/icons/eatselect/dessert.png"},
+    ],
   },
-
-  medicinereminder:function(){
-    wx.navigateTo({
-      url: 'takemedicine/takemedicine',
-    })
-  },
-  healthplan:function(){
-    wx.navigateTo({
-      url: 'healthplan/healthplan',
+  bindmealsChange:function(e){
+    this.setData({
+      mealIndex: e.detail.value
     })
   },
   /**
