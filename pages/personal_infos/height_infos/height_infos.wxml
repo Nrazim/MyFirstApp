@@ -2,7 +2,7 @@
 <view class="page">
   <view class="page__bd">
     <mp-cells ext-class="my-cells" title="每月可以记录一次身高变化哦~">
-      <mp-cell value="当前身高：" footer="{{uheight}}cm"></mp-cell>
+      <mp-cell wx:for="{{h_list}}" data-key='{{index}}' value="{{item[0]}}" footer="{{item[1]}}cm"></mp-cell>
       <view class="weui-cell weui-cell_select">
         <view class="weui-cell__hd weui-cell__hd_in-select-after">
             <view class="weui-label">　记录身高：</view>
@@ -20,7 +20,7 @@
       <button class="weui-btn" type="primary" bindtap="confirm">确定</button>
     </view>
   </view>
-  <scroll-view class="scroll-box" scroll-x scroll-with-animation
+<!--  <scroll-view class="scroll-box" scroll-x scroll-with-animation
   scroll-into-view="{{toView}}"
   bindtouchstart="touchStart"
   bindtouchend="touchEnd">
@@ -29,5 +29,5 @@
         <text>{{item}}</text>
       </view>
     </view>
-</scroll-view>
+</scroll-view>  -->
 </view>
