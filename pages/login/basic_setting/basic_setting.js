@@ -25,11 +25,13 @@ Page({
       index: e.detail.value
     })
   },
+
   bindDateChange: function(e){
     this.setData({
       date: e.detail.value
     })
   },
+
   bindHeightChange(e) {
     this.setData({
       i_height: e.detail.value
@@ -38,14 +40,7 @@ Page({
       height: String(e.detail.value[0]+50)+'.'+String(e.detail.value[1])
     })
   },
-  bindWeightChange(e) {
-    this.setData({
-      i_weight: e.detail.value
-    })
-    this.setData({
-      weight: String(e.detail.value[0]+30)+'.'+String(e.detail.value[1])
-    })
-  },
+
   confirm(){
     wx.showToast({
       title: '正在加载',

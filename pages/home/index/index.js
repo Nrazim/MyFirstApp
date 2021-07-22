@@ -8,7 +8,7 @@ Page({
       { url: '../../images/buttons/eat.png', id:"eat/eat"},
       { url: '../../images/buttons/medicine.png', id:"medicine/medicine"},
       { url: '../../images/buttons/infos.png', id:"../personal_infos/basic_infos/basic_infos"},
-      { url: '../../images/buttons/practice.png', id:"practice/practice"},
+      { url: '../../images/buttons/practice.png', id:"practice/select/select"},
       { url: '../../images/buttons/sleep.png', id:"sleep/sleep"},
     ],
     imglist2:[
@@ -51,20 +51,14 @@ Page({
         url: '../../login/login/login',
       })
     }
+    //当前时间读取，用来判断是否连续完成每日打卡任务
     var myDate = new Date();
     var completeDate = [];
     completeDate.push(myDate.getFullYear());
     completeDate.push(myDate.getMonth()+1);
     completeDate.push(myDate.getDate());
 
-    const currentUser = AV.User.current();
-    var lastDate = currentUser.get('completeDate');
-    app.globalData.exp = currentUser.get('exp')
-    app.globalData.level=currentUser.get('level')
-    if(app.globalData.exp>=app.globalData.levelexplist[app.globalData.level]){
-      app.globalData.exp=app.globalData.exp-app.globalData.levelexplist[app.globalData.level];
-      app.globalData.level=app.globalData.level+1;
-    }
+    //判定每日任务是否连续完成，第一个是不用吃药，第二个是要吃药
     if(app.globalData.eatfinish&&app.globalData.practicefinish&&app.globalData.sleepfinish&&!app.globalData.medicine){
       if(lastDate[0]==completeDate[0]&&lastDate[1]==completeDate[1]-1&&lastDate[2]==completeDate[2]){
       app.globalData.dayonscheduel=currentUser.get(dayonscheduel);
@@ -76,7 +70,6 @@ Page({
       currentUser.set("completeDate",completeDate);
       currentUser.set("dayonscheduel",app.globalData.dayonscheduel)
     }
-
     if(app.globalData.eatfinish&&app.globalData.practicefinish&&app.globalData.sleepfinish&&app.globalData.medicine&&app.globalData.medicinefinish){
       if(lastDate[0]==completeDate[0]&&lastDate[1]==completeDate[1]-1&&lastDate[2]==completeDate[2]){
       app.globalData.dayonscheduel=currentUser.get(dayonscheduel);
@@ -89,11 +82,22 @@ Page({
       currentUser.set("completeDate",completeDate);
       currentUser.set("dayonscheduel",app.globalData.dayonscheduel)
     }
+    
+    //根据设定调整等级和经验值
+    const currentUser = AV.User.current();
+    var lastDate = currentUser.get('completeDate');
+    app.globalData.exp = currentUser.get('exp')
+    app.globalData.level=currentUser.get('level')
+    if(app.globalData.exp>=app.globalData.levelexplist[app.globalData.level]){
+      app.globalData.exp=app.globalData.exp-app.globalData.levelexplist[app.globalData.level];
+      app.globalData.level=app.globalData.level+1;
+    }
 
     currentUser.set("exp",app.globalData.exp);
     currentUser.set("level",app.globalData.level);
     AV.User.current().save();
 
+    //显示经验和等级
     this.setData({
       level:app.globalData.level,
       exp: Math.round(app.globalData.exp/app.globalData.levelexplist[app.globalData.level]*100),
