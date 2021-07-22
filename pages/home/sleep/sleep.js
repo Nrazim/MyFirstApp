@@ -15,8 +15,10 @@ Page({
   click: function (e) {
     var currentUser = AV.User.current();
     app.homeclick(e);
+    if(!app.globalData.sleepfinish){
     app.exp("sleep");
     app.globalData.sleepfinish = true;
+    }
     var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，睡觉对应第3个
     complete[3] = true;
     currentUser.set("accomplished",complete);
