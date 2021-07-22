@@ -42,25 +42,28 @@ Page({
 
     if(this.data.type==0||this.data.intensity==0||this.data.durate==0){
       console.log(this.data.durate)
-      if(this.data.type==0){
-      wx.showToast({
-        title: '请选择运动种类',
-        icon: 'none',
-      });
+      
+      if(this.data.durate==0){
+        wx.showToast({
+          title: '请选择运动时间',
+          icon: 'none',
+        });
     }
+
       if(this.data.intensity==0){
       wx.showToast({
         title: '请选择运动强度',
         icon: 'none',
       });
     }
-      if(this.data.durate==0){
+
+    if(this.data.type==0){
       wx.showToast({
-        title: '请选择运动时间',
+        title: '请选择运动种类',
         icon: 'none',
       });
     }
-    
+
     }
     else{
       try{

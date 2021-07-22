@@ -6,8 +6,8 @@
         <view class="weui-label">　运动种类：</view>
     </view>
     <view class="weui-cell__bd">
-      <picker mode="selector" value="{{index}}" bindchange="bindTypeChange" range="{{sportType}}">
-        <view class="weui-select weui-select_in-select-after">　{{a_gender[index]}}</view>
+      <picker mode="selector" value="{{type}}" bindchange="bindTypeChange" range="{{sportType}}">
+        <view class="weui-select weui-select_in-select-after">　{{sportType[type]}}</view>
 	    </picker>
     </view>
   </view>
@@ -17,8 +17,8 @@
         <view class="weui-label">　运动强度：</view>
     </view>
     <view class="weui-cell__bd">
-      <picker mode="selector" value="{{date}}" range="{{sportIntensity}}" bindchange="bindIntensityChange">
-			  <view class="weui-select weui-select_in-select-after">　{{date}}</view>
+      <picker mode="selector" value="{{intensity}}" range="{{sportIntensity}}" bindchange="bindIntensityChange">
+			  <view class="weui-select weui-select_in-select-after">　{{sportIntensity[intensity]}}</view>
 	    </picker>
     </view>
   </view>
@@ -28,9 +28,9 @@
         <view class="weui-label">　运动时间：</view>
     </view>
     <view class="weui-cell__bd">
-      <picker mode="selector" bindchange="bindDurationChange" value="{{i_height}}" range="{{sportDuration}}">
+      <picker mode="selector" bindchange="bindDurationChange" value="{{durate}}" range="{{sportDuration}}">
         <view class="weui-select weui-select_in-select-after">
-          　{{a_height[0][i_height[0]]}}.{{a_height[1][i_height[1]]}}
+          　{{sportDuration[durate]}}
 			</view>
 	  </picker>
     </view>
