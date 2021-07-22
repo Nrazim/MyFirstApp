@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/home/eat/selectFood/selectFood",
     "pages/home/index/index",
     "pages/logs/logs",
     "pages/home/practice/practice",
@@ -21,7 +20,7 @@
     "pages/statistics/mealData/mealData",
     "pages/reminder/healthplan/healthplan",
     "pages/reminder/reminder",
-
+    "pages/home/eat/selectFood/selectFood",
     "pages/home/eat/selectFood/selector/seclector"
   ],
   "window": {
