@@ -18,6 +18,7 @@ Page({
   click: function (e) {
     var currentUser = AV.User.current();
     app.homeclick(e);
+    if(!app.globalData.sleepfinish){
     app.exp("sleep");
     //设置睡觉结束时间计算持续时间并上传
     const sleepTime = new AV.Object('SleepTime')
@@ -36,6 +37,7 @@ Page({
     sleepTime.save()
     currentUser.set("isSleeping",'');
     app.globalData.sleepfinish = true;
+    }
     var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，睡觉对应第3个
     complete[3] = true;
     currentUser.set("accomplished",complete);

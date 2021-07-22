@@ -124,8 +124,10 @@ Page({
     })
 
     if(meals[0]==true&&meals[1]==true&&meals[2]==true){
+    if(!app.globalData.eatfinish){
     app.exp("eat");
     app.globalData.eatfinish = true;
+    }
     console.log(app.globalData.eatfinish);
     var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，吃饭对应第2个
     complete[2] = true;
