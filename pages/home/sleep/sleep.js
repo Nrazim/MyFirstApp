@@ -16,6 +16,7 @@ Page({
     var currentUser = AV.User.current();
     app.homeclick(e);
     app.exp("sleep");
+    currentUser.set("isSleeping",false);
     app.globalData.sleepfinish = true;
     var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，睡觉对应第3个
     complete[3] = true;
@@ -27,7 +28,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const currentUser = AV.User.current();
+    if(!currentUser.attributes.isSleeping){
+      var myDate = new Date()
+      var myTime = `${myDate.getHours()}${myDate.getMinutes()}`
+      console.log(myTime)
+      currentUser.set("isSleeping",true)
+      //currentUser.set("sleepStart",)
+    }
+    currentUser.save();
   },
 
   /**

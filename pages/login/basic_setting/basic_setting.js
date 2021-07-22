@@ -92,7 +92,7 @@ Page({
                 h_monthly.push(["202105","179.6"])*/
 
                 //用于测试月份变化导致新增记录的情况
-              
+        currentUser.set("isSleeping",false);
         currentUser.set("birthday",this.data.date);
         currentUser.set("height",this.data.height);
         currentUser.set("weight",this.data.weight);

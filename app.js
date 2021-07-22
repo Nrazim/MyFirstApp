@@ -94,6 +94,7 @@ App({
   },//深拷贝，可以用于创建新数组
   
   globalData: {
+    isSleeping: false,
     lastLogin: '',
     TakeMedicineBefore: false,
     userInfo: null,
