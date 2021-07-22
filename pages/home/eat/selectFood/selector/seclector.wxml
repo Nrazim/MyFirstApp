@@ -2,5 +2,12 @@
 <view class="page">
     <view class="page__bd">
         <mp-searchbar bindselectresult="selectResult" search="{{search}}"></mp-searchbar>
+        <mp-half-screen-dialog 
+        bindbuttontap="foodButtonTap"
+        show="{{showFood}}"
+        title="{{foodName}}" 
+        subTitle="{{kcalPer100g}}"
+        desc="{{annotation}}"
+        ></mp-half-screen-dialog>
     </view>
 </view>
