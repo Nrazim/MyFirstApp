@@ -66,9 +66,15 @@ Page({
         app.globalData.medicinefinish = complete[1];
         app.globalData.eatfinish = complete[2];
         app.globalData.sleepfinish = complete[3];
+        if(loginedUser.attributes.isSleeping){
+          wx.redirectTo({
+            url: '../../home/sleep/sleep',
+          });
+        }else{
         wx.redirectTo({
           url: '../../home/index/index',
         });
+      }
       }
       wx.showToast({
         title: '登录成功',
