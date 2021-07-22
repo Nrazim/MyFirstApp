@@ -1,6 +1,7 @@
 // pages/login/basic_setting.js
 const app = getApp()
 const AV = require('../../../libs/av-core-min.js'); 
+
 Page({
 
   /**
@@ -51,10 +52,18 @@ Page({
       icon: 'loading',
       duration :2000
     })
-    var myDate = new Date();
+    var myDate = new Date()
+    var ymd = app.get_ymd8(myDate).slice(2)
+    var ym6 = app.get_ymd8(myDate).slice(0,6)
+    console.log(ym6)
+    var h_temp = []
+    h_temp.push(ym6)
+    h_temp.push(this.data.height)
+    console.log(h_temp)
+    var h_monthly=[]
+    h_monthly.push(h_temp)
+    console.log(h_monthly)
     var completeDate = [];
-    var year = `${myDate.getFullYear}`;
-    var h_monthly=[];
     completeDate.push(0);
     completeDate.push(0);
     completeDate.push(0);
@@ -67,6 +76,23 @@ Page({
     else{
       try{
         var currentUser=AV.User.current();
+              
+                /*var temp = h_monthly.pop()
+                h_monthly.push(["202001","179.6"])
+                h_monthly.push(["202006","178.0"])
+                h_monthly.push(["202007","180.0"])
+                h_monthly.push(["202009","179.6"])
+                h_monthly.push(["202010","179.6"])
+                h_monthly.push(["202012","179.6"])
+                h_monthly.push(["202100","179.6"])
+                h_monthly.push(["202101","179.6"])
+                h_monthly.push(["202102","179.6"])
+                h_monthly.push(["202103","179.6"])
+                h_monthly.push(["202104","179.6"])
+                h_monthly.push(["202105","179.6"])*/
+
+                //用于测试月份变化导致新增记录的情况
+              
         currentUser.set("birthday",this.data.date);
         currentUser.set("height",this.data.height);
         currentUser.set("weight",this.data.weight);
@@ -75,7 +101,7 @@ Page({
         currentUser.set("exp",0);
         currentUser.set("level",1);
         currentUser.set("completeDate",completeDate);
-        currentUser.set("height_record_monthly",[]);
+        currentUser.set("h_monthly",h_monthly);
         if(this.data.index==1){
           currentUser.set("gender",'男');
         }

@@ -9,6 +9,7 @@ Page({
     uheight:'',
     a_height: [],
     i_height: [120,0],
+    h_list: [],
   },
 
   /**
@@ -21,7 +22,6 @@ Page({
     this.setData({
       uheight: String(e.detail.value[0]+50)+'.'+String(e.detail.value[1])
     })
-    console.log(this.data.uheight)
   },
   onLoad: function (options) {
     let heightStart = [],
@@ -51,19 +51,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var user=AV.User.current();
+    let h_monthly = app.deepClone(user.attributes.h_monthly);
+    for(let j = 0; j < h_monthly.length; j++) {
+      h_monthly[j][0]=String(h_monthly[j][0]).slice(0,4)+"年"+String(parseInt(String(h_monthly[j][0]).slice(4))+1)+"月"
+    }
+    console.log(this.data.h_list)
     try{
-      let indexarray=[];
-      var user=AV.User.current();
-      var myDate = new Date();
+      let indexarray=[];   
       var height = user.attributes.height;
-      console.log(myDate.getYear());
-      console.log(myDate.getMonth());
       indexarray.push(parseInt(height-50)),
       indexarray.push(parseInt((height-parseInt(height))*10))
       this.setData({
         uheight:height,
         i_height:indexarray,
+        h_list:h_monthly,
       })
+      console.log("hlist:"+this.data.h_list)
     }catch(error){
       wx.showToast({
         title:'加载个人信息失败',
@@ -74,6 +78,24 @@ Page({
   confirm(){
     try{
       var currentUser=AV.User.current()
+      var myDate = new Date();
+      var h_monthly = currentUser.attributes.h_monthly;
+      var recentRecord = h_monthly.pop();
+      var currentMonth = app.get_ymd8(myDate).slice(0,6)
+      if(currentMonth==recentRecord[0]){   //还在同一个月，改变身高记录
+        recentRecord[1]=this.data.uheight
+        h_monthly.push(recentRecord)
+      }else{                                //不在同一月，插入新身高记录
+        h_monthly.push(recentRecord)
+        var newRecord = []
+        newRecord.push(currentMonth)
+        newRecord.push(this.data.uheight)
+        h_monthly.push(newRecord)
+        if(h_monthly.length>12){            //最多储存12条记录
+          h_monthly=h_monthly.slice(1)
+        }
+      }
+      currentUser.set("h_monthly",h_monthly)
       currentUser.set("height",this.data.uheight);
       currentUser.save();
     }catch(error){
@@ -82,6 +104,9 @@ Page({
         icon:'none',
       })
     }
+    wx.redirectTo({
+      url: '../height_infos/height_infos',
+    })
     wx.showToast({
       title: '更新成功',
       icon: 'success',

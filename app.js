@@ -78,6 +78,20 @@ App({
       AV.User.current().save();
     }
   },
+  fix:function(num, length) {
+    return ('' + num).length < length ? ((new Array(length + 1)).join('0') + num).slice(-length) : '' + num;
+  },//格式化数字使其显示指定位数
+  get_ymd8:function(myDate){
+    var year = `${myDate.getFullYear()}`
+    var month = this.fix(myDate.getMonth(),2)
+    var date = this.fix(myDate.getDate(),2)
+    return (year + month + date)
+  },//显示8位日期 格式：20210721
+  deepClone:function(obj){
+    var obj0 = JSON.stringify(obj),
+    objClone = JSON.parse(obj0);
+    return objClone;
+  },//深拷贝，可以用于创建新数组
   
   globalData: {
     lastLogin: '',
