@@ -1,0 +1,42 @@
+<!--pages/home/practice/select/select.wxml-->
+<view class="weui-cells__title">运动数据填写</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_select">
+    <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">　运动种类：</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="selector" value="{{index}}" bindchange="bindTypeChange" range="{{sportType}}">
+        <view class="weui-select weui-select_in-select-after">　{{a_gender[index]}}</view>
+	    </picker>
+    </view>
+  </view>
+
+  <view class="weui-cell weui-cell_select">
+    <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">　运动强度：</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="selector" value="{{date}}" range="{{sportIntensity}}" bindchange="bindIntensityChange">
+			  <view class="weui-select weui-select_in-select-after">　{{date}}</view>
+	    </picker>
+    </view>
+  </view>
+
+  <view class="weui-cell weui-cell_select">
+    <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">　运动时间：</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="selector" bindchange="bindDurationChange" value="{{i_height}}" range="{{sportDuration}}">
+        <view class="weui-select weui-select_in-select-after">
+          　{{a_height[0][i_height[0]]}}.{{a_height[1][i_height[1]]}}
+			</view>
+	  </picker>
+    </view>
+
+</view>
+  <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="confirm">确定</button>
+  </view>
+</view>
