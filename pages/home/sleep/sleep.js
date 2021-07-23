@@ -19,28 +19,33 @@ Page({
     var currentUser = AV.User.current();
     app.homeclick(e);
     if(!app.globalData.sleepfinish){
-    app.exp("sleep");
+      app.exp("sleep");
+      app.globalData.sleepfinish = true;
+      var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，睡觉对应第3个
+      complete[3] = true;
+      currentUser.set("accomplished",complete);
+    }
     //设置睡觉结束时间计算持续时间并上传
     const sleepTime = new AV.Object('SleepTime')
-    sleepTime.set('parent',currentUser)
-    console.log('开始时间：',this.data.timeStart)
-    sleepTime.set('sleepStart',this.data.timeStart)
     var timeEnd = util.formatTime(new Date())
-    console.log('结束时间：',timeEnd)
-    sleepTime.set('sleepEnd',timeEnd)
     var stime = Date.parse(this.data.timeStart)
     var etime = Date.parse(timeEnd)
-    console.log('创建的sleepTime',sleepTime)
     var sleepDuration = (etime - stime)/1000
-    console.log('持续时间',sleepDuration)
-    sleepTime.set('sleepDuration',sleepDuration)
-    sleepTime.save()
-    currentUser.set("isSleeping",'');
-    app.globalData.sleepfinish = true;
+    if(sleepDuration>1800){
+      sleepTime.set('sleepDuration',sleepDuration)
+      sleepTime.set('parent',currentUser)
+      sleepTime.set('sleepStart',this.data.timeStart)
+      sleepTime.set('sleepEnd',timeEnd)
+      sleepTime.save()
     }
-    var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，睡觉对应第3个
-    complete[3] = true;
-    currentUser.set("accomplished",complete);
+    else{
+      wx.showToast({
+        title: '睡眠时间不足30min\n系统将不予记录哦~',
+        duration: 2000,
+        icon: 'none',
+      })
+    }
+    currentUser.set("isSleeping",'')
     currentUser.save();
   },
 

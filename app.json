@@ -21,7 +21,10 @@
     "pages/reminder/healthplan/healthplan",
     "pages/reminder/reminder",
     "pages/home/eat/selectFood/selectFood",
-    "pages/home/eat/selectFood/selector/seclector"
+    "pages/home/eat/selectFood/selector/seclector",
+    "pages/statistics/sleepData/sleepData",
+    "pages/statistics/calorieData/calorieData",
+    "pages/statistics/practiceData/practiceData"
   ],
   "window": {
     "backgroundTextStyle": "light",
