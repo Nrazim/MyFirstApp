@@ -51,6 +51,17 @@ Page({
         url: '../../login/login/login',
       })
     }
+    const currentUser = AV.User.current();
+
+    //判断有无生病
+    var sick1 = currentUser.get('medicineBefore')?currentUser.get('medicineBefore'):[];
+    var sick2 = currentUser.get('medicineAfter')?currentUser.get('medicineAfter'):[];
+    if(sick1.length>0||sick2.length>0){
+      app.globalData.medicine=true
+    }
+    else{
+      app.globalData.medicine=false
+    }
     //当前时间读取，用来判断是否连续完成每日打卡任务
     var myDate = new Date();
     var completeDate = [];
@@ -84,7 +95,6 @@ Page({
     }
     
     //根据设定调整等级和经验值
-    const currentUser = AV.User.current();
     var lastDate = currentUser.get('completeDate');
     app.globalData.exp = currentUser.get('exp')
     app.globalData.level=currentUser.get('level')
