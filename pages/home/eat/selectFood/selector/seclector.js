@@ -15,7 +15,7 @@ Page({
     kcalPer100gText: "",
     kcalPer100g:0,
     amt: 0,
-    calorie: app.globalData.calorie,
+    calorie: app.globalData.CalorieGet,
     foodButtons: [{
       type: 'default',
       className: '',
@@ -61,15 +61,15 @@ Page({
     })
   },
   foodButtonTap: function(e){
-    var result = app.globalData.calorie + this.data.amt*this.data.kcalPer100g/100
-    console.log(result,app.globalData.calorie,this.data.amt,this.data.kcalPer100g)
+    var result = app.globalData.CalorieGet + this.data.amt*this.data.kcalPer100g/100
+    console.log(result,app.globalData.CalorieGet,this.data.amt,this.data.kcalPer100g)
     this.setData({ 
       showFood: false,
       calorie: result,
     })
   },
   calorieBack: function(){
-    app.globalData.calorie = this.data.calorie
+    app.globalData.CalorieGet = this.data.calorie
     wx.navigateBack({})
   },
     /**
@@ -78,7 +78,7 @@ Page({
   onLoad(options) {
     this.setData({
       type: options.type,
-      calorie: app.globalData.calorie,
+      calorie: app.globalData.CalorieGet,
       search: this.search.bind(this)
     })
   },

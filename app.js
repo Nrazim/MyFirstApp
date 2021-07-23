@@ -96,7 +96,7 @@ App({
   globalData: {
     isSleeping: false,
     lastLogin: '',
-    calorie:0,
+    CalorieGet:0,
     TakeMedicineBefore: false,
     userInfo: null,
     SignedIn: false,

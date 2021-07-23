@@ -23,28 +23,30 @@ Page({
     ],
     medicineButton: [
       {text: '这就去吃'}
-    ]
+    ],
+    meals:'',
   },
 
   click: function (e) {
     console.log(e.currentTarget.dataset.id)
     const jumpto = e.currentTarget.dataset.id
     console.log(this.data.takeMedicineAfter)
-    //设置吃饭结束时间计算持续时间并上传
-    const eatTime = new AV.Object('EatTime')
-    const currentUser = AV.User.current()
-    eatTime.set('parent',currentUser)
-    console.log('开始时间：',this.data.timeStart)
-    eatTime.set('eattimeStart',this.data.timeStart)
-    var timeEnd = util.formatTime(new Date())
-    console.log('结束时间：',timeEnd)
-    eatTime.set('eattimeEnd',timeEnd)
-    var stime = Date.parse(new Date(this.data.timeStart))
-    var etime = Date.parse(new Date(timeEnd))
-    console.log('创建的eatTime',eatTime)
-    var eatDuration = etime - stime
-    eatTime.set('eatDuration',eatDuration)
-    eatTime.save()
+    if(this.data.meals){//如果已经吃过，meals会是空字符串
+      //设置吃饭结束时间计算持续时间并上传
+      const eatTime = new AV.Object('EatTime')
+      const currentUser = AV.User.current()
+      eatTime.set('parent',currentUser)
+      console.log('开始时间：',this.data.timeStart)
+      eatTime.set('eattimeStart',this.data.timeStart)
+      var timeEnd = util.formatTime(new Date())
+      var stime = Date.parse(new Date(this.data.timeStart))
+      var etime = Date.parse(new Date(timeEnd))
+      var eatDuration = etime - stime
+      eatTime.set('eatDuration',eatDuration)
+      eatTime.set('meals',this.data.meals)
+      console.log('创建的eatTime',eatTime)
+      eatTime.save()
+    }
     //判断有没有药要饭后吃
     if(this.data.takeMedicineAfter){
       this.timeToMedicineAfter()
@@ -84,18 +86,27 @@ Page({
       })
       return
     }
-
     const currentUser = AV.User.current()
-    this.setData({
-      timeStart: util.formatTime(new Date())
-    })
-
     //记录每餐吃饭情况（早饭：0；中饭：1；晚饭：2）
     var meals =currentUser.get('meals')
-    var mealSelection = [0,1,2]
-    for(var j = 0; j<=3 ;j++){
-      if(e.detail.index-1== mealSelection[j]){
+    for(var j = 0; j<3 ;j++){
+      if(e.detail.index-1 == j){
+        if(meals[j]){//如果已经吃过
+          wx.redirectTo({
+            url: '../index/index',
+          })
+          wx.showToast({
+            title: '已经吃过！',
+            icon: 'error',
+          })
+          return
+        }
         meals[j]=true
+        var mealsText = ["早饭","中饭","晚饭"]
+        this.setData({
+          meals: mealsText[e.detail.index-1],
+          timeStart: util.formatTime(new Date())
+        })
       }
       currentUser.set("meals",meals);
       currentUser.save();

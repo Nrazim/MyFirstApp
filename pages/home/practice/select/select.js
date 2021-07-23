@@ -1,4 +1,6 @@
 // pages/home/practice/select/select.js
+const AV = require('../../../../libs/av-core-min');
+var util = require('../../../../utils/util.js');
 Page({
 
   /**
@@ -8,8 +10,10 @@ Page({
   data: {
     sportSelect:[false,false,false],
     sportType:['未选择','篮球','足球','羽毛球','乒乓球','跑步','游泳','举重','骑自行车','划船'],
-    sportIntensity:['未选择','低强度','中低强度','中高强度','高强度'],
-    sportDuration:['未选择','0.5h','1h','1.5h','2h','2.5h','3h'],
+    sportTypeCalCost:[0,245,273,245,150,600,350,210,350,420],
+    sportIntensity: ['未选择','低强度','中低强度','中高强度','高强度'],
+    sportIntensityPercentage: [0,0.5,0.66,0.82,1],
+    sportDuration: ['未选择','0.5h','1h','1.5h','2h','2.5h','3h'],
     type:0,
     intensity:0,
     durate:0,
@@ -66,18 +70,17 @@ Page({
 
     }
     else{
-      try{
-        var currentUser=AV.User.current();
-
-
-
-        currentUser.save();
-      }catch(error){
-        wx.showToast({
-          title:error.message,
-          icon:'none',
-        })
-      }
+      const currentUser = AV.User.current()
+      var weight = currentUser.get('weight')
+      var calCost = weight/70*this.data.sportTypeCalCost[this.data.type]
+        *this.data.sportIntensityPercentage[this.data.intensity]*this.data.durate
+      console.log(calCost)
+      const practiceTime = new AV.Object('PracticeTime')
+      practiceTime.set('calCost',calCost)
+      practiceTime.set('parent',currentUser)
+      practiceTime.set('startTime',util.formatTime(new Date()))
+      console.log(practiceTime)
+      practiceTime.save()
 
       wx.redirectTo({
         url: '../../practice/practice',
