@@ -12,6 +12,7 @@ Page({
       { url: '../../images/buttons/medicine.png', id:"index/index"},
     ],
     slimeaction:"https://www.z4a.net/images/2021/07/19/medicine1.gif",
+    buttons:[{text: '点错啦'}]
   },
   click: function (e) {
     if(app.globalData.TakeMedicineBefore == false){
@@ -46,11 +47,20 @@ Page({
     currentUser.save();
   },
 
+  tapDialogButton:function(){
+    wx.navigateTo({
+      url: '../index/index',
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      medicine:app.globalData.medicine
+    })
+    console.log(app.globalData.medicine)
   },
 
   /**
@@ -65,6 +75,10 @@ Page({
    */
   onShow: function () {
     wx.hideHomeButton();
+    this.setData({
+      medicine:app.globalData.medicine
+    })
+    console.log(app.globalData.medicine)
   },
 
   /**
