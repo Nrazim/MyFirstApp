@@ -24,29 +24,58 @@ Page({
     medicineButton: [
       {text: '这就去吃'}
     ],
-    meals:'',
+    meals:0,//0早饭，1午饭，2晚饭
   },
 
   click: function (e) {
     console.log(e.currentTarget.dataset.id)
     const jumpto = e.currentTarget.dataset.id
     console.log(this.data.takeMedicineAfter)
-    if(this.data.meals){//如果已经吃过，meals会是空字符串
-      //设置吃饭结束时间计算持续时间并上传
-      const eatTime = new AV.Object('EatTime')
-      const currentUser = AV.User.current()
-      eatTime.set('parent',currentUser)
-      console.log('开始时间：',this.data.timeStart)
-      eatTime.set('eattimeStart',this.data.timeStart)
-      var timeEnd = util.formatTime(new Date())
-      var stime = Date.parse(new Date(this.data.timeStart))
-      var etime = Date.parse(new Date(timeEnd))
-      var eatDuration = etime - stime
-      eatTime.set('eatDuration',eatDuration)
-      eatTime.set('meals',this.data.meals)
-      console.log('创建的eatTime',eatTime)
-      eatTime.save()
-    }
+    //计算持续时间并上传
+    //变量计算
+    console.log('开始时间：',this.data.timeStart)
+    var timeEnd = util.formatTime(new Date())
+    var stime = Date.parse(new Date(this.data.timeStart))
+    var etime = Date.parse(new Date(timeEnd))
+    var eatDuration = etime - stime
+    //计算完毕
+    var date = this.data.timeStart.slice(5,10)//日期MM/DD
+    const currentUser = AV.User.current()
+    const eatTimeQuery = new AV.Query('EatTime')
+    eatTimeQuery.equalTo('parent',currentUser)
+    eatTimeQuery.equalTo('date',date)
+    eatTimeQuery.find().then((eatTimes)=>{
+      console.log(eatTimes)
+      if(eatTimes.length!=0){//如果有
+        console.log('有')
+        const eatTime = eatTimes[0]
+        let mealsData = eatTime.get('mealsData')?eatTime.get('mealsData'):[]
+        mealsData[this.data.meals] = {
+          eattimeStart: this.data.timeStart,
+          eatDuration: eatDuration
+        }
+        console.log('更新的mealsData',mealsData)
+        eatTime.set('mealsData',mealsData)
+        console.log('更新的eatTime',eatTime)
+        eatTime.save()
+      }
+      else{
+        console.log('没有')
+        const eatTime = new AV.Object('EatTime')
+        eatTime.set('parent',currentUser)
+        eatTime.set('date',date)
+        let mealsData = [{},{},{}]
+        console.log(this.data.meals)
+        mealsData[this.data.meals] = {
+          eattimeStart: this.data.timeStart,
+          eatDuration: eatDuration
+        }
+        console.log('创建的mealsData',mealsData)
+        eatTime.set('mealsData',mealsData)
+        console.log('创建的eatTime',eatTime)
+        eatTime.save()
+      }
+    })
     //判断有没有药要饭后吃
     if(this.data.takeMedicineAfter){
       this.timeToMedicineAfter()
@@ -102,9 +131,8 @@ Page({
           return
         }
         meals[j]=true
-        var mealsText = ["早饭","中饭","晚饭"]
         this.setData({
-          meals: mealsText[e.detail.index-1],
+          meals: e.detail.index-1,
           timeStart: util.formatTime(new Date())
         })
       }
