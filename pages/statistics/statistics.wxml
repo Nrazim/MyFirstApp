@@ -1,4 +1,7 @@
 <!--pages/statistics/statistics.wxml-->
-<view class="container">
-  <button type="primary" bindtap="mealStatistics">用餐数据</button>
-</view>
+<mp-cells title="我的数据">
+  <mp-cell link hover url="mealData/mealData" value="用餐数据" footer="前往"></mp-cell>
+  <mp-cell link hover url="sleepData/sleepData" value="睡眠数据" footer="前往"></mp-cell>
+  <mp-cell link hover url="practiceData/practiceData" value="锻炼数据" footer="前往"></mp-cell>
+  <mp-cell link hover url="calorieData/calorieData" value="热量数据" footer="前往"></mp-cell>
+</mp-cells>
