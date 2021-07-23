@@ -3,6 +3,7 @@
     "pages/home/index/index",
     "pages/logs/logs",
     "pages/home/practice/practice",
+    "pages/home/practice/select/select",
     "pages/home/sleep/sleep",
     "pages/home/eat/eat",
     "pages/home/person/person",
