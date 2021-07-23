@@ -70,17 +70,40 @@ Page({
 
     }
     else{
+      var date = util.formatTime(new Date()).slice(5,10)//日期MM/DD
+      //计算热量消耗
       const currentUser = AV.User.current()
       var weight = currentUser.get('weight')
       var calCost = weight/70*this.data.sportTypeCalCost[this.data.type]
         *this.data.sportIntensityPercentage[this.data.intensity]*this.data.durate
       console.log(calCost)
-      const practiceTime = new AV.Object('PracticeTime')
-      practiceTime.set('calCost',calCost)
-      practiceTime.set('parent',currentUser)
-      practiceTime.set('startTime',util.formatTime(new Date()))
-      console.log(practiceTime)
-      practiceTime.save()
+      //计算完成
+      //开始查询本日有无运动过
+      const practiceTimeQuery = new AV.Query('PracticeTime')
+      practiceTimeQuery.equalTo('parent',currentUser)
+      practiceTimeQuery.equalTo('date',date)
+      practiceTimeQuery.find().then((practiceTimes)=>{
+        console.log(practiceTimes)
+        if(practiceTimes.length!=0){//如果有，在原来的基础上添加热量消耗
+          console.log('有')
+          const practiceTime = practiceTimes[0]
+          let calCostAll = practiceTime.get('calCost')?practiceTime.get('calCost'):0
+          calCostAll = calCostAll + calCost
+          console.log('更新的calCost',calCostAll)
+          practiceTime.set('calCost',calCostAll)
+          console.log('更新的practiceTime',practiceTime)
+          practiceTime.save()
+        }
+        else{//如果没有，新建一个
+          console.log('没有')
+          const practiceTime = new AV.Object('PracticeTime')
+          practiceTime.set('parent',currentUser)
+          practiceTime.set('date',date)
+          practiceTime.set('calCost',calCost)
+          console.log('创建的practiceTime',practiceTime)
+          practiceTime.save()
+        }
+      })
 
       wx.redirectTo({
         url: '../../practice/practice',

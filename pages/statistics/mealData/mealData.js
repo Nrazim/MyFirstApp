@@ -20,11 +20,10 @@ Page({
   onLoad: function (options) {
     const currentUser = AV.User.current()
     const query = new AV.Query('EatTime')
-    {
-      query.equalTo('parent',currentUser)
-      query.descending('date')
-      query.limit(12)
-      query.find().then((eatTimes) => {
+    query.equalTo('parent',currentUser)
+    query.descending('date')
+    query.limit(12)
+    query.find().then((eatTimes) => {
       console.log(eatTimes)
       eatTimes.forEach((eatTime) => {
         this.data.startTimes.unshift(eatTime.get('date'));
@@ -42,7 +41,7 @@ Page({
       this.chart = {}
       this.chart.config = createConfig(this.data.startTimes,this.data.eatDurations,'用餐时长（秒）','用餐时长')
       this.chart.instance = new Chart('eatData', this.chart.config)
-    })}
+    })
     function createConfig(startTimes,lineDatas,yAxisNm,lineNm) {
       console.log(startTimes,lineDatas)
       return {
