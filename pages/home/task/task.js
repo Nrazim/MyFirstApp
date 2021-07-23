@@ -44,7 +44,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      message:options.message,
+      medicine: app.globalData.medicine,
       sleepfinish:app.globalData.sleepfinish,
       eatfinish: app.globalData.eatfinish,
       medicinefinish: app.globalData.medicinefinish,
@@ -63,6 +63,13 @@ Page({
    */
   onShow: function () {
     wx.hideHomeButton();
+    this.setData({
+      medicine: app.globalData.medicine,
+      sleepfinish:app.globalData.sleepfinish,
+      eatfinish: app.globalData.eatfinish,
+      medicinefinish: app.globalData.medicinefinish,
+      practicefinish: app.globalData.practicefinish,
+    })
   },
 
   /**
