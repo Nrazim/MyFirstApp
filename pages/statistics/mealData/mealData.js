@@ -9,7 +9,7 @@ Page({
    */
   data: {
     startTimes: [],
-    eatDurations: [],
+    eatDurations: [[],[],[]],//早饭、午饭、晚饭
   },
   touchHandler(e){
     this.chart.instance.touchHandler(e);
@@ -21,32 +21,53 @@ Page({
     const currentUser = AV.User.current()
     const query = new AV.Query('EatTime')
     query.equalTo('parent',currentUser)
-    query.descending('eattimeStart')
+    query.descending('date')
     query.limit(12)
     query.find().then((eatTimes) => {
       console.log(eatTimes)
       eatTimes.forEach((eatTime) => {
-        this.data.startTimes.unshift(eatTime.get('eattimeStart'));
-        this.data.eatDurations.unshift(eatTime.get('eatDuration')/1000);
-      });
-      console.log(this.data.startTimes,this.data.eatDurations)
-      this.chart = {};
-      this.chart.config = createConfig(this.data.startTimes,this.data.eatDurations);
-      this.chart.instance = new Chart('canvas', this.chart.config)
+        this.data.startTimes.unshift(eatTime.get('date'));
+        var mealsData = eatTime.get('mealsData')
+        for(var j = 0; j<3 ;j++){
+          console.log(Object.keys(mealsData[j]))
+          if(Object.keys(mealsData[j]).length==0){//如果为空
+            this.data.eatDurations[j].unshift(null);//添加一个空点
+          }
+          else{//不为空，则添加一个持续时间数据点，单位为秒
+            this.data.eatDurations[j].unshift(mealsData[j].eatDuration/1000);
+          }
+        }
+      })
+      this.chart = {}
+      this.chart.config = createConfig(this.data.startTimes,this.data.eatDurations,'用餐时长（秒）','用餐时长')
+      this.chart.instance = new Chart('eatData', this.chart.config)
     })
-    function createConfig(startTimes,eatDurations) {
-      console.log(startTimes,eatDurations)
+    function createConfig(startTimes,lineDatas,yAxisNm,lineNm) {
+      console.log(startTimes,lineDatas)
       return {
           type: 'line',
           data: {
-              labels: startTimes,
-              datasets: [{
-                  label: '用餐时长',
+            labels: startTimes,
+            datasets: [{
+                  label: '早餐' + lineNm,
                   backgroundColor: 'rgba(255,0,0,0.5)',
                   borderColor: 'rgba(255,0,0,0.3)',
-                  data: eatDurations,
+                  data: lineDatas[0],
                   fill: false,
-              }]
+              },{
+                  label: '午餐' + lineNm,
+                  backgroundColor: 'rgba(0,255,0,0.5)',
+                  borderColor: 'rgba(0,255,0,0.3)',
+                  data: lineDatas[1],
+                  fill: false,
+              },{
+                  label: '晚餐' + lineNm,
+                  backgroundColor: 'rgba(0,0,255,0.5)',
+                  borderColor: 'rgba(0,0,255,0.3)',
+                  data: lineDatas[2],
+                  fill: false,
+              }
+            ]
           },
           options: {
               responsive: true,
@@ -70,7 +91,7 @@ Page({
                       display: true,
                       scaleLabel: {
                           display: true,
-                          labelString: '用餐时长（秒）'
+                          labelString: yAxisNm
                       }
                   }]
               }
