@@ -3,7 +3,10 @@
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell weui-cell_select">
     <view class="weui-cell__hd weui-cell__hd_in-select-after">
-        <view class="weui-label">　运动种类：</view>
+        <view class="weui-label">
+          <image class="icon2" slot="icon" src="../../../images/practice/type.png"></image>
+          种类：
+        </view>
     </view>
     <view class="weui-cell__bd">
       <picker mode="selector" value="{{type}}" bindchange="bindTypeChange" range="{{sportType}}">
@@ -14,7 +17,10 @@
 
   <view class="weui-cell weui-cell_select">
     <view class="weui-cell__hd weui-cell__hd_in-select-after">
-        <view class="weui-label">　运动强度：</view>
+        <view class="weui-label">
+          <image class="icon2" slot="icon" src="../../../images/practice/intensity.png"></image>
+          强度：
+        </view>
     </view>
     <view class="weui-cell__bd">
       <picker mode="selector" value="{{intensity}}" range="{{sportIntensity}}" bindchange="bindIntensityChange">
@@ -25,7 +31,10 @@
 
   <view class="weui-cell weui-cell_select">
     <view class="weui-cell__hd weui-cell__hd_in-select-after">
-        <view class="weui-label">　运动时间：</view>
+        <view class="weui-label">
+          <image class="icon2" slot="icon" src="../../../images/practice/time.png"></image>
+          时间：
+        </view>
     </view>
     <view class="weui-cell__bd">
       <picker mode="selector" bindchange="bindDurationChange" value="{{durate}}" range="{{sportDuration}}">

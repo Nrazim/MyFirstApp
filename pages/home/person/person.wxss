@@ -26,7 +26,7 @@ image{
 
 .level{
   top: 120rpx;
-  right:160rpx;
+  right:175rpx;
   position:fixed;
   font-size:300%;
 }
@@ -40,7 +40,7 @@ image{
 }
 
 .day{
-  bottom: 247rpx;
+  top: 862rpx;
   right:300rpx;
   position:fixed;
   font-size:150%;

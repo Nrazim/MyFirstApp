@@ -1,4 +1,11 @@
 /* pages/personal_infos/basic_infos/basic_infos.wxss */
-page{
+.page{
   background-color:white;
+}
+
+.icon{
+  margin-right: 16px;
+  vertical-align: middle;
+  width:20px;
+  height: 20px;
 }
