@@ -2,16 +2,22 @@
     <view class="page__bd">
         <mp-cells ext-class="my-cells" title="基本信息">
             <mp-cell value="用户名：" footer="{{uname}}">
+            <image class="icon" slot="icon" src="../../images/register/person.png"></image>
             </mp-cell>
             <mp-cell value="性别：" footer="{{ugender}}">
+            <image class="icon" slot="icon" src="../../images/register/sex.png"></image>
             </mp-cell>
             <mp-cell value="生日：" footer="{{ubirth}}">
+            <image class="icon" slot="icon" src="../../images/register/birthday.png"></image>
             </mp-cell>
             <mp-cell link hover url="../height_infos/height_infos" value="身高：" footer="{{uheight}}cm">
+            <image class="icon" slot="icon" src="../../images/register/height.png"></image>
             </mp-cell>
             <mp-cell link hover url="../weight_infos/weight_infos" value="体重：" footer="{{uweight}}kg">
+            <image class="icon" slot="icon" src="../../images/register/weight.png"></image>
             </mp-cell>
             <mp-cell link hover url="../bmi_infos/bmi_infos?bmi={{uBMI}}" value="BMI：" footer="{{uBMI}}">
+                <image class="icon" slot="icon" src="../../images/register/BMI.png"></image>
             </mp-cell>
         </mp-cells>
     </view>

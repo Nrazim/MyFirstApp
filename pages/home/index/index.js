@@ -70,6 +70,7 @@ Page({
     completeDate.push(myDate.getDate());
 
     //判定每日任务是否连续完成，第一个是不用吃药，第二个是要吃药
+    var lastDate = currentUser.get('completeDate');
     if(app.globalData.eatfinish&&app.globalData.practicefinish&&app.globalData.sleepfinish&&!app.globalData.medicine){
       if(lastDate[0]==completeDate[0]&&lastDate[1]==completeDate[1]-1&&lastDate[2]==completeDate[2]){
       app.globalData.dayonscheduel=currentUser.get(dayonscheduel);
@@ -95,7 +96,6 @@ Page({
     }
     
     //根据设定调整等级和经验值
-    var lastDate = currentUser.get('completeDate');
     app.globalData.exp = currentUser.get('exp')
     app.globalData.level=currentUser.get('level')
     if(app.globalData.exp>=app.globalData.levelexplist[app.globalData.level]){

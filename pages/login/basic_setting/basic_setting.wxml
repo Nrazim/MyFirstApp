@@ -2,7 +2,10 @@
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell weui-cell_select">
     <view class="weui-cell__hd weui-cell__hd_in-select-after">
-        <view class="weui-label">　您的性别：</view>
+        <view class="weui-label">
+          <image class="icon2" slot="icon" src="../../../pages/images/register/sex.png"></image>
+          性别：
+        </view>
     </view>
     <view class="weui-cell__bd">
       <picker mode="selector" value="{{index}}" bindchange="bindGenderChange" range="{{a_gender}}">
@@ -13,7 +16,10 @@
 
   <view class="weui-cell weui-cell_select">
     <view class="weui-cell__hd weui-cell__hd_in-select-after">
-        <view class="weui-label">　您的生日：</view>
+        <view class="weui-label">
+          <image class="icon2" slot="icon" src="../../../pages/images/register/birthday.png"></image>
+          生日：
+        </view>
     </view>
     <view class="weui-cell__bd">
       <picker mode="date" value="{{date}}" start="1850-01-01" end="2021-09-01" bindchange="bindDateChange">
@@ -24,7 +30,10 @@
 
   <view class="weui-cell weui-cell_select">
     <view class="weui-cell__hd weui-cell__hd_in-select-after">
-        <view class="weui-label">　您的身高：</view>
+        <view class="weui-label">
+          <image class="icon2" slot="icon" src="../../../pages/images/register/height.png"></image>
+          身高：
+        </view>
     </view>
     <view class="weui-cell__bd">
       <picker mode="multiSelector" bindchange="bindHeightChange"value="{{i_height}}" range="{{a_height}}">
@@ -37,7 +46,10 @@
 
   <view class="weui-cell weui-cell_select">
     <view class="weui-cell__hd weui-cell__hd_in-select-after">
-        <view class="weui-label">　您的体重：</view>
+        <view class="weui-label">
+          <image class="icon2" slot="icon" src="../../../pages/images/register/weight.png"></image>
+          体重：
+        </view>
     </view>
     <view class="weui-cell__bd">
       <picker mode="multiSelector" bindchange="bindWeightChange"value="{{i_weight}}" range="{{a_weight}}">
