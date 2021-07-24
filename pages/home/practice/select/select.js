@@ -104,6 +104,36 @@ Page({
           practiceTime.save()
         }
       })
+      const CalorieQuery = new AV.Query('Calorie')
+      CalorieQuery.equalTo('parent',currentUser)
+      CalorieQuery.equalTo('date',date)
+      CalorieQuery.find().then((Calories)=>{
+        console.log(Calories)
+        if(Calories.length!=0){//如果有，在原来的基础上消耗热量
+          console.log('有')
+          const Calorie = Calories[0]
+          let calCostAll = Calorie.get('calCostAll')?Calorie.get('calCostAll'):0
+          calCostAll = calCostAll + calCost
+          console.log('更新的calCostAll',calCostAll)
+          Calorie.set('calCostAll',calCostAll)
+          let calAll = Calorie.get('calAll')?Calorie.get('calAll'):0
+          calAll = calAll - calCost
+          console.log('更新的calAll',calAll)
+          Calorie.set('calAll',calAll)
+          console.log('更新的Calorie',Calorie)
+          Calorie.save()
+        }
+        else{//如果没有，新建一个
+          console.log('没有')
+          const Calorie = new AV.Object('Calorie')
+          Calorie.set('parent',currentUser)
+          Calorie.set('date',date)
+          Calorie.set('calCostAll',calCost)
+          Calorie.set('calAll',-calCost)
+          console.log('创建的Calorie',Calorie)
+          Calorie.save()
+        }
+      })
 
       wx.redirectTo({
         url: '../../practice/practice',
@@ -132,7 +162,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.hideHomeButton();
   },
 
   /**

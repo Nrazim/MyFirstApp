@@ -76,6 +76,37 @@ Page({
         eatTime.save()
       }
     })
+    const CalorieQuery = new AV.Query('Calorie')
+    CalorieQuery.equalTo('parent',currentUser)
+    CalorieQuery.equalTo('date',date)
+    CalorieQuery.find().then((Calories)=>{
+      console.log(Calories)
+      if(Calories.length!=0){//如果有，在原来的基础上添加热量
+        console.log('有')
+        const Calorie = Calories[0]
+        let calGetAll = Calorie.get('calGetAll')?Calorie.get('calGetAll'):0
+        calGetAll = calGetAll + app.globalData.CalorieGet
+        console.log('更新的calGetAll',calGetAll)
+        Calorie.set('calGetAll',calGetAll)
+        let calAll = Calorie.get('calAll')?Calorie.get('calAll'):0
+        calAll = calAll + app.globalData.CalorieGet
+        console.log('更新的calAll',calAll)
+        Calorie.set('calAll',calAll)
+        console.log('更新的Calorie',Calorie)
+        Calorie.save()
+      }
+      else{//如果没有，新建一个
+        console.log('没有')
+        const Calorie = new AV.Object('Calorie')
+        Calorie.set('parent',currentUser)
+        Calorie.set('date',date)
+        Calorie.set('calGetAll',app.globalData.CalorieGet)
+        Calorie.set('calAll',app.globalData.CalorieGet)
+        console.log('创建的Calorie',Calorie)
+        Calorie.save()
+      }
+      app.globalData.CalorieGet = 0
+    })
     //判断有没有药要饭后吃
     if(this.data.takeMedicineAfter){
       this.timeToMedicineAfter()
@@ -173,6 +204,11 @@ Page({
     currentUser.set("accomplished",complete);
     currentUser.save();
     }
+    if(!app.globalData.TakeMedicineBefore){
+      wx.navigateTo({
+        url: 'selectFood/selectFood',
+      })
+    }
   },
 
   tapMedicineBeforeDialog: function(){
@@ -195,7 +231,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.openConfirm()
+    if(!app.globalData.CalorieGet){
+      this.openConfirm()
+    }
   },
 
   /**
