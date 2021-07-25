@@ -92,22 +92,6 @@ Page({
     else{
       try{
         var currentUser=AV.User.current();
-              
-                /*var temp = h_monthly.pop()
-                h_monthly.push(["202001","179.6"])
-                h_monthly.push(["202006","178.0"])
-                h_monthly.push(["202007","180.0"])
-                h_monthly.push(["202009","179.6"])
-                h_monthly.push(["202010","179.6"])
-                h_monthly.push(["202012","179.6"])
-                h_monthly.push(["202100","179.6"])
-                h_monthly.push(["202101","179.6"])
-                h_monthly.push(["202102","179.6"])
-                h_monthly.push(["202103","179.6"])
-                h_monthly.push(["202104","179.6"])
-                h_monthly.push(["202105","179.6"])*/
-
-                //用于测试月份变化导致新增记录的情况
         currentUser.set("isSleeping",'');
         currentUser.set("birthday",this.data.date);
         currentUser.set("height",this.data.height);
