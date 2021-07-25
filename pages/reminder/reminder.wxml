@@ -1,5 +1,9 @@
 <!--pages/reminder/reminder.wxml-->
 <mp-cells title="提醒列表">
-  <mp-cell link hover url="takemedicine/takemedicine" value="吃药提醒" footer="前往"></mp-cell>
-  <mp-cell link hover url="healthplan/healthplan" value="我的健康规划" footer="前往"></mp-cell>
+  <mp-cell link hover url="takemedicine/takemedicine" value="吃药提醒" footer="前往">
+  <image class="icon" slot="icon" src="../../pages/images/reminder/medicine.png"></image>
+  </mp-cell>
+  <mp-cell link hover url="healthplan/healthplan" value="我的健康规划" footer="前往">
+    <image class="icon" slot="icon" src="../../pages/images/reminder/plan.png"></image>
+  </mp-cell>
 </mp-cells>

@@ -1,5 +1,5 @@
 <!--pages/home/medicine/medicine.wxml-->
-<mp-dialog show="{{!medicine}}" title="你没有生病哦，不许吃药！" bindbuttontap="tapDialogButton" buttons="{{buttons}}"></mp-dialog>
+<mp-dialog show="{{!medicine}}" title="你没有生病哦，不许吃药！" bindbuttontap="tapDialogButton" buttons="{{buttons}}" bindclose="tapDialogButton"></mp-dialog>
 
 <image class="maingif" src="{{slimeaction}}"></image>
 <view class="image">

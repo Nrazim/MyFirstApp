@@ -29,6 +29,9 @@ Page({
       }
       else if(jumpto=="index/index"){/* 需要将回到首页改为回到吃饭 */
         wx.navigateBack({})
+        wx.navigateTo({
+          url: '../eat/selectFood/selectFood',
+        })
       }
       else{
         wx.redirectTo({

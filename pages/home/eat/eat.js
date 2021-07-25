@@ -24,29 +24,89 @@ Page({
     medicineButton: [
       {text: '这就去吃'}
     ],
-    meals:'',
+    meals:0,//0早饭，1午饭，2晚饭
   },
 
   click: function (e) {
     console.log(e.currentTarget.dataset.id)
     const jumpto = e.currentTarget.dataset.id
     console.log(this.data.takeMedicineAfter)
-    if(this.data.meals){//如果已经吃过，meals会是空字符串
-      //设置吃饭结束时间计算持续时间并上传
-      const eatTime = new AV.Object('EatTime')
-      const currentUser = AV.User.current()
-      eatTime.set('parent',currentUser)
-      console.log('开始时间：',this.data.timeStart)
-      eatTime.set('eattimeStart',this.data.timeStart)
-      var timeEnd = util.formatTime(new Date())
-      var stime = Date.parse(new Date(this.data.timeStart))
-      var etime = Date.parse(new Date(timeEnd))
-      var eatDuration = etime - stime
-      eatTime.set('eatDuration',eatDuration)
-      eatTime.set('meals',this.data.meals)
-      console.log('创建的eatTime',eatTime)
-      eatTime.save()
-    }
+    //计算持续时间并上传
+    //变量计算
+    console.log('开始时间：',this.data.timeStart)
+    var timeEnd = util.formatTime(new Date())
+    var stime = Date.parse(new Date(this.data.timeStart))
+    var etime = Date.parse(new Date(timeEnd))
+    var eatDuration = etime - stime
+    //计算完毕
+    var date = this.data.timeStart.slice(5,10)//日期MM/DD
+    const currentUser = AV.User.current()
+    const eatTimeQuery = new AV.Query('EatTime')
+    eatTimeQuery.equalTo('parent',currentUser)
+    eatTimeQuery.equalTo('date',date)
+    eatTimeQuery.find().then((eatTimes)=>{
+      console.log(eatTimes)
+      if(eatTimes.length!=0){//如果有
+        console.log('有')
+        const eatTime = eatTimes[0]
+        let mealsData = eatTime.get('mealsData')?eatTime.get('mealsData'):[]
+        mealsData[this.data.meals] = {
+          eattimeStart: this.data.timeStart,
+          eatDuration: eatDuration
+        }
+        console.log('更新的mealsData',mealsData)
+        eatTime.set('mealsData',mealsData)
+        console.log('更新的eatTime',eatTime)
+        eatTime.save()
+      }
+      else{
+        console.log('没有')
+        const eatTime = new AV.Object('EatTime')
+        eatTime.set('parent',currentUser)
+        eatTime.set('date',date)
+        let mealsData = [{},{},{}]
+        console.log(this.data.meals)
+        mealsData[this.data.meals] = {
+          eattimeStart: this.data.timeStart,
+          eatDuration: eatDuration
+        }
+        console.log('创建的mealsData',mealsData)
+        eatTime.set('mealsData',mealsData)
+        console.log('创建的eatTime',eatTime)
+        eatTime.save()
+      }
+    })
+    const CalorieQuery = new AV.Query('Calorie')
+    CalorieQuery.equalTo('parent',currentUser)
+    CalorieQuery.equalTo('date',date)
+    CalorieQuery.find().then((Calories)=>{
+      console.log(Calories)
+      if(Calories.length!=0){//如果有，在原来的基础上添加热量
+        console.log('有')
+        const Calorie = Calories[0]
+        let calGetAll = Calorie.get('calGetAll')?Calorie.get('calGetAll'):0
+        calGetAll = calGetAll + app.globalData.CalorieGet
+        console.log('更新的calGetAll',calGetAll)
+        Calorie.set('calGetAll',calGetAll)
+        let calAll = Calorie.get('calAll')?Calorie.get('calAll'):0
+        calAll = calAll + app.globalData.CalorieGet
+        console.log('更新的calAll',calAll)
+        Calorie.set('calAll',calAll)
+        console.log('更新的Calorie',Calorie)
+        Calorie.save()
+      }
+      else{//如果没有，新建一个
+        console.log('没有')
+        const Calorie = new AV.Object('Calorie')
+        Calorie.set('parent',currentUser)
+        Calorie.set('date',date)
+        Calorie.set('calGetAll',app.globalData.CalorieGet)
+        Calorie.set('calAll',app.globalData.CalorieGet)
+        console.log('创建的Calorie',Calorie)
+        Calorie.save()
+      }
+      app.globalData.CalorieGet = 0
+    })
     //判断有没有药要饭后吃
     if(this.data.takeMedicineAfter){
       this.timeToMedicineAfter()
@@ -102,9 +162,8 @@ Page({
           return
         }
         meals[j]=true
-        var mealsText = ["早饭","中饭","晚饭"]
         this.setData({
-          meals: mealsText[e.detail.index-1],
+          meals: e.detail.index-1,
           timeStart: util.formatTime(new Date())
         })
       }
@@ -145,6 +204,11 @@ Page({
     currentUser.set("accomplished",complete);
     currentUser.save();
     }
+    if(!app.globalData.TakeMedicineBefore){
+      wx.navigateTo({
+        url: 'selectFood/selectFood',
+      })
+    }
   },
 
   tapMedicineBeforeDialog: function(){
@@ -167,7 +231,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.openConfirm()
+    if(!app.globalData.CalorieGet){
+      this.openConfirm()
+    }
   },
 
   /**
