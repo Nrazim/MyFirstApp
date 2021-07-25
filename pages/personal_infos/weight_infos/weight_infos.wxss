@@ -4,6 +4,16 @@
   font-size: 90%;
   color: gray;
 }
+swiper{
+  height: 100vh;  
+}
 .value{
   padding-left: 40%;
+}
+.page-body{
+  padding-top: 40rpx;
+}
+.page-section{
+  width: 100%;
+  margin-bottom: 60rpx;
 }
