@@ -25,7 +25,9 @@
     "pages/home/eat/selectFood/selector/seclector",
     "pages/statistics/sleepData/sleepData",
     "pages/statistics/calorieData/calorieData",
-    "pages/statistics/practiceData/practiceData"
+    "pages/statistics/practiceData/practiceData",
+    "pages/personal_infos/weight_infos/w_monthly/w_monthly",
+    "pages/personal_infos/weight_infos/w_yearly/w_yearly"
   ],
   "window": {
     "backgroundTextStyle": "light",

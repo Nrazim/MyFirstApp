@@ -1,0 +1,20 @@
+<!--pages/personal_infos/weight_infos/w_monthly/w_monthly.wxml-->
+<mp-cells ext-class="my-cells" title="体重月报 {{t_month}}">
+  <view wx:if="{{cnt}}">
+    <mp-cell value="本月记录体重的天数" footer="{{cnt}}"></mp-cell>
+    <mp-cell value="本月体重平均值" footer="{{avg}}"></mp-cell>
+  </view>
+  <view wx:else>
+    <mp-cell value="本月尚无体重记录哦"></mp-cell>
+  </view>
+  <view wx:if="{{l_month}}">
+    <mp-cell value="上次记录体重是" footer="{{l_month}}"></mp-cell>
+    <mp-cell value="您上次记录的月平均值是" footer="{{l_avg}}"></mp-cell>
+  </view>
+  <view wx:else>
+    <mp-cell value="这是您记录体重的第一个月哦"></mp-cell>
+  </view>
+  <view>
+    <canvas style="width:100%;height:300px" type="2d" id="canvas" bindtouchstart="touchHandler"></canvas>
+  </view>
+</mp-cells>

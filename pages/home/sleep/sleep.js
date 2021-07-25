@@ -2,7 +2,7 @@
 const app=getApp();
 const AV = require('../../../libs/av-core-min.js');
 var util = require('../../../utils/util.js');
-var definedTime = 2030;
+var definedTime = 1230;
 
 Page({
 

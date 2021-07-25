@@ -19,6 +19,8 @@ Page({
       height:'170.0',
       weight:'50.0',
       height_record:[],
+      weight_record_daily:[],
+      weight_record_monthly:[]
   },
   bindGenderChange: function(e){
     this.setData({
@@ -40,6 +42,14 @@ Page({
       height: String(e.detail.value[0]+50)+'.'+String(e.detail.value[1])
     })
   },
+  bindWeightChange(e) {
+    this.setData({
+      i_weight: e.detail.value
+    })
+    this.setData({
+      weight: String(e.detail.value[0]+30)+'.'+String(e.detail.value[1])
+    })
+  },
 
   confirm(){
     wx.showToast({
@@ -50,14 +60,25 @@ Page({
     var myDate = new Date()
     var ymd = app.get_ymd8(myDate).slice(2)
     var ym6 = app.get_ymd8(myDate).slice(0,6)
-    console.log(ym6)
-    var h_temp = []
+    var h_temp = []     //年月，当月记录
+    var w_temp = []     //年月日，当日记录
+    var mw_temp = []    //年月，当月总和，当月记录天数
     h_temp.push(ym6)
     h_temp.push(this.data.height)
-    console.log(h_temp)
+    w_temp.push(ymd)
+    w_temp.push(this.data.weight)
+    mw_temp.push(ym6)
+    mw_temp.push(parseInt(this.data.weight))
+    mw_temp.push(1)
     var h_monthly=[]
+    var w_daily=[]
+    var w_monthly=[]
     h_monthly.push(h_temp)
+    w_daily.push(w_temp)
+    w_monthly.push(mw_temp)
     console.log(h_monthly)
+    console.log(w_daily)
+    console.log(w_monthly)
     var completeDate = [];
     completeDate.push(0);
     completeDate.push(0);
@@ -97,7 +118,9 @@ Page({
         currentUser.set("level",1);
         currentUser.set("dayonscheduel",0);
         currentUser.set("completeDate",completeDate);
-        currentUser.set("h_monthly",h_monthly);
+        currentUser.set("h_monthly",h_monthly);   //最多存储12条
+        currentUser.set("w_daily",w_daily);       //最多存储31条
+        currentUser.set("w_monthly",w_monthly);
         currentUser.set("meals",[false,false,false]);
         if(this.data.index==1){
           currentUser.set("gender",'男');
