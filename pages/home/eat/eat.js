@@ -18,7 +18,7 @@ Page({
     imglist1:[
       { url: '../../images/buttons/eat.png', id:"index/index"},
     ],
-    slimeaction:"https://www.z4a.net/images/2021/07/20/meal1.gif",
+    slimeAction:'',
     dialogShow: false,
     medicineBeforeDialogShow: false,
     takeMedicineAfter: false,
