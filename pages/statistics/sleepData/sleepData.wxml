@@ -1,4 +1,4 @@
 <!--pages/statistics/sleepData/sleepData.wxml-->
-<view class="container">
-  <text>功能正在开发，敬请期待</text>
+<view>
+  <canvas style="width:100%;height:300px" type="2d" id="sleepData" bindtouchstart="touchHandler"></canvas>
 </view>

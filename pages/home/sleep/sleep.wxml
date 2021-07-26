@@ -5,5 +5,7 @@
   <image class="im" wx:for="{{imglist1}}" wx:key="{{index}}"
     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>
 </view>
-<mp-dialog title="现在不是推荐的睡觉时间，您真的要睡？" show="{{dialogShow1}}" bindbuttontap="tapDialogButton1" buttons="{{buttons1}}"></mp-dialog>
-<mp-dialog title="您希望现在睡觉？" show="{{dialogShow2}}" bindbuttontap="tapDialogButton2" buttons="{{buttons2}}"></mp-dialog>
+<mp-dialog title="现在不是计划的睡觉时间，您不能入睡。" show="{{dialogShow1}}" bindbuttontap="tapDialogButton1" buttons="{{buttons1}}"></mp-dialog>
+<mp-dialog title="您希望现在睡觉？" show="{{dialogShow2}}" bindbuttontap="tapDialogButton2" buttons="{{buttons2}}">
+<view>进入睡眠模式后，在次日早上{{planToAwake}}前不可点选起床哦~</view>
+</mp-dialog>
