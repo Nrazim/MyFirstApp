@@ -32,6 +32,29 @@
     </view>
   </view>
 </view>
+<view class="weui-cells__title">睡眠计划</view>
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_select">
+    <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">　入睡时间：</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="time" value="{{sleepTime}}" start="19:30" end="23:30" bindchange="bindTimeSleep">
+        <view class="weui-select weui-select_in-select-after">　{{sleepTime}}</view>
+	    </picker>
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_select">
+    <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">　起床时间：</view>
+    </view>
+    <view class="weui-cell__bd">
+      <picker mode="time" value="{{awakeTime}}" start="4:00" end="9:00" bindchange="bindTimeAwake">
+        <view class="weui-select weui-select_in-select-after">　{{awakeTime}}</view>
+	    </picker>
+    </view>
+  </view>
+</view>
 <view class="weui-cells__title">提醒设置</view>
 <view class="weui-cells weui-cells_after-title"  style="line-height: 3;">
 <!--line-height更改cells高度，防止两条线贴着字-->
@@ -55,4 +78,8 @@
       <switch checked="{{switchDinnerChecked}}" bindchange="switchDinnerChange"/>
     </view>
   </view>
+</view>
+
+<view class="weui-btn-area">
+    <button class="btn" bindtap="confirm">确定</button>
 </view>
