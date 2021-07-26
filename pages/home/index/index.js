@@ -51,6 +51,19 @@ Page({
         url: '../../login/login/login',
       })
     }
+    else{
+      var user=AV.User.current()
+      if(user.attributes.isSleeping){
+        wx.redirectTo({
+          url: '../sleep/sleep',
+        });
+        wx.showToast({
+          title: '您正在睡觉！',
+          icon: 'loading',
+          duration: 2000
+        })
+      }
+    }
     const currentUser = AV.User.current();
 
     //判断有无生病
