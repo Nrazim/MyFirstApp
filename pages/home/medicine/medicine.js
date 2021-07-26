@@ -1,6 +1,12 @@
 // pages/home/medicine/medicine.js
 const app=getApp();
 const AV = require('../../../libs/av-core-min.js');
+//引入图片预加载组件
+const ImgLoader = require('../../../components/img-loader/img-loader.js')
+//原图
+const slimeActionOriginal = "https://www.z4a.net/images/2021/07/19/medicine1.gif"
+//缩略图 
+const slimeActionThumbnail = "https://www.z4a.net/images/2021/07/19/medicine1.md.gif"
 
 Page({
 
@@ -11,7 +17,7 @@ Page({
     imglist1:[
       { url: '../../images/buttons/medicine.png', id:"index/index"},
     ],
-    slimeaction:"https://www.z4a.net/images/2021/07/19/medicine1.gif",
+    slimeAction: '',
     buttons:[{text: '点错啦'}]
   },
   click: function (e) {
@@ -55,11 +61,26 @@ Page({
       url: '../index/index',
     })
   },
-
+  loadImage() {
+    //加载缩略图
+    this.setData({
+        slimeAction: slimeActionThumbnail
+    })
+    //同时对原图进行预加载，加载成功后再替换
+    this.imgLoader.load(slimeActionOriginal, (err, data) => {
+        console.log('图片加载完成', err, data.src)
+        if (!err)
+            this.setData({ slimeAction: data.src })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //初始化图片预加载组件
+    this.imgLoader = new ImgLoader(this)
+    this.loadImage()
+    
     this.setData({
       medicine:app.globalData.medicine
     })
