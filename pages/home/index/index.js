@@ -1,5 +1,11 @@
 // index.js
 const AV = require('../../../libs/av-core-min');
+//引入图片预加载组件
+const ImgLoader = require('../../../components/img-loader/img-loader.js')
+//原图
+const slimeActionOriginal = "https://www.z4a.net/images/2021/07/19/relax1.gif"
+//缩略图 
+const slimeActionThumbnail = "https://www.z4a.net/images/2021/07/19/relax1.md.gif"
 // 获取应用实例
 const app=getApp()
 Page({
@@ -16,7 +22,7 @@ Page({
       { url: '../../images/buttons/reminder.png', id:"../reminder/reminder"},
     ],
     exp: app.globalData.exp,
-    slimeaction:"https://www.z4a.net/images/2021/07/19/relax1.gif",
+    slimeAction: '',
   },
   
   gotoPage_task:function(){
@@ -37,6 +43,18 @@ Page({
   click: function (e) {
     app.homeclick(e)
   },
+  loadImage() {
+    //加载缩略图
+    this.setData({
+        slimeAction: slimeActionThumbnail
+    })
+    //同时对原图进行预加载，加载成功后再替换
+    this.imgLoader.load(slimeActionOriginal, (err, data) => {
+        console.log('图片加载完成', err, data.src)
+        if (!err)
+            this.setData({ slimeAction: data.src })
+    })
+  },
   // 事件处理函数
   onLoad() {
     if(app.globalData.SignedIn==false){
@@ -44,13 +62,18 @@ Page({
         url: '../../login/login/login',
       })
     }
+    //初始化图片预加载组件
+    this.imgLoader = new ImgLoader(this)
+    this.loadImage()
   },
   onShow(){
     if(app.globalData.SignedIn==false){
       wx.redirectTo({
         url: '../../login/login/login',
       })
+      return
     }
+
     const currentUser = AV.User.current();
 
     //判断有无生病

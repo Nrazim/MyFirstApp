@@ -2,6 +2,12 @@
 const app=getApp()
 const AV = require('../../../libs/av-core-min');
 var util = require('../../../utils/util.js');
+//引入图片预加载组件
+const ImgLoader = require('../../../components/img-loader/img-loader.js')
+//原图
+const slimeActionOriginal = "https://www.z4a.net/images/2021/07/20/meal1.gif"
+//缩略图 
+const slimeActionThumbnail = "https://www.z4a.net/images/2021/07/20/meal1.md.gif"
 
 Page({
 
@@ -227,6 +233,18 @@ Page({
       url: '../medicine/medicine',
     })
   },
+  loadImage() {
+    //加载缩略图
+    this.setData({
+        slimeAction: slimeActionThumbnail
+    })
+    //同时对原图进行预加载，加载成功后再替换
+    this.imgLoader.load(slimeActionOriginal, (err, data) => {
+        console.log('图片加载完成', err, data.src)
+        if (!err)
+            this.setData({ slimeAction: data.src })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -234,6 +252,9 @@ Page({
     if(!app.globalData.CalorieGet){
       this.openConfirm()
     }
+    //初始化图片预加载组件
+    this.imgLoader = new ImgLoader(this)
+    this.loadImage()
   },
 
   /**

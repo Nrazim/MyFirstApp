@@ -1,7 +1,11 @@
 <!--pages/home/practice/practice.wxml-->
 
-<image class="maingif" src="{{slimeaction}}"></image>
+<image class="maingif" wx:if="{{ slimeAction }}" src="{{ slimeAction }}" />
 <view class="image">
   <image class="im" wx:for="{{imglist1}}" wx:key="{{index}}"
     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>
 </view>
+
+<!-- 引入图片预加载组件 -->
+<import src="../../../components/img-loader/img-loader.wxml"/>
+<template is="img-loader" data="{{ imgLoadList }}"></template>
