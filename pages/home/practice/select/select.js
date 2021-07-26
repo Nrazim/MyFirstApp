@@ -38,12 +38,13 @@ Page({
   },
 
   confirm(){
+    
     wx.showToast({
       title: '正在加载',
       icon: 'loading',
       duration :2000
     })
-
+    
     if(this.data.type==0||this.data.intensity==0||this.data.durate==0){
       console.log(this.data.durate)
       
@@ -67,12 +68,20 @@ Page({
         icon: 'none',
       });
     }
-
+    
     }
     else{
+      //用户自定义运动参数存储
+      var currentUser = AV.User.current();
+      var practiceSetting = currentUser.get('practiceSetting')?currentUser.get('practiceSetting'):[]
+      practiceSetting[0] = this.data.type;//第一位存放运动种类
+      practiceSetting[1] = this.data.intensity;//第二位存放运动强度
+      practiceSetting[2] = this.data.durate;//第三位存放运动时间
+      currentUser.set("practiceSetting",practiceSetting);
+      currentUser.save();
+
       var date = util.formatTime(new Date()).slice(5,10)//日期MM/DD
       //计算热量消耗
-      const currentUser = AV.User.current()
       var weight = currentUser.get('weight')
       var calCost = weight/70*this.data.sportTypeCalCost[this.data.type]
         *this.data.sportIntensityPercentage[this.data.intensity]*this.data.durate
