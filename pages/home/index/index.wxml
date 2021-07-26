@@ -1,6 +1,7 @@
 <!--index.wxml-->
 
-<image class="maingif" src="{{slimeaction}}"></image>
+<image class="maingif" wx:if="{{ slimeAction }}" src="{{ slimeAction }}" />
+
 <circle txtshow = "{{level}}" bindtap = 'gotoPage_person' draw='circwewle1' per = '{{exp}}' r = '70'/>
 <image class='btnTask' src='../../images/buttons/task.png' bindtap = 'gotoPage_task'></image>
 <image class='btnStatistics' src='../../images/buttons/statistics.png' bindtap = 'gotoPage_statistics'></image>
@@ -14,3 +15,7 @@
   <image class="im" wx:for="{{imglist2}}" wx:key="{{index}}"
     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>
 </view>
+
+<!-- 引入图片预加载组件 -->
+<import src="../../../components/img-loader/img-loader.wxml"/>
+<template is="img-loader" data="{{ imgLoadList }}"></template>
