@@ -2,8 +2,6 @@
 const app=getApp();
 const AV = require('../../../libs/av-core-min.js');
 var util = require('../../../utils/util.js');
-var timeSleepFrom = 1930;
-var definedTime = 1230;
 //引入图片预加载组件
 const ImgLoader = require('../../../components/img-loader/img-loader.js')
 //原图
