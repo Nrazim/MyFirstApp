@@ -1,13 +1,7 @@
 <!--pages/home/eat/selectFood/selectFood.wxml-->
-<view class="weui-cells__title">用餐时点</view>
-<view class="weui-cells weui-cells_after-title">
-  <view class="weui-cell weui-cell_select">
-    <picker mode="selector" value="{{mealIndex}}" bindchange="bindmealsChange" 
-    range="{{meals}}" style="width: 100%">
-      <view class="weui-select">{{meals[mealIndex]}}</view>
-    </picker>
-  </view>
-</view>
+<mp-cells title="用餐时点">
+  <mp-cell>{{meals}}</mp-cell>
+</mp-cells>
 <mp-cells title="选择食物">
     <mp-cell link hover wx:for="{{foodSelectList}}" wx:key="{{index}}" 
     url="{{item.url}}" value="{{item.value}}" footer="进入选择">

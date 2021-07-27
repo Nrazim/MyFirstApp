@@ -98,6 +98,7 @@ App({
     isSleeping: false,
     lastLogin: '',
     CalorieGet:0,
+    meals: 0,
     TakeMedicineBefore: false,
     userInfo: null,
     SignedIn: false,
