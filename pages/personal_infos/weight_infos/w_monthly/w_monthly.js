@@ -36,10 +36,74 @@ Page({
           l_avg:temp1[1]*1.0/temp1[2],
         })
       }
+    }else{
+      this.setData({
+        l_month:temp0[0].slice(0,4)+"年"+String(parseInt(temp0[0].slice(4))+1)+"月",
+        l_avg:temp0[1]*1.0/temp0[2],
+      })
     }
     this.setData({
       t_month:`${myDate.getFullYear()}年${myDate.getMonth()+1}月`
     })
+    var w_daily=app.deepClone(currentUser.attributes.w_daily)
+    var dateData=[]
+    var weightData=[]
+    w_daily.forEach((w_d) => {
+      dateData.push(String(parseInt(w_d[0].slice(4))))//日期
+      weightData.push(w_d[1])
+    })
+    console.log(dateData)
+    console.log(weightData)
+    this.chart = {}
+    this.chart.config = createConfig(dateData,weightData)
+    this.chart.instance = new Chart('dailyChange', this.chart.config)
+    function createConfig(Times,lineDatas) {
+      console.log(Times,lineDatas)
+      return {
+        type: 'line',
+        data: {
+          labels: Times,
+          datasets: [{
+            label: '本月体重变化走势',
+            backgroundColor: 'rgba(0,0,255,0.5)',
+            borderColor: 'rgba(255,0,255,0.2)',
+            data: lineDatas,
+            fill: true,
+          }]
+        },
+        options: {
+          responsive: true,
+          tooltips: {
+            mode: 'index',
+            intersect: false,
+          },
+          hover: {
+            mode: 'nearest',
+            intersect: true
+          },
+          scales: {
+            xAxes: [{
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: '日期'
+              },
+            }],
+            yAxes: [{
+              ticks:{
+                suggestedMin: 0,
+                suggestedMax: 80,
+              },
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: '当日体重/kg'
+              }
+            }]
+          }
+        }
+      }
+    }
   },
 
   /**

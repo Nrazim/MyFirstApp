@@ -35,7 +35,7 @@ Page({
     function createConfig(Times,lineDatas) {
       console.log(Times,lineDatas)
       return {
-          type: 'line',
+          type: 'bar',
           data: {
             labels: Times,
             datasets: [{
@@ -66,6 +66,10 @@ Page({
                     }
                 }],
                 yAxes: [{
+                    ticks:{
+                      suggestedMin:0,
+                      suggestedMax:12,
+                    },
                     display: true,
                     scaleLabel: {
                         display: true,

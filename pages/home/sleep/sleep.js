@@ -7,13 +7,8 @@ const ImgLoader = require('../../../components/img-loader/img-loader.js')
 //原图
 const ActionOriginal = "https://www.z4a.net/images/2021/07/17/_x264.gif"
 //缩略图 
-<<<<<<< HEAD
-const slimeActionThumbnail = "https://www.z4a.net/images/2021/07/17/_x264.md.gif"
-var timeSleepFrom = 1630;
-=======
 const ActionThumbnail = "https://www.z4a.net/images/2021/07/17/_x264.md.gif"
 var timeSleepFrom = 2030;
->>>>>>> 95f39bfb0d0b67c39f42478394412506f42d5d21
 var timeSleepTo = 2330;
 var timeAwakeFrom = 630;
 var timeAwakeTo = 1030;          //设置可以睡觉的时间段
