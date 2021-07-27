@@ -32,6 +32,7 @@ Page({
     var t_time = new Date()
     var hms = parseInt((this.data.timeStart).slice(11,13)+(this.data.timeStart).slice(14,16))
     var hme = parseInt(`${t_time.getHours()}${t_time.getMinutes()}`)
+    console.log(hme)
     if(hme>timeAwakeFrom&&hme<timeAwakeTo){
       //设置睡觉结束时间计算持续时间并上传
       const sleepTime = new AV.Object('SleepTime')
@@ -39,7 +40,6 @@ Page({
       var stime = Date.parse(this.data.timeStart)
       var etime = Date.parse(timeEnd)
       var sleepDuration = (etime - stime)/1000
-      console.log(date)
       var symbol = true
       var settingAwake=currentUser.attributes.planToAwake
       var settingSleep=currentUser.attributes.planToSleep

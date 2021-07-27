@@ -169,6 +169,7 @@ Page({
           })
           return
         }
+        app.globalData.meals = e.detail.index-1
         meals[j]=true
         this.setData({
           meals: e.detail.index-1,

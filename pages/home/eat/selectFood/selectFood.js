@@ -7,7 +7,8 @@ Page({
    */
   data: {
     mealIndex:0,
-    meals: ['早饭', '午饭', '晚饭'],
+    mealsText: ['早饭', '午饭', '晚饭'],
+    meals:'',
     foodSelectList:[
       {url: 'selector/seclector?type=主食', value:"主食", icon:"../../../images/icons/eatselect/stapleFood.png"},
       {url: 'selector/seclector?type=肉蛋', value:"肉蛋", icon:"../../../images/icons/eatselect/meat.png"},
@@ -29,7 +30,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      meals:this.data.mealsText[app.globalData.meals]
+    })
   },
 
   /**
