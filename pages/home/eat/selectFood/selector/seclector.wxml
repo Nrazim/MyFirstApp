@@ -8,7 +8,7 @@
             </view>
             <button bindtap="calorieBack" style="color: #555555">记录完成</button>
         </view>
-        <mp-searchbar bindselectresult="selectResult" search="{{search}}"></mp-searchbar>
+        <searchbar bindselectresult="selectResult" search="{{search}}"></searchbar>
         <mp-half-screen-dialog 
         bindbuttontap="foodButtonTap"
         show="{{showFood}}"
