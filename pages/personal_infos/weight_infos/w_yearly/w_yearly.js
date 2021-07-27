@@ -99,10 +99,6 @@ Page({
           },
           scales: {
             xAxes: [{
-              ticks:{
-                suggestedMin: 1,
-                suggestedMax: 12,
-              },
               display: true,
               scaleLabel: {
                 display: true,
