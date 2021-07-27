@@ -66,6 +66,9 @@ Page({
                       }
                   }],
                   yAxes: [{
+                      ticks:{
+                        suggestedMin:0,
+                      },
                       display: true,
                       scaleLabel: {
                           display: true,

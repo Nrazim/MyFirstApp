@@ -31,10 +31,10 @@
 
   <view class="weui-cell weui-cell_select">
     <view class="weui-cell__hd weui-cell__hd_in-select-after">
-        <view class="weui-label">
-          <image class="icon2" slot="icon" src="../../../images/practice/time.png"></image>
-          时间：
-        </view>
+      <view class="weui-label">
+        <image class="icon2" slot="icon" src="../../../images/practice/time.png"></image>
+        时间：
+      </view>
     </view>
     <view class="weui-cell__bd">
       <picker mode="selector" bindchange="bindDurationChange" value="{{durate}}" range="{{sportDuration}}">
