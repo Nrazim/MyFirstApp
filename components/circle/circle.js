@@ -33,8 +33,15 @@ Component({
         console.log(newVal, oldVal, change);
         this.onreset();//数值变化是所有重绘
       }
+    },
+    thick:{//半径
+      type: String,
+      value: '4',
+      observer:function(newVal,oldVal,change){
+        console.log(newVal, oldVal, change);
+        this.onreset();//数值变化是所有重绘
+      }
     }
-
   },
   data: { /*  私有数据，可用于模版渲染 */
     step: 1, //用来算圆的弧度0-2
@@ -119,7 +126,7 @@ Component({
       this.setData({
         size: rpx * 2
       });
-      const w = 4;//圆形的宽度
+      const w = _this.data.thick;//圆形的宽度
 
       //组件入口,调用下面即可绘制 背景圆环和彩色圆环。
       _this.drawCircleBg(el + 'bg', rpx, w);//绘制 背景圆环

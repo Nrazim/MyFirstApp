@@ -7,7 +7,7 @@
 </view>
 <!--距离下一次升级的经验-->
 <view class="container_person">
-  <circle txtshow = "{{exp}}%" draw='circwewle1' per = '{{exp}}' r = '120'/>
+  <circle txtshow = "{{exp}}%" draw='circwewle1' per = '{{exp}}' r = '120' thick = '20'/>
 </view>
 <!--当前等级-->
 <view class="level">{{level}}</view>
