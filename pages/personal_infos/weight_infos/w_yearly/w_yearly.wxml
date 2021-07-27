@@ -1,12 +1,15 @@
 <!--pages/personal_infos/weight_infos/w_yearly/w_yearly.wxml-->
-<mp-cells ext-class="my-cells" title="体重年报">
+<mp-cells ext-class="my-cells" title="体重年报 {{now_year}}年">
   <mp-cell value="本年度共记录体重月数" footer="{{cnt}}"></mp-cell>
   <view wx:if="{{cnt}}">
     <mp-cell value="本年度体重平均值" footer="{{avg}}"></mp-cell>
     <mp-cell value="本年度最轻月平均体重" footer="{{min}}"></mp-cell>
     <mp-cell value="本年度最重月平均体重" footer="{{max}}"></mp-cell>
     <view>
-      <canvas style="width:100%;height:300px" type="2d" id="canvas" bindtouchstart="touchHandler"></canvas>
+      <canvas style="width:100%;height:300px" type="2d" id="monthlyChange" bindtouchstart="touchHandler"></canvas>
     </view>
+  </view>
+  <view wx:else>
+    <mp-cell value="本年度尚未进行体重记录"></mp-cell>
   </view>
 </mp-cells>
