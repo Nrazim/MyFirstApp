@@ -2,15 +2,13 @@
 const app=getApp();
 const AV = require('../../../libs/av-core-min.js');
 var util = require('../../../utils/util.js');
-var timeSleepFrom = 1930;
-var definedTime = 1230;
 //引入图片预加载组件
 const ImgLoader = require('../../../components/img-loader/img-loader.js')
 //原图
 const slimeActionOriginal = "https://www.z4a.net/images/2021/07/17/_x264.gif"
 //缩略图 
 const slimeActionThumbnail = "https://www.z4a.net/images/2021/07/17/_x264.md.gif"
-var timeSleepFrom = 2030;
+var timeSleepFrom = 1630;
 var timeSleepTo = 2330;
 var timeAwakeFrom = 630;
 var timeAwakeTo = 1030;          //设置可以睡觉的时间段
@@ -34,6 +32,7 @@ Page({
     var t_time = new Date()
     var hms = parseInt((this.data.timeStart).slice(11,13)+(this.data.timeStart).slice(14,16))
     var hme = parseInt(`${t_time.getHours()}${t_time.getMinutes()}`)
+    console.log(hme)
     if(hme>timeAwakeFrom&&hme<timeAwakeTo){
       //设置睡觉结束时间计算持续时间并上传
       const sleepTime = new AV.Object('SleepTime')
@@ -41,7 +40,6 @@ Page({
       var stime = Date.parse(this.data.timeStart)
       var etime = Date.parse(timeEnd)
       var sleepDuration = (etime - stime)/1000
-      console.log(date)
       var symbol = true
       var settingAwake=currentUser.attributes.planToAwake
       var settingSleep=currentUser.attributes.planToSleep

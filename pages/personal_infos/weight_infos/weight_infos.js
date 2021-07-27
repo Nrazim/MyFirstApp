@@ -11,7 +11,7 @@ Page({
     a_weight: [],
     i_weight: [30,0],
     text0:'',
-  },
+ },
   bindWeightChange(e) {
     this.setData({
       i_weight: e.detail.value

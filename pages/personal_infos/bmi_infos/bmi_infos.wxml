@@ -2,7 +2,7 @@
     <view class="page__bd">
         <mp-cells ext-class="my-cells" title="BMI信息">
           <view class="weui-cells__title">小贴士</view>
-          <mp-cell class='text'>BMI是身体质量指数的英文缩写 简称体质指数 是一种用于衡量人身体健康水平的参考指标</mp-cell>
+          <mp-cell class='text'>BMI是身体质量指数的英文缩写，简称体质指数，是一种用于衡量人身体健康水平的参考指标。</mp-cell>
           <mp-cell value="您当前的BMI指标：" footer="{{bmi}}"></mp-cell>
           <mp-cell value="您当前的体质状况：" footer="{{comment}}"></mp-cell>
         </mp-cells>

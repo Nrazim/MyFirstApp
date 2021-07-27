@@ -11,11 +11,16 @@ Page({
     avg:0,
     min:400,
     max:0,
+    now_year:'',
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+  touchHandler(e){
+    this.chart.instance.touchHandler(e);
+  },
   onLoad: function (options) {
     var currentUser=AV.User.current()
     var myDate=new Date()
@@ -49,8 +54,75 @@ Page({
     })
     if(cnt){
       this.setData({
-        avg:sum*1.0/cnt
+        avg:(sum*1.0/cnt).toFixed(2)
       })
+    }
+    this.setData({
+      now_year: String((new Date()).getFullYear())
+    })
+    var dateData=[]
+    var weightData=[]
+    w_monthly.forEach((w_m) => {
+      dateData.push(String(parseInt(w_m[0].slice(4))+1))//日期
+      weightData.push((w_m[1]/w_m[2]).toFixed(2))
+    })
+    dateData=dateData.slice(dateData.length-cnt)
+    weightData=weightData.slice(weightData.length-cnt)
+    console.log(dateData)
+    console.log(weightData)
+    this.chart = {}
+    this.chart.config = createConfig(dateData,weightData)
+    this.chart.instance = new Chart('monthlyChange', this.chart.config)
+    function createConfig(Times,lineDatas) {
+      console.log(Times,lineDatas)
+      return {
+        type: 'line',
+        data: {
+          labels: Times,
+          datasets: [{
+            label: '体重变化走势',
+            backgroundColor: 'rgba(255,0,0,0.5)',
+            borderColor: 'rgba(255,0,0,0.3)',
+            data: lineDatas,
+            fill: true,
+          }]
+        },
+        options: {
+          responsive: true,
+          tooltips: {
+            mode: 'index',
+            intersect: false,
+          },
+          hover: {
+            mode: 'nearest',
+            intersect: true
+          },
+          scales: {
+            xAxes: [{
+              ticks:{
+                suggestedMin: 1,
+                suggestedMax: 12,
+              },
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: '月份'
+              },
+            }],
+            yAxes: [{
+              ticks:{
+                suggestedMin: 0,
+                suggestedMax: 80,
+              },
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: '平均体重/kg'
+              }
+            }]
+          }
+        }
+      }
     }
   },
 

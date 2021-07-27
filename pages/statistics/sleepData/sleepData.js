@@ -24,7 +24,7 @@ Page({
     query.limit(7)
     query.find().then((sleepTimes) => {
       console.log(sleepTimes)
-     sleepTimes.forEach((sleepTime) => {
+      sleepTimes.forEach((sleepTime) => {
         this.data.awakeTimes.unshift((sleepTime.get('sleepEnd')).slice(0,10));//日期
         this.data.sleepDurations.unshift(((sleepTime.get('sleepDuration'))/60).toFixed(1))
       })

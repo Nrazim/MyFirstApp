@@ -6,21 +6,6 @@
       <mp-cell link hover url="w_yearly/w_yearly" title="体重年报" footer="前往"></mp-cell>
       <mp-cell value="当前体重：" footer="{{uweight}}kg"></mp-cell>
     </mp-cells>
-
-    <!--<view class="page-body">
-      <view class="page-section page-section-spacing swiper">
-        <swiper indicator-dots="true" bindchange="bindSwiperChange">
-          <block wx:for="{{background}}" wx:key="*this">
-            <swiper-item>
-              <view>
-                <canvas style="width:100%;height:300px" type="2d" id="canvas" bindtouchstart="touchHandler"></canvas>
-              </view>
-            </swiper-item>
-          </block>
-        </swiper>
-      </view>
-      <view class="page-section-title">{{text0}}</view>
-    </view> -->
     <mp-cells ext-class="my-cells" title="每天可以记录一次体重变化哦~">
       <view class="weui-cell weui-cell_select">
         <view class="weui-cell__hd weui-cell__hd_in-select-after">
