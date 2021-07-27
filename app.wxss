@@ -8,3 +8,19 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+@font-face {
+  font-family: 'webfont';
+  font-display: swap;
+  src: url('//at.alicdn.com/t/webfont_fiwu2tvqdyr.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/webfont_fiwu2tvqdyr.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/webfont_fiwu2tvqdyr.woff2') format('woff2'),
+  url('//at.alicdn.com/t/webfont_fiwu2tvqdyr.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/webfont_fiwu2tvqdyr.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/webfont_fiwu2tvqdyr.svg#杨任东竹石体-Bold') format('svg'); /* iOS 4.1- */
+}
+
+.van_icon {
+ font-family: "webfont";
+}
+
