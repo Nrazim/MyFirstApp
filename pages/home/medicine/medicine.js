@@ -45,15 +45,6 @@ Page({
         })
       }
     }
-    var currentUser = AV.User.current();
-    if(!app.globalData.medicinefinish){
-    app.exp("medicine"),
-    app.globalData.medicinefinish = true
-    }
-    var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，吃药对应第1个
-    complete[1] = true;
-    currentUser.set("accomplished",complete);
-    currentUser.save();
   },
 
   tapDialogButton:function(){
