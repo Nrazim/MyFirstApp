@@ -94,6 +94,7 @@ App({
   },//深拷贝，可以用于创建新数组
   
   globalData: {
+    mainCharacter: 0,//0史莱姆，1猫
     isSleeping: false,
     lastLogin: '',
     CalorieGet:0,

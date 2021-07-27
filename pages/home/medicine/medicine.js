@@ -4,9 +4,9 @@ const AV = require('../../../libs/av-core-min.js');
 //引入图片预加载组件
 const ImgLoader = require('../../../components/img-loader/img-loader.js')
 //原图
-const slimeActionOriginal = "https://www.z4a.net/images/2021/07/19/medicine1.gif"
+const ActionOriginal = "https://www.z4a.net/images/2021/07/19/medicine1.gif"
 //缩略图 
-const slimeActionThumbnail = "https://www.z4a.net/images/2021/07/19/medicine1.md.gif"
+const ActionThumbnail = "https://www.z4a.net/images/2021/07/19/medicine1.md.gif"
 
 Page({
 
@@ -17,7 +17,7 @@ Page({
     imglist1:[
       { url: '../../images/buttons/medicine.png', id:"index/index"},
     ],
-    slimeAction: '',
+    Action: '',
     buttons:[{text: '点错啦'}]
   },
   click: function (e) {
@@ -64,13 +64,13 @@ Page({
   loadImage() {
     //加载缩略图
     this.setData({
-        slimeAction: slimeActionThumbnail
+        Action: ActionThumbnail
     })
     //同时对原图进行预加载，加载成功后再替换
-    this.imgLoader.load(slimeActionOriginal, (err, data) => {
+    this.imgLoader.load(ActionOriginal, (err, data) => {
         console.log('图片加载完成', err, data.src)
         if (!err)
-            this.setData({ slimeAction: data.src })
+            this.setData({ Action: data.src })
     })
   },
   /**
