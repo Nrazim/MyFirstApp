@@ -5,9 +5,11 @@ var util = require('../../../utils/util.js');
 //引入图片预加载组件
 const ImgLoader = require('../../../components/img-loader/img-loader.js')
 //原图
-const slimeActionOriginal = "https://www.z4a.net/images/2021/07/20/meal1.gif"
+const ActionOriginal = ["https://www.z4a.net/images/2021/07/20/meal1.gif",
+                        "https://www.z4a.net/images/2021/07/27/nekoEat1.gif"]
 //缩略图 
-const slimeActionThumbnail = "https://www.z4a.net/images/2021/07/20/meal1.md.gif"
+const ActionThumbnail = ["https://www.z4a.net/images/2021/07/20/meal1.md.gif",
+                        "https://www.z4a.net/images/2021/07/27/nekoEat1.md.gif"]
 
 Page({
 
@@ -18,7 +20,7 @@ Page({
     imglist1:[
       { url: '../../images/buttons/eat.png', id:"index/index"},
     ],
-    slimeAction:'',
+    Action:'',
     dialogShow: false,
     medicineBeforeDialogShow: false,
     takeMedicineAfter: false,
@@ -167,6 +169,7 @@ Page({
           })
           return
         }
+        app.globalData.meals = e.detail.index-1
         meals[j]=true
         this.setData({
           meals: e.detail.index-1,
@@ -178,19 +181,30 @@ Page({
     }
     
     var values = currentUser.get('medicineBefore')?currentUser.get('medicineBefore'):[]
+    var medicineBeforeFinish = currentUser.get('medicineBeforeFinish')?currentUser.get('medicineBeforeFinish'):[]
     for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
         if(e.detail.index-1 == values[j]){//index从1到3，values从0到2是吃饭前
           app.globalData.TakeMedicineBefore = true/* 饭前吃药，以便吃完药可以回到吃饭 */
+          medicineBeforeFinish[j] =j
+          currentUser.set("medicineBeforeFinish",medicineBeforeFinish);
+          currentUser.save();
+
           this.timeToMedicineBefore();
           break;
         }
     }
     values = currentUser.get('medicineAfter')?currentUser.get('medicineAfter'):[]
+    var medicineAfterFinish = currentUser.get('medicineAfterFinish')?currentUser.get('medicineAfterFinish'):[]
     for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
       if(e.detail.index+2 == values[j]){//index从1到3，values从3到5是吃饭后
         this.setData({
           takeMedicineAfter: true,
         })
+        medicineAfterFinish[j] =j+3
+        currentUser.set("medicineAfterFinish",medicineAfterFinish);
+        currentUser.save();
+
+        this.timeToMedicineBefore();
         console.log('TakeMedicineAfter');
         break;
       }
@@ -236,13 +250,13 @@ Page({
   loadImage() {
     //加载缩略图
     this.setData({
-        slimeAction: slimeActionThumbnail
+        Action: ActionThumbnail[app.globalData.mainCharacter]
     })
     //同时对原图进行预加载，加载成功后再替换
-    this.imgLoader.load(slimeActionOriginal, (err, data) => {
+    this.imgLoader.load(ActionOriginal[app.globalData.mainCharacter], (err, data) => {
         console.log('图片加载完成', err, data.src)
         if (!err)
-            this.setData({ slimeAction: data.src })
+            this.setData({ Action: data.src })
     })
   },
   /**

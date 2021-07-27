@@ -21,7 +21,7 @@
       </view>
     </mp-cells>
     <view class="weui-btn-area">
-      <button class="weui-btn" type="primary" bindtap="confirm">确定</button>
+      <button class="btn" bindtap="confirm">确定</button>
     </view>
   </view>
 </view>
