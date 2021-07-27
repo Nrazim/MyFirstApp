@@ -129,7 +129,25 @@ Page({
       currentUser.set("completeDate",completeDate);
       currentUser.set("dayonscheduel",app.globalData.dayonscheduel)
     }
-    
+    //吃药任务完成判断
+    var valuesBefore = currentUser.get('medicineBefore')?currentUser.get('medicineBefore'):[]
+    var medicineBeforeFinish = currentUser.get('medicineBeforeFinish')?currentUser.get('medicineBeforeFinish'):[]
+
+    var valuesAfter = currentUser.get('medicineAfter')?currentUser.get('medicineAfter'):[]
+    var medicineAfterFinish = currentUser.get('medicineAfterFinish')?currentUser.get('medicineAfterFinish'):[]
+
+    if(valuesBefore.toString()||valuesAfter.toString()){
+    if(valuesBefore.toString()==medicineBeforeFinish.toString()&&valuesAfter.toString()==medicineAfterFinish.toString()){
+    if(!app.globalData.medicinefinish){
+      app.exp("medicine"),
+      app.globalData.medicinefinish = true
+      }
+    var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，吃药对应第1个
+    complete[1] = true;
+    currentUser.set("accomplished",complete);
+    currentUser.save();
+    }
+  }
     //根据设定调整等级和经验值
     app.globalData.exp = currentUser.get('exp')
     app.globalData.level=currentUser.get('level')

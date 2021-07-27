@@ -178,19 +178,30 @@ Page({
     }
     
     var values = currentUser.get('medicineBefore')?currentUser.get('medicineBefore'):[]
+    var medicineBeforeFinish = currentUser.get('medicineBeforeFinish')?currentUser.get('medicineBeforeFinish'):[]
     for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
         if(e.detail.index-1 == values[j]){//index从1到3，values从0到2是吃饭前
           app.globalData.TakeMedicineBefore = true/* 饭前吃药，以便吃完药可以回到吃饭 */
+          medicineBeforeFinish[j] =j
+          currentUser.set("medicineBeforeFinish",medicineBeforeFinish);
+          currentUser.save();
+
           this.timeToMedicineBefore();
           break;
         }
     }
     values = currentUser.get('medicineAfter')?currentUser.get('medicineAfter'):[]
+    var medicineAfterFinish = currentUser.get('medicineAfterFinish')?currentUser.get('medicineAfterFinish'):[]
     for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
       if(e.detail.index+2 == values[j]){//index从1到3，values从3到5是吃饭后
         this.setData({
           takeMedicineAfter: true,
         })
+        medicineAfterFinish[j] =j+3
+        currentUser.set("medicineAfterFinish",medicineAfterFinish);
+        currentUser.save();
+
+        this.timeToMedicineBefore();
         console.log('TakeMedicineAfter');
         break;
       }
