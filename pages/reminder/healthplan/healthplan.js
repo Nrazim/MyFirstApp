@@ -1,4 +1,5 @@
-// pages/reminder/healthplan/healthplan.js
+// pages/reminder/healthplan/healthplan.
+const AV = require('../../../libs/av-core-min'); 
 Page({
 
   /**
@@ -11,6 +12,8 @@ Page({
     switchBreakfastChecked: false,
     switchLunchChecked: false,
     switchDinnerChecked: false,
+    sleepTime: '21:30',
+    awakeTime: '06:30',
   },
 
   bindTimeBreakfast: function(e) {
@@ -47,6 +50,30 @@ Page({
     console.log('晚饭提醒发送切换改变，携带值为', e.detail.value)
     this.setData({
       switchDinnerChecked: e.detail.value
+    })
+  },
+  bindTimeSleep: function(e) {
+    this.setData({
+      sleepTime: e.detail.value
+    })
+  },
+  bindTimeAwake: function(e) {
+    this.setData({
+      awakeTime: e.detail.value
+    })
+  },
+  confirm: function(e) {
+    const currentUser = AV.User.current()
+    var a_time=parseInt(this.data.awakeTime.replace(":",""))
+    var s_time=parseInt(this.data.sleepTime.replace(":",""))
+    console.log(a_time)
+    console.log(s_time)
+    currentUser.set("planToAwake",a_time)
+    currentUser.set("planToSleep",s_time)
+    currentUser.save()
+    wx.showToast({
+      title: '保存成功',
+      icon: 'success',
     })
   },
   /**

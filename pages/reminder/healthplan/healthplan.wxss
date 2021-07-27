@@ -1,1 +1,14 @@
 /* pages/reminder/healthplan/healthplan.wxss */
+.btn{
+  margin-left: 22rpx;
+  margin-top: 24rpx;
+  width: 600rpx;
+  height: 40px;
+  border-radius: 19px;
+  background-color: rgba(242, 216, 39, 100);
+  color: rgba(16, 16, 16, 100);
+  font-size: 14px;
+  text-align: center;
+  font-family: PingFang SC;
+  border: 1px solid rgba(242, 216, 39, 100);
+}
