@@ -3,9 +3,11 @@ const AV = require('../../../libs/av-core-min');
 //引入图片预加载组件
 const ImgLoader = require('../../../components/img-loader/img-loader.js')
 //原图
-const slimeActionOriginal = "https://www.z4a.net/images/2021/07/19/relax1.gif"
+const ActionOriginal = ["https://www.z4a.net/images/2021/07/19/relax1.gif",
+                        "https://www.z4a.net/images/2021/07/27/nekoRelax1.gif"]
 //缩略图 
-const slimeActionThumbnail = "https://www.z4a.net/images/2021/07/19/relax1.md.gif"
+const ActionThumbnail = ["https://www.z4a.net/images/2021/07/19/relax1.md.gif",
+                        "https://www.z4a.net/images/2021/07/27/nekoRelax1.md.gif"]
 // 获取应用实例
 const app=getApp()
 Page({
@@ -22,7 +24,7 @@ Page({
       { url: '../../images/buttons/reminder.png', id:"../reminder/reminder"},
     ],
     exp: app.globalData.exp,
-    slimeAction: '',
+    Action: '',
   },
   
   gotoPage_task:function(){
@@ -46,13 +48,13 @@ Page({
   loadImage() {
     //加载缩略图
     this.setData({
-        slimeAction: slimeActionThumbnail
+        Action: ActionThumbnail[app.globalData.mainCharacter]
     })
     //同时对原图进行预加载，加载成功后再替换
-    this.imgLoader.load(slimeActionOriginal, (err, data) => {
+    this.imgLoader.load(ActionOriginal[app.globalData.mainCharacter], (err, data) => {
         console.log('图片加载完成', err, data.src)
         if (!err)
-            this.setData({ slimeAction: data.src })
+            this.setData({ Action: data.src })
     })
   },
   // 事件处理函数
@@ -129,7 +131,25 @@ Page({
       currentUser.set("completeDate",completeDate);
       currentUser.set("dayonscheduel",app.globalData.dayonscheduel)
     }
-    
+    //吃药任务完成判断
+    var valuesBefore = currentUser.get('medicineBefore')?currentUser.get('medicineBefore'):[]
+    var medicineBeforeFinish = currentUser.get('medicineBeforeFinish')?currentUser.get('medicineBeforeFinish'):[]
+
+    var valuesAfter = currentUser.get('medicineAfter')?currentUser.get('medicineAfter'):[]
+    var medicineAfterFinish = currentUser.get('medicineAfterFinish')?currentUser.get('medicineAfterFinish'):[]
+
+    if(valuesBefore.toString()||valuesAfter.toString()){
+    if(valuesBefore.toString()==medicineBeforeFinish.toString()&&valuesAfter.toString()==medicineAfterFinish.toString()){
+    if(!app.globalData.medicinefinish){
+      app.exp("medicine"),
+      app.globalData.medicinefinish = true
+      }
+    var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，吃药对应第1个
+    complete[1] = true;
+    currentUser.set("accomplished",complete);
+    currentUser.save();
+    }
+  }
     //根据设定调整等级和经验值
     app.globalData.exp = currentUser.get('exp')
     app.globalData.level=currentUser.get('level')

@@ -7,9 +7,9 @@ var definedTime = 1230;
 //引入图片预加载组件
 const ImgLoader = require('../../../components/img-loader/img-loader.js')
 //原图
-const slimeActionOriginal = "https://www.z4a.net/images/2021/07/17/_x264.gif"
+const ActionOriginal = "https://www.z4a.net/images/2021/07/17/_x264.gif"
 //缩略图 
-const slimeActionThumbnail = "https://www.z4a.net/images/2021/07/17/_x264.md.gif"
+const ActionThumbnail = "https://www.z4a.net/images/2021/07/17/_x264.md.gif"
 var timeSleepFrom = 2030;
 var timeSleepTo = 2330;
 var timeAwakeFrom = 630;
@@ -20,7 +20,7 @@ Page({
     imglist1:[
       { url: '../../images/buttons/sleep.png', id:"index/index"},
     ],
-    slimeAction: '',
+    Action: '',
     timeStart: util.formatTime(new Date()),
     dialogShow1: false,
     dialogShow2: false,
@@ -124,13 +124,13 @@ Page({
   loadImage() {
     //加载缩略图
     this.setData({
-        slimeAction: slimeActionThumbnail
+        Action: ActionThumbnail
     })
     //同时对原图进行预加载，加载成功后再替换
-    this.imgLoader.load(slimeActionOriginal, (err, data) => {
+    this.imgLoader.load(ActionOriginal, (err, data) => {
         console.log('图片加载完成', err, data.src)
         if (!err)
-            this.setData({ slimeAction: data.src })
+            this.setData({ Action: data.src })
     })
   },
   /**

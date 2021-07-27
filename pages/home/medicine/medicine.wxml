@@ -1,7 +1,7 @@
 <!--pages/home/medicine/medicine.wxml-->
 <mp-dialog show="{{!medicine}}" title="你没有生病哦，不许吃药！" bindbuttontap="tapDialogButton" buttons="{{buttons}}" bindclose="tapDialogButton"></mp-dialog>
 
-<image class="maingif" wx:if="{{ slimeAction }}" src="{{ slimeAction }}" />
+<image class="maingif" wx:if="{{ Action }}" src="{{ Action }}" />
 <view class="image">
   <image class="im" wx:for="{{imglist1}}" wx:key="{{index}}"
     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>
