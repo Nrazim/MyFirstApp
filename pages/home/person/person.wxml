@@ -12,7 +12,7 @@
 <!--当前等级-->
 <view class="level">{{level}}</view>
 
-<!--用户头像-->
-<image class="figure" src='https://i.loli.net/2021/07/20/VKxnzi2bBfIUk8D.gif'></image>
+<!--勋章墙-->
+<image class="figure" src='../../images/person/medal.png' bindtap = "medalClick"></image>
 
 <view class="day">{{dayonscheduel}}</view>

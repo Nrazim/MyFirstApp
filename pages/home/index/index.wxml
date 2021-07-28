@@ -11,6 +11,7 @@
   <image class="im" wx:for="{{imglist1}}" wx:key="{{index}}"
     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>
 </view>
+
 <view class="imagetop">
   <image class="im" wx:for="{{imglist2}}" wx:key="{{index}}"
     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>

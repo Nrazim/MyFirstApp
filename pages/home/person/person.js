@@ -7,12 +7,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    medalschedual:[3,5,10,15,21],
+    medallevel:[3,5,10,15,20]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+
+   medalClick:function(){
+    wx.navigateTo({
+      url:'../person/medal/medal'
+    })
+   },
+
   onLoad: function (options) {
     this.setData({
       exp:Math.round(app.globalData.exp/app.globalData.levelexplist[app.globalData.level]*100),
@@ -37,7 +45,27 @@ Page({
       level:app.globalData.level,
       dayonscheduel:app.globalData.dayonscheduel,
     })
+    //任务达成成就显示
+    for(var j=0;j<=5;j++)
+    {
+      if(app.globalData.dayonscheduel>=this.data.medalschedual[j])
+      {
+        app.globalData.medalAcquire[0]=j+1
+      }
+    }
+
+    //等级升级成就显示
+    for(var j=0;j<=5;j++)
+    {
+      if(app.globalData.level>=this.data.medallevel[j])
+      {
+        app.globalData.medalAcquire[1]=j+1
+      }
+    }
+
   },
+  
+  
   /**
    * 生命周期函数--监听页面卸载
    */

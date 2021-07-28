@@ -1,5 +1,5 @@
 <!--pages/message/message.wxml-->
-<button wx:if="{{!eatfinish}}" class='btn1' bindtap = 'gotoPage_eat'>
+<button wx:if="{{!eatfinish}}" class='btn1'>
     <image class='btnImg' src='../../images/buttons/eat.png'></image>
     <view>按时吃饭任务</view>
  </button>
@@ -8,7 +8,7 @@
     <view>按时吃饭任务</view>
 </button>
 <view wx:if='{{medicine}}'>
-    <button wx:if="{{!medicinefinish}}"class='btn2' bindtap = 'gotoPage_medicine'>
+    <button wx:if="{{!medicinefinish}}"class='btn2'>
     <image class='btnImg' src='../../images/buttons/medicine.png'></image>
     <view>定时吃药任务</view>
     </button>
@@ -21,7 +21,7 @@
     </button>
 </view>
 
-<button wx:if='{{!sleepfinish}}' class='btn3' bindtap = 'gotoPage_sleep'>
+<button wx:if='{{!sleepfinish}}' class='btn3'>
         <image class='btnImg' src='../../images/buttons/sleep.png'></image>
         <view>按时睡觉任务</view>
 </button>
@@ -34,7 +34,7 @@
 </button>
 
 
-<button wx:if='{{!practicefinish}}' class='btn4' bindtap = 'gotoPage_practice'>
+<button wx:if='{{!practicefinish}}' class='btn4'>
     <image class='btnImg' src='../../images/buttons/practice.png'></image>
     <view>每日锻炼任务</view>
 </button>

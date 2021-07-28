@@ -1,0 +1,34 @@
+/* pages/home/person/medal/medal.wxss */
+.image{/*勋章整体*/
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  left: 15rpx;
+  top: 100rpx;
+  justify-content: center;
+  align-items: center;
+}
+.im{/*勋章照片*/
+  height: 250rpx;
+  width: 250rpx;
+  align-self: center;
+  align-items: center;
+  display: flex;
+}
+.imwrap{
+  height: 350rpx;
+  width: 750rpx;
+  flex-direction: row;
+  border-radius:10%;
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
+}
+.insidewrap{
+  height: 350rpx;
+  flex-direction: column;
+  border-radius:10%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
