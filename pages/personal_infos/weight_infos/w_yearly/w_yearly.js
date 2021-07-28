@@ -54,7 +54,7 @@ Page({
     })
     if(cnt){
       this.setData({
-        avg:(sum*1.0/cnt).toFixed(2)
+        avg:(sum*1.0/cnt).toFixed(1)
       })
     }
     this.setData({
