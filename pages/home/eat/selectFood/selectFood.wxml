@@ -8,11 +8,10 @@
         <image class="icon" slot="icon" src="{{item.icon}}"></image>
     </mp-cell>
 </mp-cells>
-<text>\n\n</text>
-<view class="view_calorie_block">
-    <view class="view_wenzi">
-        <text style="color: #888888">摄入热量（千卡）</text>
-        <text style="color: #888888">{{calorie}}</text>
-    </view>
-    <button bindtap="calorieBack" style="color: #555555">记录完成</button>
+<text>\n</text>
+<mp-cells>
+<mp-cell value="摄入热量" footer="{{calorie}}kcal"></mp-cell>
+</mp-cells>
+<view class="weui-btn-area">
+    <button class="btn" bindtap="calorieBack">完成</button>
 </view>

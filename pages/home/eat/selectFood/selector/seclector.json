@@ -1,6 +1,8 @@
 {
   "usingComponents": {
     "searchbar": "/components/searchbar/searchbar",
-    "mp-half-screen-dialog": "weui-miniprogram/half-screen-dialog/half-screen-dialog"
+    "mp-half-screen-dialog": "weui-miniprogram/half-screen-dialog/half-screen-dialog",
+    "mp-cells": "weui-miniprogram/cells/cells",
+    "mp-cell": "weui-miniprogram/cell/cell"
   }
 }

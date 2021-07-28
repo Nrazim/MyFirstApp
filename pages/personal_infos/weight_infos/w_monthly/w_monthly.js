@@ -27,19 +27,19 @@ Page({
     if(temp0[0]==(app.get_ymd8(myDate)).slice(0,6)){
       this.setData({
         cnt:temp0[2],
-        avg:temp0[1]*1.0/temp0[2],
+        avg:(temp0[1]*1.0/temp0[2]).toFixed(1),
       })
       if(tempArray.length){
         var temp1=tempArray.pop()
         this.setData({
           l_month:temp1[0].slice(0,4)+"年"+String(parseInt(temp1[0].slice(4))+1)+"月",
-          l_avg:temp1[1]*1.0/temp1[2],
+          l_avg:(temp1[1]*1.0/temp1[2]).toFixed(1),
         })
       }
     }else{
       this.setData({
         l_month:temp0[0].slice(0,4)+"年"+String(parseInt(temp0[0].slice(4))+1)+"月",
-        l_avg:temp0[1]*1.0/temp0[2],
+        l_avg:(temp0[1]*1.0/temp0[2]).toFixed(1),
       })
     }
     this.setData({
