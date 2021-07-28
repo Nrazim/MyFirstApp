@@ -85,10 +85,10 @@ Page({
         icon:'none',
       })
     }
-    /*wx.showToast({
+    wx.showToast({
       title: '更新成功',
       icon: 'success',
-    });*/
+    });
   },
   /**
    * 生命周期函数--监听页面加载

@@ -1,4 +1,35 @@
 <!--pages/statistics/sleepData/sleepData.wxml-->
-<view>
-  <canvas style="width:100%;height:300px" type="2d" id="sleepData" bindtouchstart="touchHandler"></canvas>
-</view>
+<mp-cells ext-class="my-cells" title="上次睡眠记录 {{lastDate}}">
+  <view wx:if="{{lastDate}}">
+    <mp-cell value="上次记录就寝时间" footer="{{lastSleep}}"></mp-cell>
+    <mp-cell value="上次记录起床时间" footer="{{lastAwake}}"></mp-cell>
+    <mp-cell value="上次记录睡眠时长" footer="{{lastDuration}}h"></mp-cell>
+  </view>
+  <view wx:else>
+    <mp-cell value="您没有睡眠记录哦"></mp-cell>
+  </view>
+</mp-cells>
+<mp-cells ext-class="my-cells" title="本周睡眠记录~">
+  <view wx:if="{{cnt_w}}">
+    <mp-cell value="本周记录睡眠的天数" footer="{{cnt_w}}"></mp-cell>
+    <mp-cell value="本周睡眠时长平均值" footer="{{avg_w}}h"></mp-cell>
+  </view>
+  <view wx:else>
+    <mp-cell value="本周尚无睡眠记录哦"></mp-cell>
+  </view>
+  <view>
+    <canvas style="width:100%;height:300px" type="2d" id="sleepWeek" bindtouchstart="touchHandler1"></canvas>
+  </view>
+</mp-cells>
+<mp-cells ext-class="my-cells" title="本月睡眠记录 {{thisMonth}}">
+  <view wx:if="{{cnt_m}}">
+    <mp-cell value="本月记录睡眠的天数" footer="{{cnt_m}}"></mp-cell>
+    <mp-cell value="本月睡眠时长平均值" footer="{{avg_m}}h"></mp-cell>
+  </view>
+  <view wx:else>
+    <mp-cell value="本月尚无睡眠记录哦"></mp-cell>
+  </view>
+  <view>
+    <canvas style="width:100%;height:300px" type="2d" id="sleepMonth" bindtouchstart="touchHandler2"></canvas>
+  </view>
+</mp-cells>
