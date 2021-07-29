@@ -1,13 +1,9 @@
 <!--pages/home/eat/selectFood/selector/seclector.wxml-->
 <view class="page">
     <view class="page__bd">
-        <view class="view_calorie_head">
-            <view class="view_wenzi">
-                <text style="color: #888888">摄入热量（千卡）</text>
-                <text style="color: #888888">{{calorie}}</text>
-            </view>
-            <button bindtap="calorieBack" style="color: #555555">记录完成</button>
-        </view>
+        <mp-cells>
+            <mp-cell hover value="摄入热量：{{calorie}}kcal" bindtap="calorieBack" footer="点击确认"></mp-cell>
+        </mp-cells>
         <searchbar bindselectresult="selectResult" search="{{search}}"></searchbar>
         <mp-half-screen-dialog 
         bindbuttontap="foodButtonTap"

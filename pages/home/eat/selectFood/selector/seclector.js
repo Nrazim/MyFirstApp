@@ -34,8 +34,8 @@ Page({
           var foodItem = new Object()
           foodItem.name = food.get('foodName')
           foodItem.KcalPer100g = food.get('KcalPer100g')
-          foodItem.textleft = foodItem.name
-          foodItem.textright = foodItem.KcalPer100g + '千卡/100克'
+          foodItem.textMain = foodItem.name
+          foodItem.textInst = foodItem.KcalPer100g + '千卡/100克'
           foodItem.annotation = food.get('annotation')
           foodItem.defaultGram = food.get('defaultGram')
           searchList.push(foodItem)

@@ -86,13 +86,23 @@ App({
     var month = this.fix(myDate.getMonth(),2)
     var date = this.fix(myDate.getDate(),2)
     return (year + month + date)
-  },//显示8位日期 格式：20210721
+  },//显示8位日期 格式：20210701，月份从0开始
   deepClone:function(obj){
     var obj0 = JSON.stringify(obj),
     objClone = JSON.parse(obj0);
     return objClone;
   },//深拷贝，可以用于创建新数组
-  
+  getSunday:function(){
+    var nowDay = (new Date()).getDay()
+    var thisSunday = new Date()
+    thisSunday.setTime((new Date()).getTime()-24*60*60*1000*(nowDay));
+    thisSunday = this.get_ymd8(thisSunday)
+    return thisSunday
+  },//用于获得本周一的日期，月份从0开始
+  getMonthDays:function(year,month){
+    var thisDate = new Date(year,month,0); //当天数为0 js自动处理为上一月的最后一天
+    return thisDate.getDate();
+  },//用于获得本月的天数
   globalData: {
     mainCharacter: 0,//0史莱姆，1猫
     isSleeping: false,
