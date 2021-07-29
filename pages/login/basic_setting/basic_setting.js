@@ -79,7 +79,7 @@ Page({
     console.log(h_monthly)
     console.log(w_daily)
     console.log(w_monthly)
-    var completeDate = [];
+    var completeDate = [];//上一次任务完成的日期
     completeDate.push(0);
     completeDate.push(0);
     completeDate.push(0);
@@ -97,6 +97,7 @@ Page({
         currentUser.set("birthday",this.data.date);
         currentUser.set("height",this.data.height);
         currentUser.set("weight",this.data.weight);
+        currentUser.set("PracticeMaxTime",0);//最大运动时间
         currentUser.set("accomplished",[false,false,false,false]); //设置数组存储任务完成情况：锻炼、吃药、吃饭、睡觉
         currentUser.set("continueDays",[0,0,0]); //持续时间，对应锻炼、吃饭、睡觉
         currentUser.set("mealChecks",[false,false,false])

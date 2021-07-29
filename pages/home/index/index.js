@@ -108,10 +108,18 @@ Page({
     completeDate.push(myDate.getMonth()+1);
     completeDate.push(myDate.getDate());
 
-    //判定每日任务是否连续完成，第一个是不用吃药，第二个是要吃药
+    //每日任务连续完成失败
     var lastDate = currentUser.get('completeDate');
+    if(lastDate[0]!=completeDate[0]||lastDate[1]!=completeDate[1]||!(lastDate[2]==completeDate[2]-1||lastDate[2]==completeDate[2])){
+        console.log(1)
+        app.globalData.dayonscheduel=0,
+        currentUser.set("dayonscheduel",app.globalData.dayonscheduel)
+
+    }
+
+    //判定每日任务是否连续完成，第一个是不用吃药，第二个是要吃药
     if(app.globalData.eatfinish&&app.globalData.practicefinish&&app.globalData.sleepfinish&&!app.globalData.medicine){
-      if(lastDate[0]==completeDate[0]&&lastDate[1]==completeDate[1]-1&&lastDate[2]==completeDate[2]){
+      if(lastDate[0]==completeDate[0]&&lastDate[1]==completeDate[1]&&lastDate[2]==completeDate[2]-1){
       app.globalData.dayonscheduel=currentUser.get(dayonscheduel);
       app.globalData.dayonscheduel=app.globalData.dayonscheduel+1;
       }

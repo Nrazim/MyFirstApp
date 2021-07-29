@@ -1,5 +1,6 @@
 // pages/home/person/medal/medal.js
 const app=getApp()
+const AV = require('../../../../libs/av-core-min.js');
 Page({
 
   /**
@@ -7,13 +8,13 @@ Page({
    */
   data: {
     imglist1:[
-      { url:['https://i.loli.net/2021/07/29/SGQR5IrdNBiY1oP.png','https://i.loli.net/2021/07/28/AR8mQyI9f1nYzOZ.png','https://i.loli.net/2021/07/28/k74glyjGIR3vtQU.png','',''],txt:"任务达成之星",toNext:0},
-      { url:['https://i.loli.net/2021/07/28/kcrXJCxZHgEYSFd.png','https://i.loli.net/2021/07/28/hSGPHTNYglw2seo.png','https://i.loli.net/2021/07/28/xgu4S3bC1wFkZEK.png','',''], txt:"经验升级之星",toNext:0},
-      { url:['https://i.loli.net/2021/07/29/75wkRPiWZ9gfFyL.png','https://i.loli.net/2021/07/29/QKR1NwhvioIqJCd.png','https://i.loli.net/2021/07/29/qaTlIzH9EA5Qh7f.png','',''], txt:"保持运动之星",toNext:0},
-      { url:['https://i.loli.net/2021/07/29/8nMVeIgU6CqQcPX.png','https://i.loli.net/2021/07/29/PcLSvgxuDkyrV6f.png','https://i.loli.net/2021/07/29/UCxvJPktALr2wS4.png','',''],txt:"锻炼强度之星",toNext:0},
-      { url:['https://i.loli.net/2021/07/29/FqtdYwsGNzDXfTJ.png','https://i.loli.net/2021/07/29/1QFm4nzsOUT9YA8.png','https://i.loli.net/2021/07/29/9ryEWozf2vwZhcq.png','',''],txt:"按时干饭之星",toNext:0},
+      { url:['https://i.loli.net/2021/07/29/SGQR5IrdNBiY1oP.png','https://i.loli.net/2021/07/28/AR8mQyI9f1nYzOZ.png','https://i.loli.net/2021/07/28/k74glyjGIR3vtQU.png','https://i.loli.net/2021/07/29/68zwgLVK93AeCio.png','https://i.loli.net/2021/07/29/CVzIaiLnTHw2rYd.png','https://i.loli.net/2021/07/29/uUABaHreTtIZv3F.png'],txt:"任务达成之星",toNext:0},
+      { url:['https://i.loli.net/2021/07/28/kcrXJCxZHgEYSFd.png','https://i.loli.net/2021/07/28/hSGPHTNYglw2seo.png','https://i.loli.net/2021/07/28/xgu4S3bC1wFkZEK.png','https://i.loli.net/2021/07/29/MDzUwpANfKqFRkX.png','https://i.loli.net/2021/07/29/AJb8HMlo4srDVSF.png','https://i.loli.net/2021/07/29/MdeoIjNPZUH24QO.png'], txt:"经验升级之星",toNext:0},
+      { url:['https://i.loli.net/2021/07/29/75wkRPiWZ9gfFyL.png','https://i.loli.net/2021/07/29/QKR1NwhvioIqJCd.png','https://i.loli.net/2021/07/29/qaTlIzH9EA5Qh7f.png','https://i.loli.net/2021/07/29/aBhfM68pKlguw4o.png','https://i.loli.net/2021/07/29/g1crQeSwyOh4aPD.png','https://i.loli.net/2021/07/29/G1ywY6gcNZRq2Vn.png'], txt:"保持运动之星",toNext:0},
+      { url:['https://i.loli.net/2021/07/29/8nMVeIgU6CqQcPX.png','https://i.loli.net/2021/07/29/PcLSvgxuDkyrV6f.png','https://i.loli.net/2021/07/29/UCxvJPktALr2wS4.png','https://i.loli.net/2021/07/29/nHT3AXipR4I1yQa.png','https://i.loli.net/2021/07/29/gYVW4Mb8sT3oefP.png'],txt:"锻炼强度之星",toNext:0},
+      { url:['https://i.loli.net/2021/07/29/FqtdYwsGNzDXfTJ.png','https://i.loli.net/2021/07/29/1QFm4nzsOUT9YA8.png','https://i.loli.net/2021/07/29/9ryEWozf2vwZhcq.png','https://i.loli.net/2021/07/29/6QBscAPiqyRp754.png','https://i.loli.net/2021/07/29/wymOICLoxdB3TkP.png','https://i.loli.net/2021/07/29/k9YjbDTiGZWBmyH.png'],txt:"按时干饭之星",toNext:0},
       { url:['https://i.loli.net/2021/07/29/FuwHVBJY5aSiNgl.png','https://i.loli.net/2021/07/29/3yodvVPaWgserK8.png',
-      'https://i.loli.net/2021/07/29/thdIlunLAFaewQ2.png','',''],txt:"早睡早起之星",toNext:0},
+      'https://i.loli.net/2021/07/29/thdIlunLAFaewQ2.png','https://i.loli.net/2021/07/29/yBtCI5AeNsQSFu3.png','https://i.loli.net/2021/07/29/Xd2aNGB4zjgvhWH.png','https://i.loli.net/2021/07/29/sqc3azD9EXu4KvA.png'],txt:"早睡早起之星",toNext:0},
     ],
     medallist:[3,5,10,15,20],
   },
@@ -22,10 +23,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var currentUser = AV.User.current();
+    var continueDays = currentUser.get('continueDays')
+    var PracticeMaxTime = currentUser.get('PracticeMaxTime')
     this.setData({
       medal:app.globalData.medalAcquire,
       'imglist1[0].toNext':Math.round(app.globalData.dayonscheduel/this.data.medallist[app.globalData.medalAcquire[0]]*100),
       'imglist1[1].toNext':Math.round(app.globalData.level/this.data.medallist[app.globalData.medalAcquire[1]]*100),
+      'imglist1[2].toNext':Math.round(continueDays[0]/this.data.medallist[app.globalData.medalAcquire[2]]*100),
+      'imglist1[3].toNext':Math.round(PracticeMaxTime/this.data.medallist[app.globalData.medalAcquire[3]]*100),
+      'imglist1[4].toNext':Math.round(continueDays[1]/this.data.medallist[app.globalData.medalAcquire[4]]*100),
+      'imglist1[5].toNext':Math.round(continueDays[2]/this.data.medallist[app.globalData.medalAcquire[5]]*100),
+      
     })
   },
 
