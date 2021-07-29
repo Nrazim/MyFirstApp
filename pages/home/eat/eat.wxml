@@ -5,9 +5,11 @@
   <image class="im" wx:for="{{imglist1}}" wx:key="{{index}}"
     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>
 </view>
-<mp-dialog title="恰饭" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}"></mp-dialog>
+<mp-dialog title="您要吃哪顿饭？" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}"></mp-dialog>
 <mp-dialog title="吃药" show="{{medicineBeforeDialogShow}}" bindbuttontap="tapMedicineBeforeDialog" buttons="{{medicineButton}}"></mp-dialog>
 <mp-dialog title="吃药" show="{{medicineAfterDialogShow}}" bindbuttontap="tapMedicineAfterDialog" buttons="{{medicineButton}}"></mp-dialog>
+
+<mp-dialog title="完成计划提醒" show="{{dialogShow2}}" bindbuttontap="tapDialogButton2" buttons="{{button}}">在完成吃饭时间规划前，您不能启用此功能哦~</mp-dialog>
 
 <!-- 引入图片预加载组件 -->
 <import src="../../../components/img-loader/img-loader.wxml"/>

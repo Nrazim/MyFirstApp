@@ -93,6 +93,7 @@ Page({
       try{
         var currentUser=AV.User.current();
         currentUser.set("isSleeping",'');
+        currentUser.set("mealOnTime",true);
         currentUser.set("birthday",this.data.date);
         currentUser.set("height",this.data.height);
         currentUser.set("weight",this.data.weight);

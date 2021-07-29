@@ -66,8 +66,14 @@ Page({
     const currentUser = AV.User.current()
     var a_time=parseInt(this.data.awakeTime.replace(":",""))
     var s_time=parseInt(this.data.sleepTime.replace(":",""))
-    console.log(a_time)
-    console.log(s_time)
+    var b_time=parseInt(this.data.breakfastTime.replace(":",""))
+    var l_time=parseInt(this.data.lunchTime.replace(":",""))
+    var d_time=parseInt(this.data.dinnerTime.replace(":",""))
+    var planForMeals=[]
+    planForMeals.push(b_time)
+    planForMeals.push(l_time)
+    planForMeals.push(d_time)
+    currentUser.set("planForMeals",planForMeals)
     currentUser.set("planToAwake",a_time)
     currentUser.set("planToSleep",s_time)
     currentUser.save()
@@ -94,7 +100,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**

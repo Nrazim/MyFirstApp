@@ -8,9 +8,9 @@ const ImgLoader = require('../../../components/img-loader/img-loader.js')
 const ActionOriginal = "https://www.z4a.net/images/2021/07/17/_x264.gif"
 //缩略图 
 const ActionThumbnail = "https://www.z4a.net/images/2021/07/17/_x264.md.gif"
-var timeSleepFrom = 2030;
+var timeSleepFrom = 1830;
 var timeSleepTo = 2330;
-var timeAwakeFrom = 630;
+var timeAwakeFrom = 530;
 var timeAwakeTo = 1030;          //设置可以睡觉的时间段
 
 Page({
@@ -22,8 +22,10 @@ Page({
     timeStart: util.formatTime(new Date()),
     dialogShow1: false,
     dialogShow2: false,
+    dialogShow3: false,
     buttons1:[{text:'好吧'}],
     buttons2:[{text:'再等等~'}, {text:'现在就睡'}],
+    buttons3:[{text:'现在就去'}],
     timeCanAwake:"",
   },
   click: function (e) {
@@ -43,43 +45,45 @@ Page({
       var symbol = true
       var settingAwake=currentUser.attributes.planToAwake
       var settingSleep=currentUser.attributes.planToSleep
+      settingAwake = parseInt(settingAwake/100)*60+settingAwake%100  //转化为分钟制
+      settingSleep = parseInt(settingSleep/100)*60+settingSleep%100
+      hme = parseInt(hme/100)*60+hme%100
+      hms = parseInt(hms/100)*60+hms%100
       console.log("plan to sleep: ",settingSleep)
       console.log("plan to awake: ",settingAwake)
-      if(settingAwake){
-        if(hme>(settingAwake-30)&&hme<(settingAwake+30)&&hms>(settingSleep-30)&&hms<(settingSleep+30)){
-          console.log("OK!")
-          symbol=true
-        }
-        else{
-          console.log("incorrect time!")
-          symbol=false
-        }
+      if(hme>(settingAwake-30)&&hme<(settingAwake+30)&&hms>(settingSleep-30)&&hms<(settingSleep+30)){
+        console.log("OK!")
+        symbol=true
       }
       else{
-        console.log("no plans!")
+        console.log("incorrect time!")
+        symbol=false
       }
-      if(!app.globalData.sleepfinish&&sleepDuration<86400&&symbol){
+      if(sleepDuration<86400&&symbol){
         //规定时间内睡觉 规定时间内起床 且保证睡觉时间不超过一天 任务完成
+        wx.showToast({
+          title: '任务完成！',
+          icon: 'success',
+          duration: 3000
+        })
         app.exp("sleep");
         app.globalData.sleepfinish = true;
         var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，睡觉对应第3个
         complete[3] = true;
         currentUser.set("accomplished",complete);
       }
-      if(sleepDuration>10800&&sleepDuration<57600){
-        sleepTime.set('sleepDuration',sleepDuration/60)
-        sleepTime.set('parent',currentUser)
-        sleepTime.set('sleepStart',this.data.timeStart)
-        sleepTime.set('sleepEnd',timeEnd)
-        sleepTime.save()
-      }
       else{
         wx.showToast({
-          title: '睡眠时间过短或过长\n系统将不予记录哦~',
-          duration: 2000,
-          icon: 'none',
+          title: '任务未完成！',
+          icon: 'error',
+          duration: 2500
         })
       }
+      sleepTime.set('sleepDuration',sleepDuration/60)
+      sleepTime.set('parent',currentUser)
+      sleepTime.set('sleepStart',this.data.timeStart)
+      sleepTime.set('sleepEnd',timeEnd)
+      sleepTime.save()
       currentUser.set("isSleeping",'')
       currentUser.save();
     }
@@ -118,6 +122,14 @@ Page({
       currentUser.save();
     }
   },
+  tapDialogButton3(e){
+    this.setData({
+      dialogShow3: false,
+    })
+    wx.navigateTo({
+      url: '../../reminder/healthplan/healthplan',
+    })
+  },
 
   loadImage() {
     //加载缩略图
@@ -135,35 +147,41 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    console.log((util.formatTime(new Date())).slice(11,13)+(util.formatTime(new Date())).slice(14,16))
-    //初始化图片预加载组件
-    this.imgLoader = new ImgLoader(this)
-    this.loadImage()
-    this.setData({
-      timeCanAwake:String(timeAwakeFrom).slice(0,1)+":"+String(timeAwakeFrom).slice(1)
-    })
     const currentUser = AV.User.current()
-    var myDate = new Date()
-    var myHour = myDate.getHours()
-    var myMinute = myDate.getMinutes()
-    var myTime = myHour*100+myMinute
-    console.log(myTime)
-    if(!currentUser.attributes.isSleeping){  //如果不在睡觉
-      if (myTime<timeSleepFrom||myTime>timeSleepTo){  //如果入睡时间不对
-        this.setData({          //进入判断
-          dialogShow1: true
-        })
+    if(currentUser.attributes.planToAwake){
+      console.log((util.formatTime(new Date())).slice(11,13)+(util.formatTime(new Date())).slice(14,16))
+      //初始化图片预加载组件
+      this.imgLoader = new ImgLoader(this)
+      this.loadImage()
+      this.setData({
+        timeCanAwake:String(timeAwakeFrom).slice(0,1)+":"+String(timeAwakeFrom).slice(1)
+      })
+      var myDate = new Date()
+      var myHour = myDate.getHours()
+      var myMinute = myDate.getMinutes()
+      var myTime = myHour*100+myMinute
+      console.log(myTime)
+      if(!currentUser.attributes.isSleeping){  //如果不在睡觉
+        if (myTime<timeSleepFrom||myTime>timeSleepTo){  //如果入睡时间不对
+          this.setData({          //进入判断
+            dialogShow1: true
+          })
+        }
+        else{
+          this.setData({
+            dialogShow2: true
+          })
+        }
       }
       else{
         this.setData({
-          dialogShow2: true
+          timeStart:currentUser.attributes.isSleeping
         })
       }
     }
     else{
       this.setData({
-        timeStart:currentUser.attributes.isSleeping
+        dialogShow3:true
       })
     }
   },
