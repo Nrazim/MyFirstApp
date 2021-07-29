@@ -98,6 +98,8 @@ Page({
         currentUser.set("height",this.data.height);
         currentUser.set("weight",this.data.weight);
         currentUser.set("accomplished",[false,false,false,false]); //设置数组存储任务完成情况：锻炼、吃药、吃饭、睡觉
+        currentUser.set("continueDays",[0,0,0]); //持续时间，对应锻炼、吃饭、睡觉
+        currentUser.set("mealChecks",[false,false,false])
         currentUser.set("lastLogin",myDate.toLocaleDateString());
         currentUser.set("exp",0);
         currentUser.set("level",1);

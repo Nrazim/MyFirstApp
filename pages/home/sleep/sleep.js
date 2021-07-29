@@ -126,7 +126,7 @@ Page({
     this.setData({
       dialogShow3: false,
     })
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../../reminder/healthplan/healthplan',
     })
   },
