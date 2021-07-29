@@ -33,7 +33,7 @@ Page({
  
 
   register() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../register/register',
     })
   },
@@ -59,6 +59,7 @@ Page({
           loginedUser.set("lastLogin",fullDate);
           loginedUser.set("accomplished",[false,false,false,false]);
           loginedUser.set("meals",[false,false,false]);
+          loginedUser.set("mealOnTime",true);
           loginedUser.save();
         }
         var complete = loginedUser.attributes.accomplished;

@@ -22,6 +22,7 @@ Page({
     ],
     Action:'',
     dialogShow: false,
+    dialogShow2: false,
     medicineBeforeDialogShow: false,
     takeMedicineAfter: false,
     timeStart: util.formatTime(new Date()),
@@ -31,6 +32,9 @@ Page({
     ],
     medicineButton: [
       {text: '这就去吃'}
+    ],
+    button:[
+      {text: '现在就去'}
     ],
     meals:0,//0早饭，1午饭，2晚饭
   },
@@ -73,6 +77,7 @@ Page({
         eatTime.set('parent',currentUser)
         eatTime.set('date',date)
         let mealsData = [{},{},{}]
+        currentUser.save()
         console.log(this.data.meals)
         mealsData[this.data.meals] = {
           eattimeStart: this.data.timeStart,
@@ -115,6 +120,37 @@ Page({
       }
       app.globalData.CalorieGet = 0
     })
+    //判断有没有按时吃饭，先调取计算时间，换算为int形式
+    var tempTime = parseInt(this.data.timeStart.slice(11,16).replace(":",""))
+    tempTime = parseInt(tempTime/100)*60+tempTime%100
+    var planTime = currentUser.attributes.planForMeals[this.data.meals]
+    planTime = parseInt(planTime/100)*60+planTime%100
+    console.log("temptime:",tempTime)
+    console.log("plantime:",planTime)
+    if(Math.abs(planTime-tempTime)<=300){
+      console.log("congratulations!")
+    }
+    else{
+      console.log("hahaha")
+      wx.showToast({
+        title: '您未能按时吃饭！',
+        icon: 'error',
+        duration: 2000
+      })
+      currentUser.set("mealOnTime",false)//有一餐没有按时吃，就无法完成任务
+      currentUser.save()
+    }
+    var meals=currentUser.attributes.meals
+    console.log("meal on time? ",currentUser.attributes.mealOnTime)
+    if(meals[0]&&meals[1]&&meals[2]&&currentUser.attributes.mealOnTime){
+      app.exp("eat");
+      app.globalData.eatfinish = true;
+      console.log(app.globalData.eatfinish);
+      var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，吃饭对应第2个
+      complete[2] = true;
+      currentUser.set("accomplished",complete);
+      currentUser.save();
+    }
     //判断有没有药要饭后吃
     if(this.data.takeMedicineAfter){
       this.timeToMedicineAfter()
@@ -144,7 +180,14 @@ Page({
       medicineBeforeDialogShow: true,
     })
   },
-
+  tapDialogButton2(e) {
+    this.setData({
+      dialogShow2:false
+    })
+    wx.redirectTo({
+      url: '../../reminder/healthplan/healthplan',
+    })
+  },
   tapDialogButton(e) {
     app.globalData.TakeMedicineBefore = false;
     console.log(e.detail)
@@ -179,7 +222,6 @@ Page({
       currentUser.set("meals",meals);
       currentUser.save();
     }
-    
     var values = currentUser.get('medicineBefore')?currentUser.get('medicineBefore'):[]
     var medicineBeforeFinish = currentUser.get('medicineBeforeFinish')?currentUser.get('medicineBeforeFinish'):[]
     for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
@@ -211,19 +253,16 @@ Page({
     }
     this.setData({
         dialogShow: false,
-    })
-
-    if(meals[0]==true&&meals[1]==true&&meals[2]==true){
-    if(!app.globalData.eatfinish){
-    app.exp("eat");
-    app.globalData.eatfinish = true;
-    }
-    console.log(app.globalData.eatfinish);
-    var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，吃饭对应第2个
-    complete[2] = true;
-    currentUser.set("accomplished",complete);
-    currentUser.save();
-    }
+    })/*
+    if(meals[0]&&meals[1]&&meals[2]){
+      app.exp("eat");
+      app.globalData.eatfinish = true;
+      console.log(app.globalData.eatfinish);
+      var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，吃饭对应第2个
+      complete[2] = true;
+      currentUser.set("accomplished",complete);
+      currentUser.save();
+    }*/
     if(!app.globalData.TakeMedicineBefore){
       wx.navigateTo({
         url: 'selectFood/selectFood',
@@ -263,12 +302,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(!app.globalData.CalorieGet){
-      this.openConfirm()
+    var user = AV.User.current()
+    if(user.attributes.planForMeals){
+      if(!app.globalData.CalorieGet){
+        this.openConfirm()
+      }
+      //初始化图片预加载组件
+      this.imgLoader = new ImgLoader(this)
+      this.loadImage()
     }
-    //初始化图片预加载组件
-    this.imgLoader = new ImgLoader(this)
-    this.loadImage()
+    else{
+      this.setData({
+        dialogShow2:true
+      })
+    }
   },
 
   /**

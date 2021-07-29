@@ -10,7 +10,7 @@
 </mp-cells>
 <text>\n</text>
 <mp-cells>
-<mp-cell value="摄入热量" footer="{{calorie}}kcal"></mp-cell>
+<mp-cell value="摄入热量" footer="{{calorie.toFixed(2)}}kcal"></mp-cell>
 </mp-cells>
 <view class="weui-btn-area">
     <button class="btn" bindtap="calorieBack">完成</button>

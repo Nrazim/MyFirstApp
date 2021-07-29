@@ -6,11 +6,11 @@
     src="{{item.url}}" bindtap="click" data-id="{{item.id}}"></image>
 </view>
 
-<mp-dialog title="您不能入睡" show="{{dialogShow1}}" bindbuttontap="tapDialogButton1" buttons="{{buttons1}}">现在可不是能睡觉的时间段哦~</mp-dialog>
+<mp-dialog title="您现在不能入睡" show="{{dialogShow1}}" bindbuttontap="tapDialogButton1" buttons="{{buttons1}}">您在晚间18:30~23:30这一时间段才可以点选入睡哦~</mp-dialog>
 <mp-dialog title="您希望现在睡觉？" show="{{dialogShow2}}" bindbuttontap="tapDialogButton2" buttons="{{buttons2}}">
-
 <view>进入睡眠模式后，在次日早上{{timeCanAwake}}前不可点选起床哦~</view>
 </mp-dialog>
+<mp-dialog title="完成计划提醒" show="{{dialogShow3}}" bindbuttontap="tapDialogButton3" buttons="{{buttons3}}">在完成睡觉时间规划前，您不能启用此功能哦~</mp-dialog>
 
 <!-- 引入图片预加载组件 -->
 <import src="../../../components/img-loader/img-loader.wxml"/>
