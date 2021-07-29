@@ -130,7 +130,11 @@ Page({
       url: '../../reminder/healthplan/healthplan',
     })
   },
-
+  bindClose3(){
+    wx.redirectTo({
+      url: '../index/index',
+    })
+  },
   loadImage() {
     //加载缩略图
     this.setData({
