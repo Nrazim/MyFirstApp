@@ -8,6 +8,8 @@ const ActionOriginal = ["https://www.z4a.net/images/2021/07/19/relax1.gif",
 //缩略图 
 const ActionThumbnail = ["https://www.z4a.net/images/2021/07/19/relax1.md.gif",
                         "https://www.z4a.net/images/2021/07/27/nekoRelax1.md.gif"]
+
+                        
 // 获取应用实例
 const app=getApp()
 Page({
