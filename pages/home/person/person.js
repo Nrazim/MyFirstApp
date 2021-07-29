@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    medalschedual:[3,5,10,15,21],
+    medalschedual:[3,5,10,15,20],
     medallevel:[3,5,10,15,20]
   },
 

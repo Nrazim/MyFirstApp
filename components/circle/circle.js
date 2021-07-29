@@ -158,7 +158,8 @@ Component({
       const el = _this.data.draw; //画板元素
       const per = _this.data.per; //圆形进度
       const r = Number(_this.data.r); //圆形半径
-      
+      const thick = _this.data.thick;//圆的厚度
+
       _this.setData({
         step: (2 * Number(_this.data.per)) / 100,
         txt: app.globalData.level,
@@ -171,7 +172,7 @@ Component({
       this.setData({
         size: rpx * 2
       });
-      const w = 4;//圆形的宽度
+      const w = thick;//圆形的宽度
 
       //组件入口,调用下面即可绘制 背景圆环和彩色圆环。
       _this.drawCircleBg(el + 'bg', rpx, w);//绘制 背景圆环
