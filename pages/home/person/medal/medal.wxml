@@ -4,7 +4,7 @@
   <image class="im" src="{{item.url[medal[index]]}}"></image>
   <view class="insidewrap">
   <text class = "txt">{{item.txt}}</text>
-  <circle txtshow = "{{toFinish1}}%" draw='circwewle1' per = '{{exp}}' r = '100' thick = '8'/>
+  <circle txtshow = "{{item.toNext}}%" draw='1' per = '{{item.toNext}}' r = '100' thick = '8'/>
   </view>
 </view>
 </view>

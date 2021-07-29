@@ -7,14 +7,15 @@ Page({
    */
   data: {
     imglist1:[
-      { url:['https://i.loli.net/2021/07/28/dqcT3HujIMQkUrb.png','https://i.loli.net/2021/07/28/AR8mQyI9f1nYzOZ.png','https://i.loli.net/2021/07/28/k74glyjGIR3vtQU.png','',''],txt:"任务达成之星"},
-      { url:['https://i.loli.net/2021/07/28/kcrXJCxZHgEYSFd.png','https://i.loli.net/2021/07/28/hSGPHTNYglw2seo.png','https://i.loli.net/2021/07/28/xgu4S3bC1wFkZEK.png','',''], txt:"经验升级之星"},
-      { url:['../../../images/medal/bottom.png','','','',''], txt:"底部3"},
-      { url:['../../../images/medal/bottom.png','','','',''],txt:"底部4"},
-      { url:['../../../images/medal/bottom.png','','','',''],txt:"底部5"},
+      { url:['https://i.loli.net/2021/07/29/SGQR5IrdNBiY1oP.png','https://i.loli.net/2021/07/28/AR8mQyI9f1nYzOZ.png','https://i.loli.net/2021/07/28/k74glyjGIR3vtQU.png','',''],txt:"任务达成之星",toNext:0},
+      { url:['https://i.loli.net/2021/07/28/kcrXJCxZHgEYSFd.png','https://i.loli.net/2021/07/28/hSGPHTNYglw2seo.png','https://i.loli.net/2021/07/28/xgu4S3bC1wFkZEK.png','',''], txt:"经验升级之星",toNext:0},
+      { url:['https://i.loli.net/2021/07/29/75wkRPiWZ9gfFyL.png','https://i.loli.net/2021/07/29/QKR1NwhvioIqJCd.png','https://i.loli.net/2021/07/29/qaTlIzH9EA5Qh7f.png','',''], txt:"保持运动之星",toNext:0},
+      { url:['https://i.loli.net/2021/07/29/8nMVeIgU6CqQcPX.png','https://i.loli.net/2021/07/29/PcLSvgxuDkyrV6f.png','https://i.loli.net/2021/07/29/UCxvJPktALr2wS4.png','',''],txt:"锻炼强度之星",toNext:0},
+      { url:['https://i.loli.net/2021/07/29/FqtdYwsGNzDXfTJ.png','https://i.loli.net/2021/07/29/1QFm4nzsOUT9YA8.png','https://i.loli.net/2021/07/29/9ryEWozf2vwZhcq.png','',''],txt:"按时干饭之星",toNext:0},
+      { url:['https://i.loli.net/2021/07/29/FuwHVBJY5aSiNgl.png','https://i.loli.net/2021/07/29/3yodvVPaWgserK8.png',
+      'https://i.loli.net/2021/07/29/thdIlunLAFaewQ2.png','',''],txt:"早睡早起之星",toNext:0},
     ],
-    
-    
+    medallist:[3,5,10,15,20],
   },
 
   /**
@@ -22,7 +23,9 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      medal:app.globalData.medalAcquire
+      medal:app.globalData.medalAcquire,
+      'imglist1[0].toNext':Math.round(app.globalData.dayonscheduel/this.data.medallist[app.globalData.medalAcquire[0]]*100),
+      'imglist1[1].toNext':Math.round(app.globalData.level/this.data.medallist[app.globalData.medalAcquire[1]]*100),
     })
   },
 
