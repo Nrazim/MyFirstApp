@@ -81,12 +81,20 @@ Page({
       title: '保存成功',
       icon: 'success',
     })
+    currentUser.set("mealChecks",[this.data.switchBreakfastChecked,this.data.switchLunchChecked,this.data.switchDinnerChecked])
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const currentUser=AV.User.current()
+    if(currentUser.attributes.mealChecks){
+      this.setData({
+        switchBreakfastChecked: (currentUser.attributes.mealChecks)[0],
+        switchLunchChecked: (currentUser.attributes.mealChecks)[1],
+        switchDinnerChecked: (currentUser.attributes.mealChecks)[2]
+      })
+    }
   },
 
   /**

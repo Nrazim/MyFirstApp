@@ -56,6 +56,24 @@ Page({
       else{
         app.globalData.lastLogin = loginedUser.attributes.lastLogin
         if(loginedUser.attributes.lastLogin!=fullDate){
+          var complete = loginedUser.attributes.accomplished;
+          var continueDays = loginedUser.attributes.continueDays;
+          if(complete[0]){
+            continueDays[0]+=1
+          }else{
+            continueDays[0]=0
+          }
+          if(complete[2]){
+            continueDays[1]+=1
+          }else{
+            continueDays[1]=0
+          }
+          if(complete[3]){
+            continueDays[2]+=1
+          }else{
+            continueDays[2]=0
+          }
+          loginedUser.set("continueDays",continueDays);
           loginedUser.set("lastLogin",fullDate);
           loginedUser.set("accomplished",[false,false,false,false]);
           loginedUser.set("meals",[false,false,false]);
