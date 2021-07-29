@@ -32,10 +32,10 @@ image{
 }
 
 .figure{
-  top: 0rpx;
-  left:0rpx;
-  width:370rpx;
-  height:370rpx;
+  top: 80rpx;
+  left:70rpx;
+  width:230rpx;
+  height:230rpx;
   position:fixed; 
 }
 

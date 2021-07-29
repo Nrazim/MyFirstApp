@@ -15,7 +15,7 @@
 </view>
 <mp-cells ext-class=" {{'searchbar-result ' + extClass}}" wx:if="{{searchState && result.length > 0}}">
     <mp-cell class="result" bindtap="selectResult" body-class="weui-cell_primary" data-index="{{index}}" wx:for="{{result}}" wx:key="index" hover>
-        <view style="align-items:left;">{{item.textleft}}</view>
-        <view style="align-items:left; color:grey">{{item.textright}}</view>
+        <view style="align-items:left;">{{item.textMain}}</view>
+        <view style="align-items:left; color:grey">{{item.textInst}}</view>
     </mp-cell>
 </mp-cells>
