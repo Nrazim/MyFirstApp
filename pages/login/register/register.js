@@ -75,6 +75,7 @@ Page({
     })
   },
   onShow: function () {
+    app.setNavBar()
     wx.hideHomeButton();
   },
 })

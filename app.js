@@ -110,7 +110,33 @@ App({
     var b = parseInt(rgb[2].split(')')[0]);
     var hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
     return hex;
- },
+  },
+  colorHex2RGB:function(color) {//16进制转rgb
+    var hex = (color.charAt(0)=="#") ? color.substring(1,7):color
+    var r = parseInt(hex.substring(0,2),16)
+    var g = parseInt(hex.substring(2,4),16)
+    var b = parseInt(hex.substring(4,6),16)
+    var rgb = "rgb(" + r + ',' + g + ',' + b + ")"
+    return rgb
+  },
+  isLight: function (color) {//判断明度是否大于0.5
+    var rgb = color.split(',');
+    var r = parseInt(rgb[0].split('(')[1]);
+    var g = parseInt(rgb[1]);
+    var b = parseInt(rgb[2].split(')')[0]);
+    return (
+      0.213 * r +
+      0.715 * g +
+      0.072 * b >
+      255 / 2
+    )
+  },
+  setNavBar:function(){
+    wx.setNavigationBarColor({
+      frontColor: this.globalData.NavigationBarSettings.front,
+      backgroundColor: this.globalData.NavigationBarSettings.background,
+    })
+  },
   globalData: {
     mainCharacter: 0,//0史莱姆，1猫
     isSleeping: false,
@@ -120,7 +146,7 @@ App({
     TakeMedicineBefore: false,
     userInfo: null,
     SignedIn: false,
-    rgb: 'rgb(255,244,2)',
+    rgb: 'rgb(238,238,238)',
     level:1,
     exp:0,
     practicefinish:false,
@@ -129,6 +155,10 @@ App({
     sleepfinish:false,
     medicine:true,
     dayonscheduel:0,
+    NavigationBarSettings:{
+      front:"#000000",
+      background: "#eeeeee",
+    },
     levelexplist:[0,100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600],
     medalAcquire:[0,0,0,0,0,0]//0-4：保持天数；5-9:；
   }

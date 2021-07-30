@@ -51,6 +51,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    app.setNavBar()
     var user=AV.User.current();
     let h_monthly = app.deepClone(user.attributes.h_monthly);
     for(let j = 0; j < h_monthly.length; j++) {

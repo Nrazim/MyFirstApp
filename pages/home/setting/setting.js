@@ -13,8 +13,8 @@ Page({
     buttons: [
       {text: '取消'}, {text: '确认'}
     ],
-    character:['史莱姆','猫'],
-    cha:app.globalData.mainCharacter,
+    character:['史莱姆','严小喵'],
+    cha: app.globalData.mainCharacter,
     dialogShow: false,
   },
   bindChaChange: function(e){
@@ -23,6 +23,8 @@ Page({
     })
     app.globalData.mainCharacter = e.detail.value
     console.log('角色编号改为' + app.globalData.mainCharacter)
+    const currentUser = AV.User.current()
+    currentUser.set('mainCharacter',e.detail.value)
   },
   toPick: function () {
     this.setData({
@@ -35,12 +37,11 @@ Page({
     })
     console.log(e.detail.color)
     app.globalData.rgb = e.detail.color
-    var hexcolor = app.colorRGB2Hex(e.detail.color) 
-    console.log(hexcolor)
-    wx.setNavigationBarColor({
-      frontColor: "#000000",
-      backgroundColor: hexcolor,
-  })
+    app.globalData.NavigationBarSettings.background = app.colorRGB2Hex(e.detail.color) 
+    app.globalData.NavigationBarSettings.front = app.isLight(e.detail.color)?"#000000":"#ffffff"
+    app.setNavBar()
+    const currentUser = AV.User.current()
+    currentUser.set('NavigationBarSettings',app.globalData.NavigationBarSettings)
   },
   openConfirm: function(){
     this.setData({
@@ -65,7 +66,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      rgb: app.globalData.rgb
+      rgb: app.globalData.rgb,
+      cha: app.globalData.mainCharacter,
     })
   },
 
@@ -81,8 +83,10 @@ Page({
    */
   onShow: function () {
     this.setData({
-      rgb: app.globalData.rgb
+      rgb: app.globalData.rgb,
+      cha: app.globalData.mainCharacter,
     })
+    app.setNavBar()
   },
 
   /**

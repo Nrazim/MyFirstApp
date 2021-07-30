@@ -31,5 +31,6 @@ Page({
       this.setData({
         uBMI:bmi.toFixed(1),
       })
+      app.setNavBar()
     },
 });

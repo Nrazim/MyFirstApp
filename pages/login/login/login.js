@@ -54,6 +54,10 @@ Page({
         });
       }
       else{
+        app.globalData.NavigationBarSettings = loginedUser.get("NavigationBarSettings")?
+          loginedUser.get("NavigationBarSettings"):app.globalData.NavigationBarSettings
+        app.globalData.mainCharacter = loginedUser.get("mainCharacter")?loginedUser.get("mainCharacter"):0
+        app.globalData.rgb = app.colorHex2RGB(app.globalData.NavigationBarSettings.background)
         app.globalData.lastLogin = loginedUser.attributes.lastLogin
         console.log(loginedUser.attributes.lastLogin)
         console.log(fullDate)
@@ -111,6 +115,7 @@ Page({
   },
   
   onShow: function(){
+    app.setNavBar()
     wx.hideHomeButton();
   }
   

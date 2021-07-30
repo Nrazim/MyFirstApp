@@ -69,6 +69,7 @@ Page({
     }
   },
   onShow(){
+    app.setNavBar()
     if(app.globalData.SignedIn==false){
       wx.redirectTo({
         url: '../../login/login/login',

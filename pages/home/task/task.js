@@ -63,6 +63,7 @@ Page({
    */
   onShow: function () {
     wx.hideHomeButton();
+    app.setNavBar()
     this.setData({
       medicine: app.globalData.medicine,
       sleepfinish:app.globalData.sleepfinish,
