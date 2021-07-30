@@ -16,7 +16,7 @@ Page({
       {url: 'selector/seclector?type=饮品', value:"饮品", icon:"../../../images/icons/eatselect/drink.png"},
       {url: 'selector/seclector?type=甜品', value:"甜品", icon:"../../../images/icons/eatselect/dessert.png"},
     ],
-    calorie: app.globalData.CalorieGet
+    fixedcalorie: app.globalData.CalorieGet.toFixed(2)
   },
   bindmealsChange:function(e){
     this.setData({
@@ -47,7 +47,7 @@ Page({
    */
   onShow: function () {
     this.setData({
-      calorie: app.globalData.CalorieGet,
+      fixedcalorie: app.globalData.CalorieGet.toFixed(2),
     })
   },
 

@@ -31,11 +31,16 @@ Page({
     var practiceTimeset =this.data.sportDuration[practiceSetting[2]]
     console.log(practiceDuration)
     console.log(practiceTimeset)
+
     if(practiceDuration>practiceTimeset){
       if(!app.globalData.practicefinish){
         app.exp("practice");
         app.globalData.practicefinish = true
-        }
+      }
+      var maxtime=currentUser.get('PracticeMaxTime')
+      if(practiceTimeset>maxtime){
+      currentUser.set("PracticeMaxTime",practiceTimeset);
+      }
       console.log(1)
       var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，锻炼对应第0个
       complete[0] = true;

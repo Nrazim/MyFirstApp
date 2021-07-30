@@ -62,8 +62,8 @@ Page({
         var y_date = yesterday.toLocaleDateString();
         console.log(y_date)
         if(loginedUser.attributes.lastLogin!=fullDate){
-          var complete = loginedUser.attributes.accomplished;
-          var continueDays = loginedUser.attributes.continueDays;
+          var complete = loginedUser.get("accomplished")?loginedUser.get("accomplished"):[0,0,0];
+          var continueDays = loginedUser.get("continueDays")?loginedUser.get("continueDays"):[0,0,0];
           let judge = (y_date == loginedUser.attributes.lastLogin)   
           //若不在一天登录，判断是否昨天登录过，若昨天登录过，judge=true
           if(complete[0]&&judge){

@@ -8,7 +8,11 @@ Page({
    */
   data: {
     medalschedual:[3,5,10,15,20],
-    medallevel:[3,5,10,15,20]
+    medallevel:[3,5,10,15,20],
+    medalmeal:[3,5,10,15,20],
+    medalpractice:[3,5,10,15,20],
+    medalsleep:[3,5,10,15,20],
+    medalMaxPractice:[0.5,1,2,3]
   },
 
   /**
@@ -38,8 +42,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
     const currentUser = AV.User.current();
     app.globalData.dayonscheduel=currentUser.get('dayonscheduel');
+    console.log(app.globalData.dayonscheduel);
     this.setData({
       exp:Math.round(app.globalData.exp/app.globalData.levelexplist[app.globalData.level]*100),
       level:app.globalData.level,
@@ -63,7 +69,44 @@ Page({
       }
     }
 
+    var continueDays = currentUser.get('continueDays')
+    //锻炼天数成就显示
+    for(var j=0;j<=5;j++)
+    {
+      if(continueDays[0]>=this.data.medalpractice[j])
+      {
+        app.globalData.medalAcquire[2]=j+1
+      }
+    }
+    var PracticeMaxTime = currentUser.get('PracticeMaxTime')
+    //最大锻炼时间
+    for(var j=0;j<=5;j++)
+    {
+      if(PracticeMaxTime>=this.data.medalMaxPractice[j])
+      {
+        app.globalData.medalAcquire[3]=j+1
+      }
+    }
+    //吃饭成就显示
+    for(var j=0;j<=5;j++)
+    {
+      if(continueDays[1]>=this.data.medalmeal[j])
+      {
+        app.globalData.medalAcquire[4]=j+1
+      }
+    }
+
+    //睡觉成就显示
+    for(var j=0;j<=5;j++)
+    {
+      if(continueDays[2]>=this.data.medalsleep[j])
+      {
+        app.globalData.medalAcquire[5]=j+1
+      }
+    }
+
   },
+  
   
   
   /**
