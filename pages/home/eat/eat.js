@@ -257,16 +257,7 @@ Page({
     }
     this.setData({
         dialogShow: false,
-    })/*
-    if(meals[0]&&meals[1]&&meals[2]){
-      app.exp("eat");
-      app.globalData.eatfinish = true;
-      console.log(app.globalData.eatfinish);
-      var complete = currentUser.attributes.accomplished; //从leancloud取数组赋值后存储，吃饭对应第2个
-      complete[2] = true;
-      currentUser.set("accomplished",complete);
-      currentUser.save();
-    }*/
+    })
     if(!app.globalData.TakeMedicineBefore){
       wx.navigateTo({
         url: 'selectFood/selectFood',

@@ -55,20 +55,28 @@ Page({
       }
       else{
         app.globalData.lastLogin = loginedUser.attributes.lastLogin
+        console.log(loginedUser.attributes.lastLogin)
+        console.log(fullDate)
+        var yesterday= new Date()
+        yesterday.setTime( yesterday.getTime()-24*60*60*1000);
+        var y_date = yesterday.toLocaleDateString();
+        console.log(y_date)
         if(loginedUser.attributes.lastLogin!=fullDate){
           var complete = loginedUser.get("accomplished")?loginedUser.get("accomplished"):[0,0,0];
           var continueDays = loginedUser.get("continueDays")?loginedUser.get("continueDays"):[0,0,0];
-          if(complete[0]){
+          let judge = (y_date == loginedUser.attributes.lastLogin)   
+          //若不在一天登录，判断是否昨天登录过，若昨天登录过，judge=true
+          if(complete[0]&&judge){
             continueDays[0]+=1
           }else{
             continueDays[0]=0
           }
-          if(complete[2]){
+          if(complete[2]&&judge){
             continueDays[1]+=1
           }else{
             continueDays[1]=0
           }
-          if(complete[3]){
+          if(complete[3]&&judge){
             continueDays[2]+=1
           }else{
             continueDays[2]=0

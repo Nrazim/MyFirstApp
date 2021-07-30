@@ -85,3 +85,12 @@
   margin-top: 314rpx;
   position: fixed
 }
+.gotoLogin{
+  margin-left: 50rpx;
+  margin-top: 20rpx;
+  font-size: 80%;
+  font-weight: 400;
+  width: 300rpx;
+  color: rgba(242, 216, 39, 100);
+  background-color: white;
+}
