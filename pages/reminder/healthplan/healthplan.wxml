@@ -60,19 +60,19 @@
 <!--line-height更改cells高度，防止两条线贴着字-->
   <view class="weui-flex">
     <view class="weui-flex__item">
-      <view>　早饭　</view>
+      <view>　早饭</view>
     </view>
     <view class="weui-flex__item">
       <switch checked="{{switchBreakfastChecked}}" bindchange="switchBreakfastChange"/>
     </view>
     <view class="weui-flex__item">
-      <view>　午饭　</view>
+      <view>　午饭</view>
     </view>
     <view class="weui-flex__item">
       <switch checked="{{switchLunchChecked}}" bindchange="switchLunchChange"/>
     </view>
     <view class="weui-flex__item">
-      <view>　晚饭　</view>
+      <view>　晚饭</view>
     </view>
     <view class="weui-flex__item">
       <switch checked="{{switchDinnerChecked}}" bindchange="switchDinnerChange"/>

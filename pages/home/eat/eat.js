@@ -188,6 +188,11 @@ Page({
       url: '../../reminder/healthplan/healthplan',
     })
   },
+  bindClose2(){
+    wx.redirectTo({
+      url: '../index/index',
+    })
+  },
   tapDialogButton(e) {
     app.globalData.TakeMedicineBefore = false;
     console.log(e.detail)

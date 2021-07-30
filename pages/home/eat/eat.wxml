@@ -9,7 +9,7 @@
 <mp-dialog title="吃药" show="{{medicineBeforeDialogShow}}" bindbuttontap="tapMedicineBeforeDialog" buttons="{{medicineButton}}"></mp-dialog>
 <mp-dialog title="吃药" show="{{medicineAfterDialogShow}}" bindbuttontap="tapMedicineAfterDialog" buttons="{{medicineButton}}"></mp-dialog>
 
-<mp-dialog title="完成计划提醒" show="{{dialogShow2}}" bindbuttontap="tapDialogButton2" buttons="{{button}}">在完成吃饭时间规划前，您不能启用此功能哦~</mp-dialog>
+<mp-dialog title="完成计划提醒" show="{{dialogShow2}}" bindbuttontap="tapDialogButton2" bindclose="bindClose2" buttons="{{button}}">在完成吃饭时间规划前，您不能启用此功能哦~</mp-dialog>
 
 <!-- 引入图片预加载组件 -->
 <import src="../../../components/img-loader/img-loader.wxml"/>

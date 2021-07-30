@@ -10,7 +10,7 @@
 <mp-dialog title="您希望现在睡觉？" show="{{dialogShow2}}" bindbuttontap="tapDialogButton2" buttons="{{buttons2}}">
 <view>进入睡眠模式后，在次日早上{{timeCanAwake}}前不可点选起床哦~</view>
 </mp-dialog>
-<mp-dialog title="完成计划提醒" show="{{dialogShow3}}" bindbuttontap="tapDialogButton3" buttons="{{buttons3}}">在完成睡觉时间规划前，您不能启用此功能哦~</mp-dialog>
+<mp-dialog title="完成计划提醒" show="{{dialogShow3}}" bindbuttontap="tapDialogButton3" bindclose="bindClose3" buttons="{{buttons3}}">在完成睡觉时间规划前，您不能启用此功能哦~</mp-dialog>
 
 <!-- 引入图片预加载组件 -->
 <import src="../../../components/img-loader/img-loader.wxml"/>
