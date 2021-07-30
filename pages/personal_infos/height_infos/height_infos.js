@@ -59,9 +59,9 @@ Page({
     console.log(this.data.h_list)
     try{
       let indexarray=[];   
-      var height = user.attributes.height;
-      indexarray.push(parseInt(height-50)),
-      indexarray.push(parseInt((height-parseInt(height))*10))
+      let height = user.attributes.height;
+      indexarray.push(parseInt(height-50))
+      indexarray.push(Math.round((height-Math.round(height))*10))
       this.setData({
         uheight:height,
         i_height:indexarray,

@@ -114,7 +114,6 @@ Page({
         console.log(1)
         app.globalData.dayonscheduel=0,
         currentUser.set("dayonscheduel",app.globalData.dayonscheduel)
-
     }
 
     //判定每日任务是否连续完成，第一个是不用吃药，第二个是要吃药

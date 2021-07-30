@@ -133,7 +133,7 @@ Page({
       console.log(myDate.getYear());
       console.log(myDate.getMonth());
       indexarray.push(parseInt(weight-30)),
-      indexarray.push(parseInt((weight-parseInt(weight))*10))
+      indexarray.push(Math.round((weight-Math.round(weight))*10))
       this.setData({
         uweight:weight,
         i_weight:indexarray,
