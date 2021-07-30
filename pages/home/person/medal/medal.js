@@ -16,7 +16,8 @@ Page({
       { url:['https://i.loli.net/2021/07/29/FuwHVBJY5aSiNgl.png','https://i.loli.net/2021/07/29/3yodvVPaWgserK8.png',
       'https://i.loli.net/2021/07/29/thdIlunLAFaewQ2.png','https://i.loli.net/2021/07/29/yBtCI5AeNsQSFu3.png','https://i.loli.net/2021/07/29/Xd2aNGB4zjgvhWH.png','https://i.loli.net/2021/07/29/sqc3azD9EXu4KvA.png'],txt:"早睡早起之星",toNext:0},
     ],
-    medallist:[3,5,10,15,20],
+    medallist:[3,5,10,15,20,20],
+    medalMaxTimelist:[0.5,1,2,3,3]
   },
 
   /**
@@ -31,7 +32,7 @@ Page({
       'imglist1[0].toNext':Math.round(app.globalData.dayonscheduel/this.data.medallist[app.globalData.medalAcquire[0]]*100),
       'imglist1[1].toNext':Math.round(app.globalData.level/this.data.medallist[app.globalData.medalAcquire[1]]*100),
       'imglist1[2].toNext':Math.round(continueDays[0]/this.data.medallist[app.globalData.medalAcquire[2]]*100),
-      'imglist1[3].toNext':Math.round(PracticeMaxTime/this.data.medallist[app.globalData.medalAcquire[3]]*100),
+      'imglist1[3].toNext':Math.round(PracticeMaxTime/this.data.medalMaxTimelist[app.globalData.medalAcquire[3]]*100),
       'imglist1[4].toNext':Math.round(continueDays[1]/this.data.medallist[app.globalData.medalAcquire[4]]*100),
       'imglist1[5].toNext':Math.round(continueDays[2]/this.data.medallist[app.globalData.medalAcquire[5]]*100),
       
