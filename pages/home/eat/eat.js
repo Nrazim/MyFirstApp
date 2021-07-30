@@ -132,11 +132,6 @@ Page({
     }
     else{
       console.log("hahaha")
-      wx.showToast({
-        title: '您未能按时吃饭！',
-        icon: 'error',
-        duration: 2000
-      })
       currentUser.set("mealOnTime",false)//有一餐没有按时吃，就无法完成任务
       currentUser.save()
     }
@@ -204,7 +199,14 @@ Page({
     }
     const currentUser = AV.User.current()
     //记录每餐吃饭情况（早饭：0；中饭：1；晚饭：2）
-    var meals =currentUser.get('meals')
+    var meals = currentUser.get('meals')
+    var planForMeals = currentUser.get('planForMeals')
+    console.log(planForMeals[e.detail.index-1])
+    var planMinutes = parseInt(planForMeals[e.detail.index-1]/100)*60+planForMeals[e.detail.index-1]%100
+    var nowMinutes = parseInt(this.data.timeStart.slice(11,13))*60+parseInt(this.data.timeStart.slice(14,16))
+    console.log(planMinutes)
+    console.log(nowMinutes)
+    var tempTime = Math.abs(planMinutes-nowMinutes)
     for(var j = 0; j<3 ;j++){
       if(e.detail.index-1 == j){
         if(meals[j]){//如果已经吃过
@@ -212,8 +214,9 @@ Page({
             url: '../index/index',
           })
           wx.showToast({
-            title: '已经吃过！',
+            title: '今天已经吃过啦！',
             icon: 'error',
+            duration: 2000
           })
           return
         }
@@ -235,7 +238,6 @@ Page({
           medicineBeforeFinish[j] =j
           currentUser.set("medicineBeforeFinish",medicineBeforeFinish);
           currentUser.save();
-
           this.timeToMedicineBefore();
           break;
         }
@@ -261,6 +263,19 @@ Page({
     if(!app.globalData.TakeMedicineBefore){
       wx.navigateTo({
         url: 'selectFood/selectFood',
+      })
+    }
+    if (tempTime>60){
+      wx.showToast({
+        title: '您未按时吃饭，今天的任务失败了~',
+        icon: 'none',
+        duration: 3000
+      })
+    }else{
+      wx.showToast({
+        title: '按时吃饭成功！',
+        icon: 'success',
+        duration: 3000
       })
     }
   },
