@@ -45,7 +45,22 @@ Page({
     })
   },
   click: function (e) {
+    if(e.currentTarget.dataset.id=="medicine/medicine"){
+        wx.navigateToMiniProgram({
+          appId: 'wxc2edadc87077fa2a',
+          path: '',
+          envVersion: 'release',// 打开正式版
+          success(res) {
+               // 打开成功
+          },
+          fail: function (err) {
+            console.log(err);
+          }
+        })
+    }
+    else{
     app.homeclick(e)
+    }
   },
   loadImage() {
     //加载缩略图
