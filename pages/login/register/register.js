@@ -62,11 +62,19 @@ Page({
         icon: 'success',
       });
     }).catch(error => {
-      wx.showToast({
-        title:error.message,
-        icon:'none'
-      })
-    });
-  }
-},
+        wx.showToast({
+          title:error.message,
+          icon:'none'
+        })
+      });
+    }
+  },
+  goBack(){
+    wx.redirectTo({
+      url: '../login/login',
+    })
+  },
+  onShow: function () {
+    wx.hideHomeButton();
+  },
 })

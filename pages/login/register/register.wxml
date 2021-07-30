@@ -29,5 +29,6 @@
     bindfocus="selectchoice_password2" class="three" type="password"/>
   </view>
   <button bindtap="register" class="login">注册</button>
+  <button bindtap="goBack" class="gotoLogin">已有帐号？点击返回</button>
 </view>
 

@@ -20,6 +20,6 @@
       value="{{password}}" bindinput="inputPassword"  bindfocus="selectchoice_password" class="three" type="password" />
   </view>
   <button bindtap="login" class="login">登录</button>
-  <button bindtap="register" class="goto-register">没有账号？点击注册</button>
+  <button bindtap="register" class="gotoRegister">没有账号？点击注册</button>
   </view>
   
