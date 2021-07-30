@@ -1,4 +1,5 @@
 // pages/home/practice/select/select.js
+const app=getApp()
 const AV = require('../../../../libs/av-core-min');
 var util = require('../../../../utils/util.js');
 Page({

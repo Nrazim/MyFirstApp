@@ -1,4 +1,5 @@
 // pages/personal_infos/bmi_infos/bmi_infos.js
+const app=getApp()
 Page({
 
   /**

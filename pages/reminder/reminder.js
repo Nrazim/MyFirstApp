@@ -1,4 +1,5 @@
 // pages/reminder/reminder.js
+const app=getApp()
 Page({
 
   /**

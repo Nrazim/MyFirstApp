@@ -1,4 +1,5 @@
 // pages/statistics/statistics.js
+const app=getApp()
 Page({
 
   /**

@@ -1,4 +1,5 @@
 // pages/statistics/mealData/mealData.js
+const app=getApp()
 var Chart = require('../../../script/Chart.umd.min.js');
 const AV = require('../../../libs/av-core-min');
 

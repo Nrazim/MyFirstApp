@@ -1,4 +1,5 @@
 // pages/reminder/healthplan/healthplan.
+const app=getApp()
 const AV = require('../../../libs/av-core-min'); 
 Page({
 

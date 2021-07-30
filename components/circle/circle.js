@@ -95,6 +95,10 @@ Component({
       context.arc(r, r, r - w, -Math.PI / 2, step * Math.PI - Math.PI / 2, false);
       context.stroke();//对当前路径进行描边
       step?context.draw():''; //当step为空的时候不画0%
+      context.beginPath();
+      context.arc(r, r, r - w, 0 , Math.PI, false);
+      context.setFillStyle("white");//填充颜色
+      context.fill();//画实心圆
     },
 
     /**
