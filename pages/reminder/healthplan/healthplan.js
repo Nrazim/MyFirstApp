@@ -1,4 +1,5 @@
 // pages/reminder/healthplan/healthplan.
+const app=getApp()
 const AV = require('../../../libs/av-core-min'); 
 Page({
 
@@ -108,6 +109,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    app.setNavBar()
   },
 
   /**

@@ -252,7 +252,7 @@ Page({
         medicineAfterFinish[j] =j+3
         currentUser.set("medicineAfterFinish",medicineAfterFinish);
         currentUser.save();
-        
+
         console.log('TakeMedicineAfter');
         break;
       }
@@ -340,6 +340,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    app.setNavBar()
     wx.hideHomeButton();
   },
 

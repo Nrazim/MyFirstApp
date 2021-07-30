@@ -1,4 +1,5 @@
 // pages/home/practice/select/select.js
+const app=getApp()
 const AV = require('../../../../libs/av-core-min');
 var util = require('../../../../utils/util.js');
 Page({
@@ -171,7 +172,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    app.setNavBar()
   },
 
   /**

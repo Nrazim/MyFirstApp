@@ -1,4 +1,5 @@
 // pages/statistics/mealData/mealData.js
+const app=getApp()
 var Chart = require('../../../script/Chart.umd.min.js');
 const AV = require('../../../libs/av-core-min');
 
@@ -111,7 +112,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    app.setNavBar()
   },
 
   /**

@@ -32,8 +32,8 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "史莱姆养成计划",
+    "navigationBarBackgroundColor": "#eeeeee",
+    "navigationBarTitleText": "宠物健康养成计划",
     "navigationBarTextStyle": "black"
   },
   "useExtendedLib": {
@@ -41,5 +41,6 @@
     "weui": true
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "navigateToMiniProgramAppIdList": ["wxc2edadc87077fa2a"]
 }

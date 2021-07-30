@@ -19,8 +19,9 @@
         </view>
     </view>
     <view class="weui-cell__bd">
-      <view style="background:{{rgb}};width:20%;margin-right:80%" bindtap="toPick" class="color-block"></view>
+      <view style="background:{{rgb}};width:80%;margin-right:20%" bindtap="toPick" class="color-block"></view>
     </view>
+    <view class="weui-cell__ft">{{rgb}}</view>
   </view>
 </view>
 
