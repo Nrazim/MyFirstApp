@@ -56,8 +56,8 @@ Page({
       else{
         app.globalData.lastLogin = loginedUser.attributes.lastLogin
         if(loginedUser.attributes.lastLogin!=fullDate){
-          var complete = loginedUser.attributes.accomplished;
-          var continueDays = loginedUser.attributes.continueDays;
+          var complete = loginedUser.get("accomplished")?loginedUser.get("accomplished"):[0,0,0];
+          var continueDays = loginedUser.get("continueDays")?loginedUser.get("continueDays"):[0,0,0];
           if(complete[0]){
             continueDays[0]+=1
           }else{
