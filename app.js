@@ -103,6 +103,14 @@ App({
     var thisDate = new Date(year,month,0); //当天数为0 js自动处理为上一月的最后一天
     return thisDate.getDate();
   },//用于获得本月的天数
+  colorRGB2Hex:function(color) {//rgb转16进制
+    var rgb = color.split(',');
+    var r = parseInt(rgb[0].split('(')[1]);
+    var g = parseInt(rgb[1]);
+    var b = parseInt(rgb[2].split(')')[0]);
+    var hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    return hex;
+ },
   globalData: {
     mainCharacter: 0,//0史莱姆，1猫
     isSleeping: false,

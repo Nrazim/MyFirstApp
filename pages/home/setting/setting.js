@@ -13,7 +13,16 @@ Page({
     buttons: [
       {text: '取消'}, {text: '确认'}
     ],
+    character:['史莱姆','猫'],
+    cha:app.globalData.mainCharacter,
     dialogShow: false,
+  },
+  bindChaChange: function(e){
+    this.setData({
+      cha: e.detail.value
+    })
+    app.globalData.mainCharacter = e.detail.value
+    console.log('角色编号改为' + app.globalData.mainCharacter)
   },
   toPick: function () {
     this.setData({
@@ -24,7 +33,14 @@ Page({
     this.setData({
       rgb: e.detail.color
     })
+    console.log(e.detail.color)
     app.globalData.rgb = e.detail.color
+    var hexcolor = app.colorRGB2Hex(e.detail.color) 
+    console.log(hexcolor)
+    wx.setNavigationBarColor({
+      frontColor: "#000000",
+      backgroundColor: hexcolor,
+  })
   },
   openConfirm: function(){
     this.setData({

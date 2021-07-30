@@ -4,10 +4,10 @@ const AV = require('../../../libs/av-core-min');
 const ImgLoader = require('../../../components/img-loader/img-loader.js')
 //原图
 const ActionOriginal = ["https://www.z4a.net/images/2021/07/19/relax1.gif",
-                        "https://www.z4a.net/images/2021/07/27/nekoRelax1.gif"]
+                        "https://www.z4a.net/images/2021/07/30/nekoRelax1.gif"]
 //缩略图 
 const ActionThumbnail = ["https://www.z4a.net/images/2021/07/19/relax1.md.gif",
-                        "https://www.z4a.net/images/2021/07/27/nekoRelax1.md.gif"]
+                        "https://www.z4a.net/images/2021/07/30/nekoRelax1.md.gif"]
 
                         
 // 获取应用实例
@@ -49,6 +49,7 @@ Page({
   },
   loadImage() {
     //加载缩略图
+    console.log('角色编号' + app.globalData.mainCharacter)
     this.setData({
         Action: ActionThumbnail[app.globalData.mainCharacter]
     })
@@ -66,9 +67,6 @@ Page({
         url: '../../login/login/login',
       })
     }
-    //初始化图片预加载组件
-    this.imgLoader = new ImgLoader(this)
-    this.loadImage()
   },
   onShow(){
     if(app.globalData.SignedIn==false){
@@ -88,7 +86,11 @@ Page({
           icon: 'loading',
           duration: 2000
         })
+        return
       }
+      //初始化图片预加载组件
+      this.imgLoader = new ImgLoader(this)
+      this.loadImage()
     }
     const currentUser = AV.User.current();
 

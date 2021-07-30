@@ -6,10 +6,10 @@ var util = require('../../../utils/util.js');
 const ImgLoader = require('../../../components/img-loader/img-loader.js')
 //原图
 const ActionOriginal = ["https://www.z4a.net/images/2021/07/20/meal1.gif",
-                        "https://www.z4a.net/images/2021/07/27/nekoEat1.gif"]
+                        "https://www.z4a.net/images/2021/07/30/nekoEat1.gif"]
 //缩略图 
 const ActionThumbnail = ["https://www.z4a.net/images/2021/07/20/meal1.md.gif",
-                        "https://www.z4a.net/images/2021/07/27/nekoEat1.md.gif"]
+                        "https://www.z4a.net/images/2021/07/30/nekoEat1.md.gif"]
 
 Page({
 
@@ -250,8 +250,7 @@ Page({
         medicineAfterFinish[j] =j+3
         currentUser.set("medicineAfterFinish",medicineAfterFinish);
         currentUser.save();
-
-        this.timeToMedicineBefore();
+        
         console.log('TakeMedicineAfter');
         break;
       }
@@ -293,6 +292,7 @@ Page({
   },
   loadImage() {
     //加载缩略图
+    console.log('角色编号' + app.globalData.mainCharacter)
     this.setData({
         Action: ActionThumbnail[app.globalData.mainCharacter]
     })

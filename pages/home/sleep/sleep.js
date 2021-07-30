@@ -5,9 +5,11 @@ var util = require('../../../utils/util.js');
 //引入图片预加载组件
 const ImgLoader = require('../../../components/img-loader/img-loader.js')
 //原图
-const ActionOriginal = "https://www.z4a.net/images/2021/07/17/_x264.gif"
+const ActionOriginal = ["https://www.z4a.net/images/2021/07/17/_x264.gif",
+                        "https://www.z4a.net/images/2021/07/30/nekoSleep1.gif"]
 //缩略图 
-const ActionThumbnail = "https://www.z4a.net/images/2021/07/17/_x264.md.gif"
+const ActionThumbnail = ["https://www.z4a.net/images/2021/07/17/_x264.md.gif",
+                        "https://www.z4a.net/images/2021/07/30/nekoSleep1.md.gif"]
 var timeSleepFrom = 1830;
 var timeSleepTo = 2330;
 var timeAwakeFrom = 530;
@@ -138,10 +140,10 @@ Page({
   loadImage() {
     //加载缩略图
     this.setData({
-        Action: ActionThumbnail
+        Action: ActionThumbnail[app.globalData.mainCharacter]
     })
     //同时对原图进行预加载，加载成功后再替换
-    this.imgLoader.load(ActionOriginal, (err, data) => {
+    this.imgLoader.load(ActionOriginal[app.globalData.mainCharacter], (err, data) => {
         console.log('图片加载完成', err, data.src)
         if (!err)
             this.setData({ Action: data.src })
