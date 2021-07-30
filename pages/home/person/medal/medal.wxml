@@ -5,6 +5,7 @@
   <view class="insidewrap">
   <text class = "txt">{{item.txt}}</text>
   <circle txtshow = "{{item.toNext}}%" draw='1' per = '{{item.toNext}}' r = '100' thick = '8'/>
+  <text class = "txt" style="color:grey;">{{item.id1}}{{item.present}}{{item.id2}}</text>
   </view>
 </view>
 </view>
