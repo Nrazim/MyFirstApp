@@ -96,6 +96,18 @@ Page({
         switchDinnerChecked: (currentUser.attributes.mealChecks)[2]
       })
     }
+    let plans = currentUser.get("planForMeals")
+    let sleep = currentUser.get("planToSleep")
+    let awake = currentUser.get("planToAwake")
+    if(awake){
+      this.setData({
+        breakfastTime: app.fix(parseInt(plans[0]/100),2)+':'+app.fix(plans[0]%100,2),
+        lunchTime: app.fix(parseInt(plans[1]/100),2)+':'+app.fix(plans[1]%100,2),
+        dinnerTime: app.fix(parseInt(plans[2]/100),2)+':'+app.fix(plans[2]%100,2),
+        sleepTime: app.fix(parseInt(sleep/100),2)+':'+app.fix(sleep%100,2),
+        awakeTime: app.fix(parseInt(awake/100),2)+':'+app.fix(awake%100,2)
+      })
+    }
   },
 
   /**
