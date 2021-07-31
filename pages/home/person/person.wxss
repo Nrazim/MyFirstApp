@@ -8,11 +8,11 @@
   box-sizing: border-box;
 } 
 .container_bottom{
-  width: 1;
-  height: 1;
+  width: 750rpx;
+  height: 1252rpx;
   margin: 0;
   padding: 0;
-  position: relative;
+  position: fixed;
 }
 image{
   position: absolute;
@@ -25,8 +25,9 @@ image{
 }
 
 .level{
-  top: 120rpx;
-  right:175rpx;
+  left: 495rpx;
+  width: 120rpx;
+  top: 125rpx;
   position:fixed;
   font-size:300%;
 }

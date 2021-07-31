@@ -1,4 +1,4 @@
-.circle_box,.circle_draw{ position: relative; }
+.circle_box,.circle_draw{ position: absolute; }
 .circle_bg{position: absolute;}
 .circle_box{
   display: flex;

@@ -57,6 +57,11 @@ Page({
         url: '../../login/login/login',
       })
     }
+    app.globalData.NavigationBarSettings = {
+      front:"#000000",
+      background: "#eeeeee",
+    },
+    app.globalData.mainCharacter = 0
     this.setData({
       dialogShow: false,
     })

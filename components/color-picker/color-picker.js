@@ -22,13 +22,13 @@ Component({
   },
   lifetimes: {
     attached() {
+
+    },
+    ready() {
       let { initColor} = this.data;
       this.setData({
         hueColor: this.hsv2rgb((this.rgb2hsv(initColor)).h,100,100)
       })
-    },
-    ready() {
-      
       const $ = this.createSelectorQuery()
       const target = $.select('.target')
       target.boundingClientRect()
