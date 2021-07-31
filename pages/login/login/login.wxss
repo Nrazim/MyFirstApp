@@ -59,10 +59,22 @@
   background-color: white;
 }
 
+.titleImage{
+  margin-top: 100rpx;
+  display:flex;
+  justify-content: center;         
+  align-items:center;                
+ }
+
+ .titleImage image{
+  width:600rpx;
+  height:225rpx;
+}
+
 .title{
   font-size:100%;
   line-height:20px;
-  margin-top:200rpx;
+  margin-top:0rpx;
   text-align: center;
   font-weight: 300;
 }
