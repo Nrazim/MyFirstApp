@@ -1,5 +1,8 @@
 <!--pages/login/login.wxml-->
-<view class="title">用户登录</view>
+<view class="titleImage">
+  <image src='../../images/login/login0.png'></image>
+</view>
+<!--<view class="title">用户登录</view>-->
 
 <view  class="container1">
   <image wx:if="{{selectchoice=='0'}}"class='imag1' src='../../images/login/login1.png'></image>
