@@ -110,8 +110,8 @@ Page({
         currentUser.set("w_daily",w_daily);       //最多存储31条
         currentUser.set("w_monthly",w_monthly);
         currentUser.set("meals",[false,false,false]);
-        currentUser.set("NavigationBarSettings",app.globalData.NavigationBarSettings);
-        currentUser.set("mainCharacter",app.globalData.mainCharacter);
+        //currentUser.set("NavigationBarSettings",app.globalData.NavigationBarSettings);
+        //currentUser.set("mainCharacter",app.globalData.mainCharacter);
         if(this.data.index==1){
           currentUser.set("gender",'男');
         }

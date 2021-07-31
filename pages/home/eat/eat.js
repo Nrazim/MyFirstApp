@@ -204,19 +204,24 @@ Page({
     console.log(planForMeals[e.detail.index-1])
     var planMinutes = parseInt(planForMeals[e.detail.index-1]/100)*60+planForMeals[e.detail.index-1]%100
     var nowMinutes = parseInt(this.data.timeStart.slice(11,13))*60+parseInt(this.data.timeStart.slice(14,16))
-    console.log(planMinutes)
-    console.log(nowMinutes)
     var tempTime = Math.abs(planMinutes-nowMinutes)
+    let tempArray = [['您未按时吃饭，今天的任务失败了~','none'],['按时吃饭成功！','success']]
+    console.log(tempTime)
+    var tempIndex = (tempTime<=300)?1:0
     for(var j = 0; j<3 ;j++){
       if(e.detail.index-1 == j){
         if(meals[j]){//如果已经吃过
-          wx.redirectTo({
-            url: '../index/index',
-          })
           wx.showToast({
-            title: '今天已经吃过啦！',
+            title: '今天已经吃过',
             icon: 'error',
-            duration: 2000
+            duration: 1500,
+            success:function(){
+              setTimeout(function(){
+                wx.redirectTo({
+                  url: '../index/index',
+                });
+              },1200)
+            }
           })
           return
         }
@@ -238,7 +243,20 @@ Page({
           medicineBeforeFinish[j] =j
           currentUser.set("medicineBeforeFinish",medicineBeforeFinish);
           currentUser.save();
-          this.timeToMedicineBefore();
+          
+          var that=this
+          wx.showToast({
+            title: tempArray[tempIndex][0],
+            icon: tempArray[tempIndex][1],
+            duration: 1500,
+            success: function(){
+              setTimeout(function(){
+                that.timeToMedicineBefore();
+              },1200)
+            }
+          })
+          //this.timeToMedicineBefore();
+
           break;
         }
     }
@@ -261,22 +279,21 @@ Page({
         dialogShow: false,
     })
     if(!app.globalData.TakeMedicineBefore){
-      wx.navigateTo({
-        url: 'selectFood/selectFood',
-      })
-    }
-    if (tempTime>60){
+
+
       wx.showToast({
-        title: '您未按时吃饭，今天的任务失败了~',
-        icon: 'none',
-        duration: 3000
+        title: tempArray[tempIndex][0],
+        icon: tempArray[tempIndex][1],
+        duration: 1500,
+        success: function(){
+          setTimeout(function(){
+            wx.navigateTo({
+              url: 'selectFood/selectFood',
+            })
+          },1200)
+        }
       })
-    }else{
-      wx.showToast({
-        title: '按时吃饭成功！',
-        icon: 'success',
-        duration: 3000
-      })
+
     }
   },
 

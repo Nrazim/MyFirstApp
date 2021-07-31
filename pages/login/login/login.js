@@ -97,14 +97,23 @@ Page({
         app.globalData.medicinefinish = complete[1];
         app.globalData.eatfinish = complete[2];
         app.globalData.sleepfinish = complete[3];
-        wx.redirectTo({
+        /*wx.redirectTo({
           url: '../../home/index/index',
-        });
+        });*/
+        wx.showToast({
+          title: '登录成功',
+          icon: 'success',
+          duration: 1500,
+          success:function(){
+            setTimeout(function(){
+              wx.redirectTo({
+                url: '../../home/index/index',
+              });
+            },1200)
+          }
+        })
       }
-      wx.showToast({
-        title: '登录成功',
-        icon: 'success',
-      })
+      
     }, (error) => {
       wx.showToast({
         title: '账号或密码错误',
