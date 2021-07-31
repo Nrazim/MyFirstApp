@@ -10,7 +10,7 @@
   <circle txtshow = "{{exp}}%" draw='circwewle1' per = '{{exp}}' r = '120' thick = '20'/>
 </view>
 <!--当前等级-->
-<view class="level">{{level}}</view>
+<view class="level" style="text-align: center;">{{level}}</view>
 
 <!--勋章墙-->
 <image class="figure" src='../../images/person/medal.png' bindtap = "medalClick"></image>
