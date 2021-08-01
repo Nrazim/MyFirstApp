@@ -4,7 +4,7 @@
   flex-wrap: wrap;
   flex-direction: row;
   left: 15rpx;
-  bottom: 100rpx;
+  top: 1000rpx;
   position: fixed;
 }
 .im{/*圆形图片*/
